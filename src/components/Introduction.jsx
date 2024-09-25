@@ -15,14 +15,14 @@ const Introduction = () => {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
     <section id="introduccion" className="introduction">
       <div className="introduction__content">
-        {/* Imagen de perfil en la izquierda */}
+        {/* Imagen de perfil a la izquierda */}
         <div className="introduction__photo">
           <img src={photo} alt={t('introduction.altText')} />
         </div>

@@ -18,7 +18,9 @@ const PDFModal = ({ isOpen, onRequestClose }) => {
       className="pdf-modal"
       overlayClassName="pdf-modal-overlay"
     >
-      <button onClick={onRequestClose} className="pdf-modal__close-button">Cerrar</button>
+      <button onClick={onRequestClose} className="pdf-modal__close-button" aria-label="Cerrar Modal">
+        &times;
+      </button>
       <div className="pdf-modal__content">
         <iframe
           src={pdfUrl}

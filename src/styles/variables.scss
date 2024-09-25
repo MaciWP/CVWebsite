@@ -1,22 +1,28 @@
-/* Variables de estilo utilizando CSS Variables */
+// src/styles/variables.scss
 
 :root {
-    --primary-color: #005A9C; /* Cobalto */
-    --primary-color-dark: #004680; /* 10% más oscuro */
-    --secondary-color: #6C7A89; /* Gris para textos secundarios */
-    --background-color: #F4F4F4; /* Fondo suave */
-    --accent-color: #FF6600; /* Naranja para elementos destacados */
-    --accent-color-dark: #E65C00; /* 10% más oscuro */
-    --text-color: #333;
-    --font-family: 'Roboto', sans-serif;
-  }
-  
-  /* Tema oscuro */
-  [data-theme='dark'] {
-    --primary-color: #1E1E1E;
-    --primary-color-dark: #181818;
-    --secondary-color: #3C3C3C;
-    --background-color: #121212;
-    --text-color: #E0E0E0;
-  }
-  
+  --primary-color: #3498db;
+  --primary-color-dark: #2980b9;
+  --accent-color: #e74c3c;
+  --accent-color-dark: #c0392b;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --secondary-color: #777;
+}
+
+[data-theme='dark'] {
+  --primary-color: #2980b9;
+  --primary-color-dark: #1c5980;
+  --accent-color: #c0392b;
+  --accent-color-dark: #96281b;
+  --background-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --secondary-color: #bdc3c7;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Roboto', sans-serif;
+}

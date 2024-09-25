@@ -10,6 +10,8 @@ import {
   faCogs,
   faEnvelope,
   faDownload,
+  faSun,
+  faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import PDFModal from './PDFModal';
@@ -54,9 +56,14 @@ const Header = ({ theme, toggleTheme }) => {
             <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faGithub} />
             </a>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}>
+            {/* Usar <button> en lugar de <a> */}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="header__download-button"
+              aria-label="Descargar CV"
+            >
               <FontAwesomeIcon icon={faDownload} />
-            </a>
+            </button>
           </div>
           <div className="header__controls-section">
             <div className="header__language-selector">
@@ -68,8 +75,12 @@ const Header = ({ theme, toggleTheme }) => {
                 <option value="it">IT</option>
               </select>
             </div>
-            <button onClick={toggleTheme} className="header__theme-toggle" aria-label="Toggle Theme">
-              {theme === 'light' ? '🌙' : '☀️'}
+            <button
+              onClick={toggleTheme}
+              className="header__theme-toggle"
+              aria-label="Toggle Theme"
+            >
+              <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
             </button>
           </div>
         </div>

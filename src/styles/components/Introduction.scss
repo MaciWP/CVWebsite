@@ -9,13 +9,14 @@
   &__content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; // Distribuye los elementos equidistantemente
     max-width: 1200px;
     margin: 0 auto;
-    flex-wrap: wrap;
+    flex-wrap: wrap; // Para que sea responsivo
 
     @media (max-width: 768px) {
       flex-direction: column;
+      padding: 60px 20px; // Ajuste para móviles
     }
   }
 
@@ -23,11 +24,12 @@
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 20px;
 
     img {
       border-radius: 50%;
-      width: 200px;
+      width: 200px; // Tamaño aumentado a 200px
       height: 200px;
       object-fit: cover;
     }
@@ -55,6 +57,14 @@
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 20px;
+
+    /* Asegurar que la animación no exceda el espacio disponible */
+    iframe,
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }

@@ -1,6 +1,13 @@
 /* Importa los estilos de los componentes y las variables */
 
 @import 'variables';
+@import './variables';
+@import './components/Header.scss';
+@import './components/Introduction.scss';
+@import './components/PDFModal.scss';
+@import 'components/Languages';
+@import 'components/Projects';
+@import 'components/Footer';
 
 /* Estilos globales */
 
@@ -28,18 +35,8 @@ a {
   html {
     scroll-behavior: smooth;
   }
-  
 
-/* Importa los estilos de los componentes */
 
-@import 'components/Header';
-@import 'components/Introduction';
-@import 'components/Experience';
-@import 'components/Education';
-@import 'components/Skills';
-@import 'components/Projects';
-@import 'components/Languages';
-/* Eliminamos Testimonials */
-/* @import 'components/Testimonials'; */
-@import 'components/Contact';
-@import 'components/Footer';
+
+
+
