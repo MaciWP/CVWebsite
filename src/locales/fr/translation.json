@@ -1,0 +1,51 @@
+{
+    "header": {
+      "name": "Votre Nom",
+      "nav": {
+        "home": "Accueil",
+        "experience": "Expérience",
+        "education": "Éducation",
+        "skills": "Compétences",
+        "projects": "Projets",
+        "languages": "Langues",
+        "contact": "Contact"
+      }
+    },
+    "introduction": {
+      "title": "Architecte Logiciel Senior",
+      "description": "Plus de 10 ans d'expérience dans la conception et le développement de systèmes évolutifs.",
+      "altText": "Photo de profil de Votre Nom"
+    },
+    "experience": {
+      "title": "Expérience Professionnelle",
+      "at": "chez"
+    },
+    "education": {
+      "title": "Éducation et Certifications"
+    },
+    "skills": {
+      "title": "Compétences Techniques"
+    },
+    "projects": {
+      "title": "Projets Mis en Avant",
+      "viewMore": "Voir plus"
+    },
+    "languages": {
+      "title": "Langues"
+    },
+    "testimonials": {
+      "title": "Témoignages"
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "E-mail",
+      "downloadCV": "Télécharger le CV en PDF",
+      "scheduleInterview": "Programmer un Entretien"
+    },
+    "footer": {
+      "name": "Votre Nom",
+      "rights": "Tous droits réservés.",
+      "privacyPolicy": "Politique de Confidentialité"
+    }
+  }
+  

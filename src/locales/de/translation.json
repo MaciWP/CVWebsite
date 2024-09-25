@@ -1,0 +1,50 @@
+{
+  "header": {
+    "name": "Ihr Name",
+    "nav": {
+      "home": "Startseite",
+      "experience": "Erfahrung",
+      "education": "Ausbildung",
+      "skills": "Fähigkeiten",
+      "projects": "Projekte",
+      "languages": "Sprachen",
+      "contact": "Kontakt"
+    }
+  },
+  "introduction": {
+    "title": "Senior Software Architekt",
+    "description": "Über 10 Jahre Erfahrung im Design und in der Entwicklung skalierbarer Systeme.",
+    "altText": "Profilfoto von Ihr Name"
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "at": "bei"
+  },
+  "education": {
+    "title": "Bildung und Zertifikate"
+  },
+  "skills": {
+    "title": "Technische Fähigkeiten"
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "viewMore": "Mehr ansehen"
+  },
+  "languages": {
+    "title": "Sprachen"
+  },
+  "testimonials": {
+    "title": "Empfehlungen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "downloadCV": "Lebenslauf als PDF herunterladen",
+    "scheduleInterview": "Interview vereinbaren"
+  },
+  "footer": {
+    "name": "Ihr Name",
+    "rights": "Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzerklärung"
+  }
+}

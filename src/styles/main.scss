@@ -1,0 +1,45 @@
+/* Importa los estilos de los componentes y las variables */
+
+@import 'variables';
+
+/* Estilos globales */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+* {
+    transition: all 0.3s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+
+/* Importa los estilos de los componentes */
+
+@import 'components/Header';
+@import 'components/Introduction';
+@import 'components/Experience';
+@import 'components/Education';
+@import 'components/Skills';
+@import 'components/Projects';
+@import 'components/Languages';
+/* Eliminamos Testimonials */
+/* @import 'components/Testimonials'; */
+@import 'components/Contact';
+@import 'components/Footer';

@@ -1,0 +1,51 @@
+{
+  "header": {
+    "name": "Your Name",
+    "nav": {
+      "home": "Home",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "languages": "Languages",
+      "contact": "Contact",
+      "timeline": "Timeline"
+    }
+  },
+  "introduction": {
+    "title": "Senior Software Architect",
+    "description": "Over 10 years of experience designing and developing scalable systems.",
+    "altText": "Profile photo of Your Name"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "at": "at"
+  },
+  "education": {
+    "title": "Education and Certifications"
+  },
+  "skills": {
+    "title": "Technical Skills"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewMore": "View More"
+  },
+  "languages": {
+    "title": "Languages"
+  },
+  "testimonials": {
+    "title": "Testimonials"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "downloadCV": "Download CV in PDF",
+    "scheduleInterview": "Schedule an Interview"
+  },
+  "footer": {
+    "name": "Your Name",
+    "rights": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy"
+  }
+}

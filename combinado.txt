@@ -1,0 +1,2212 @@
+=== Archivo: reportWebVitals.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/reportWebVitals.js
+
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+=== Archivo: index.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/index.js
+
+// src/index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { I18nextProvider } from 'react-i18next';
+import { ThemeProvider } from './contexts/ThemeContext';
+import i18n from './i18n';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </I18nextProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+serviceWorkerRegistration.register();
+
+
+=== Archivo: index.css ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/index.css
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+=== Archivo: serviceWorkerRegistration.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/serviceWorkerRegistration.js
+
+// src/serviceWorkerRegistration.js
+
+// Este archivo es una adaptación del archivo serviceWorkerRegistration.js proporcionado por Create React App.
+// Puedes copiar el contenido de este archivo desde el repositorio oficial de Create React App.
+
+const isLocalhost = Boolean(
+    window.location.hostname === 'localhost' ||
+      // [::1] es la dirección localhost en IPv6.
+      window.location.hostname === '[::1]' ||
+      // 127.0.0.1/8 es considerado localhost para IPv4.
+      window.location.hostname.match(
+        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+      )
+  );
+  
+  export function register(config) {
+    if ('serviceWorker' in navigator) {
+      // El constructor de URL está disponible en todos los navegadores que soportan SW.
+      const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+      if (publicUrl.origin !== window.location.origin) {
+        // Nuestro service worker no funcionará si PUBLIC_URL está en un origen diferente.
+        return;
+      }
+  
+      window.addEventListener('load', () => {
+        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+  
+        if (isLocalhost) {
+          // Esto es localhost. Comprobar si el service worker existe.
+          checkValidServiceWorker(swUrl, config);
+  
+          navigator.serviceWorker.ready.then(() => {
+            console.log(
+              'Esta aplicación web está siendo servida en caché por un service worker.'
+            );
+          });
+        } else {
+          // No es localhost. Registrar service worker.
+          registerValidSW(swUrl, config);
+        }
+      });
+    }
+  }
+  
+  function registerValidSW(swUrl, config) {
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        if (registration.waiting) {
+          if (config && config.onUpdate) {
+            config.onUpdate(registration);
+          }
+          return;
+        }
+  
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) {
+            return;
+          }
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // Nuevo contenido está disponible.
+                if (config && config.onUpdate) {
+                  config.onUpdate(registration);
+                }
+              } else {
+                // Contenido precacheado ha sido instalado.
+                if (config && config.onSuccess) {
+                  config.onSuccess(registration);
+                }
+              }
+            }
+          };
+        };
+      })
+      .catch((error) => {
+        console.error('Error al registrar el service worker:', error);
+      });
+  }
+  
+  function checkValidServiceWorker(swUrl, config) {
+    // Comprueba si el service worker puede ser encontrado.
+    fetch(swUrl, {
+      headers: { 'Service-Worker': 'script' },
+    })
+      .then((response) => {
+        // Asegúrate de que el service worker existe y de que podemos obtenerlo.
+        const contentType = response.headers.get('content-type');
+        if (
+          response.status === 404 ||
+          (contentType != null && contentType.indexOf('javascript') === -1)
+        ) {
+          // No hay service worker. Recarga la página.
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.unregister().then(() => {
+              window.location.reload();
+            });
+          });
+        } else {
+          // Service worker encontrado. Procede con normalidad.
+          registerValidSW(swUrl, config);
+        }
+      })
+      .catch(() => {
+        console.log(
+          'No se pudo conectar al servidor para verificar el service worker.'
+        );
+      });
+  }
+  
+  export function unregister() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready
+        .then((registration) => {
+          registration.unregister();
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
+  }
+  
+
+=== Archivo: App.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/App.jsx
+
+// src/App.jsx
+
+// src/App.jsx
+
+import React, { Suspense, lazy } from 'react';
+import { Helmet } from 'react-helmet';
+import { Route, Routes } from 'react-router-dom'; // Cambiar 'Switch' por 'Routes'
+import './styles/main.scss';
+
+// Importa tus componentes
+const Header = lazy(() => import('./components/Header'));
+const Introduction = lazy(() => import('./components/Introduction'));
+const Timeline = lazy(() => import('./components/Timeline'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Languages = lazy(() => import('./components/Languages'));
+const Footer = lazy(() => import('./components/Footer'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const PDFViewer = lazy(() => import('./components/PDFViewer'));
+
+
+
+function App() {
+  return (
+    <div className="App">
+      <Helmet>
+        {/* Meta etiquetas */}
+      </Helmet>
+      <Suspense fallback={<div>Cargando...</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Introduction />
+                <Timeline />
+                <Skills />
+                <Projects />
+                <Languages />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/politica-de-privacidad"
+            element={
+              <>
+                <Header />
+                <PrivacyPolicy />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+    path="/cv"
+    element={
+      <>
+        <Header />
+        <PDFViewer />
+        <Footer />
+      </>
+    }
+  />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+
+
+=== Archivo: setupTests.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/setupTests.js
+
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+
+=== Archivo: i18n.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/i18n.js
+
+// src/i18n.js
+
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+import translationEN from './locales/en/translation.json';
+import translationDE from './locales/de/translation.json';
+import translationES from './locales/es/translation.json';
+import translationFR from './locales/fr/translation.json';
+import translationIT from './locales/it/translation.json';
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  de: {
+    translation: translationDE,
+  },
+  es: {
+    translation: translationES,
+  },
+  fr: {
+    translation: translationFR,
+  },
+  it: {
+    translation: translationIT,
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en', // Idioma por defecto
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
+export default i18n;
+
+
+=== Archivo: ThemeContext.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/contexts/ThemeContext.jsx
+
+// src/contexts/ThemeContext.jsx
+
+import React, { createContext, useState, useEffect } from 'react';
+
+export const ThemeContext = createContext();
+
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  return savedTheme ? savedTheme : 'light';
+};
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(getInitialTheme());
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+
+=== Archivo: translation.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/locales/it/translation.json
+
+{
+    "header": {
+      "name": "Il Tuo Nome",
+      "nav": {
+        "home": "Home",
+        "experience": "Esperienza",
+        "education": "Formazione",
+        "skills": "Competenze",
+        "projects": "Progetti",
+        "languages": "Lingue",
+        "contact": "Contatto"
+      }
+    },
+    "introduction": {
+      "title": "Architetto Software Senior",
+      "description": "Oltre 10 anni di esperienza nel design e sviluppo di sistemi scalabili.",
+      "altText": "Foto profilo di Il Tuo Nome"
+    },
+    "experience": {
+      "title": "Esperienza Professionale",
+      "at": "presso"
+    },
+    "education": {
+      "title": "Formazione e Certificazioni"
+    },
+    "skills": {
+      "title": "Competenze Tecniche"
+    },
+    "projects": {
+      "title": "Progetti in Evidenza",
+      "viewMore": "Vedi di più"
+    },
+    "languages": {
+      "title": "Lingue"
+    },
+    "testimonials": {
+      "title": "Testimonianze"
+    },
+    "contact": {
+      "title": "Contatto",
+      "email": "Email",
+      "downloadCV": "Scarica CV in PDF",
+      "scheduleInterview": "Programma un Colloquio"
+    },
+    "footer": {
+      "name": "Il Tuo Nome",
+      "rights": "Tutti i diritti riservati.",
+      "privacyPolicy": "Informativa sulla Privacy"
+    }
+  }
+  
+
+=== Archivo: translation.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/locales/de/translation.json
+
+{
+  "header": {
+    "name": "Ihr Name",
+    "nav": {
+      "home": "Startseite",
+      "experience": "Erfahrung",
+      "education": "Ausbildung",
+      "skills": "Fähigkeiten",
+      "projects": "Projekte",
+      "languages": "Sprachen",
+      "contact": "Kontakt"
+    }
+  },
+  "introduction": {
+    "title": "Senior Software Architekt",
+    "description": "Über 10 Jahre Erfahrung im Design und in der Entwicklung skalierbarer Systeme.",
+    "altText": "Profilfoto von Ihr Name"
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "at": "bei"
+  },
+  "education": {
+    "title": "Bildung und Zertifikate"
+  },
+  "skills": {
+    "title": "Technische Fähigkeiten"
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "viewMore": "Mehr ansehen"
+  },
+  "languages": {
+    "title": "Sprachen"
+  },
+  "testimonials": {
+    "title": "Empfehlungen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "downloadCV": "Lebenslauf als PDF herunterladen",
+    "scheduleInterview": "Interview vereinbaren"
+  },
+  "footer": {
+    "name": "Ihr Name",
+    "rights": "Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzerklärung"
+  }
+}
+
+
+=== Archivo: translation.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/locales/fr/translation.json
+
+{
+    "header": {
+      "name": "Votre Nom",
+      "nav": {
+        "home": "Accueil",
+        "experience": "Expérience",
+        "education": "Éducation",
+        "skills": "Compétences",
+        "projects": "Projets",
+        "languages": "Langues",
+        "contact": "Contact"
+      }
+    },
+    "introduction": {
+      "title": "Architecte Logiciel Senior",
+      "description": "Plus de 10 ans d'expérience dans la conception et le développement de systèmes évolutifs.",
+      "altText": "Photo de profil de Votre Nom"
+    },
+    "experience": {
+      "title": "Expérience Professionnelle",
+      "at": "chez"
+    },
+    "education": {
+      "title": "Éducation et Certifications"
+    },
+    "skills": {
+      "title": "Compétences Techniques"
+    },
+    "projects": {
+      "title": "Projets Mis en Avant",
+      "viewMore": "Voir plus"
+    },
+    "languages": {
+      "title": "Langues"
+    },
+    "testimonials": {
+      "title": "Témoignages"
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "E-mail",
+      "downloadCV": "Télécharger le CV en PDF",
+      "scheduleInterview": "Programmer un Entretien"
+    },
+    "footer": {
+      "name": "Votre Nom",
+      "rights": "Tous droits réservés.",
+      "privacyPolicy": "Politique de Confidentialité"
+    }
+  }
+  
+
+=== Archivo: translation.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/locales/es/translation.json
+
+{
+  "header": {
+    "name": "Tu Nombre",
+    "nav": {
+      "home": "Inicio",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "languages": "Idiomas",
+      "contact": "Contacto"
+    }
+  },
+  "introduction": {
+    "title": "Arquitecto de Software Senior",
+    "description": "Más de 10 años de experiencia en diseño y desarrollo de sistemas escalables.",
+    "altText": "Foto de perfil de Tu Nombre"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "at": "en"
+  },
+  "education": {
+    "title": "Educación y Certificaciones"
+  },
+  "skills": {
+    "title": "Habilidades Técnicas"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "viewMore": "Ver más"
+  },
+  "languages": {
+    "title": "Idiomas"
+  },
+  "testimonials": {
+    "title": "Recomendaciones"
+  },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo Electrónico",
+    "downloadCV": "Descargar CV en PDF",
+    "scheduleInterview": "Programar una Entrevista"
+  },
+  "footer": {
+    "name": "Tu Nombre",
+    "rights": "Todos los derechos reservados.",
+    "privacyPolicy": "Política de Privacidad"
+  }
+}
+
+
+=== Archivo: translation.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/locales/en/translation.json
+
+{
+  "header": {
+    "name": "Your Name",
+    "nav": {
+      "home": "Home",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "languages": "Languages",
+      "contact": "Contact",
+      "timeline": "Timeline"
+    }
+  },
+  "introduction": {
+    "title": "Senior Software Architect",
+    "description": "Over 10 years of experience designing and developing scalable systems.",
+    "altText": "Profile photo of Your Name"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "at": "at"
+  },
+  "education": {
+    "title": "Education and Certifications"
+  },
+  "skills": {
+    "title": "Technical Skills"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewMore": "View More"
+  },
+  "languages": {
+    "title": "Languages"
+  },
+  "testimonials": {
+    "title": "Testimonials"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "downloadCV": "Download CV in PDF",
+    "scheduleInterview": "Schedule an Interview"
+  },
+  "footer": {
+    "name": "Your Name",
+    "rights": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy"
+  }
+}
+
+
+=== Archivo: variables.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/variables.scss
+
+/* Variables de estilo utilizando CSS Variables */
+
+:root {
+    --primary-color: #005A9C; /* Cobalto */
+    --primary-color-dark: #004680; /* 10% más oscuro */
+    --secondary-color: #6C7A89; /* Gris para textos secundarios */
+    --background-color: #F4F4F4; /* Fondo suave */
+    --accent-color: #FF6600; /* Naranja para elementos destacados */
+    --accent-color-dark: #E65C00; /* 10% más oscuro */
+    --text-color: #333;
+    --font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Tema oscuro */
+  [data-theme='dark'] {
+    --primary-color: #1E1E1E;
+    --primary-color-dark: #181818;
+    --secondary-color: #3C3C3C;
+    --background-color: #121212;
+    --text-color: #E0E0E0;
+  }
+  
+
+=== Archivo: main.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/main.scss
+
+/* Importa los estilos de los componentes y las variables */
+
+@import 'variables';
+
+/* Estilos globales */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+* {
+    transition: all 0.3s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+
+/* Importa los estilos de los componentes */
+
+@import 'components/Header';
+@import 'components/Introduction';
+@import 'components/Experience';
+@import 'components/Education';
+@import 'components/Skills';
+@import 'components/Projects';
+@import 'components/Languages';
+/* Eliminamos Testimonials */
+/* @import 'components/Testimonials'; */
+@import 'components/Contact';
+@import 'components/Footer';
+
+
+=== Archivo: Contact.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Contact.scss
+
+/* Estilos para el componente Contact */
+
+@import '../variables';
+
+#contacto {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  .contact {
+    &__title {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+    }
+
+    &__email {
+      text-align: center;
+      font-size: 1.1em;
+      color: var(--text-color);
+
+      a {
+        color: var(--accent-color);
+        transition: color 0.3s;
+
+        &:hover {
+          text-decoration: underline;
+          color: var(--accent-color-dark);
+        }
+      }
+    }
+
+    &__social-media {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+
+      a {
+        margin: 0 15px;
+        font-size: 1.2em;
+        color: var(--primary-color);
+        transition: color 0.3s, transform 0.3s;
+
+        &:hover {
+          color: var(--accent-color);
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: center;
+
+      .button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s, transform 0.3s;
+
+        &:hover {
+          background-color: var(--primary-color-dark);
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+
+=== Archivo: Testimonials.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Testimonials.scss
+
+/* Estilos para el componente Testimonials */
+
+@import '../variables';
+
+#testimonios {
+  padding: 60px 20px;
+  background-color: #fff;
+
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .slick-slide {
+    text-align: center;
+
+    blockquote {
+      font-size: 1.2em;
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 0 auto;
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      footer {
+        font-size: 1em;
+        color: var(--secondary-color);
+      }
+    }
+  }
+}
+
+
+=== Archivo: Skills.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Skills.scss
+
+/* Estilos para el componente Skills */
+
+@import '../variables';
+
+#habilidades {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  .skills {
+    &__title {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+    }
+
+    &__categories {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    &__category {
+      margin-bottom: 30px;
+      text-align: center; /* Centrar el contenido */
+
+      &-title {
+        font-size: 1.4em;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      &__tags {
+        display: inline-flex; /* Cambiar a inline-flex */
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center; /* Centrar las etiquetas */
+      }
+
+      .skills__tag {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+
+=== Archivo: Projects.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Projects.scss
+
+/* Estilos para el componente Projects utilizando BEM */
+
+@import '../variables';
+
+
+#proyectos {
+    padding: 60px 20px;
+    background-color: #fff;
+
+    .projects {
+        &__title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        &__grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        &__card {
+            width: 300px;
+            margin: 20px;
+            background-color: var(--background-color);
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            &-title {
+                font-size: 1.4em;
+                color: var(--primary-color);
+            }
+
+            &-description {
+                font-size: 1em;
+                color: var(--text-color);
+                margin-bottom: 15px;
+            }
+
+            a {
+                color: var(--accent-color);
+                font-weight: bold;
+                text-decoration: none;
+                transition: color 0.3s;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: var(--accent-color-dark);
+                }
+            }
+        }
+    }
+}
+
+=== Archivo: Timeline.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Timeline.scss
+
+/* src/styles/components/Timeline.scss */
+
+@import '../variables';
+
+#timeline {
+    padding: 60px 20px;
+    background-color: #fff;
+
+    h2 {
+        text-align: center;
+        font-size: 1.8em;
+        margin-bottom: 40px;
+        color: var(--primary-color);
+    }
+
+    .vertical-timeline::before {
+        background: var(--primary-color);
+        width: 4px;
+        /* Asegura que la línea tenga ancho */
+    }
+
+    .vertical-timeline-element-title {
+        font-size: 1.4em;
+        color: var(--primary-color);
+    }
+
+    .vertical-timeline-element-subtitle {
+        font-size: 1.2em;
+        color: var(--secondary-color);
+    }
+
+    p {
+        color: var(--text-color);
+    }
+
+    .vertical-timeline-element--work .vertical-timeline-element-content {
+        border-top: 3px solid var(--primary-color);
+    }
+
+    .vertical-timeline-element--education .vertical-timeline-element-content {
+        border-top: 3px solid var(--accent-color);
+    }
+}
+/* Estilos para el botón y detalles */
+
+.toggle-details-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: var(--primary-color-dark);
+    }
+  }
+  
+  .details {
+    margin-top: 10px;
+    color: var(--text-color);
+  }
+
+=== Archivo: Education.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Education.scss
+
+/* Estilos para el componente Education */
+
+@import '../variables';
+
+#educacion {
+  padding: 60px 20px;
+  background-color: #fff;
+
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-title {
+    font-size: 1.4em;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-subtitle {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+  }
+
+  p {
+    color: var(--text-color);
+  }
+
+  /* Personalizar el estilo de la línea de tiempo */
+  .vertical-timeline::before {
+    background: var(--primary-color);
+  }
+
+  .vertical-timeline-element-icon {
+    box-shadow: 0 0 0 4px var(--primary-color);
+  }
+}
+
+
+=== Archivo: PDFViewer.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/PDFViewer.scss
+
+.pdf-viewer {
+    padding: 60px 20px;
+    text-align: center;
+  
+    .react-pdf__Document {
+      display: inline-block;
+    }
+  
+    .pdf-viewer__actions {
+      margin-top: 20px;
+  
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+  
+        &:hover {
+          background-color: var(--primary-color-dark);
+        }
+      }
+    }
+  }
+  
+
+=== Archivo: Experience.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Experience.scss
+
+/* Estilos para el componente Experience */
+
+@import '../variables';
+
+#experiencia {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-title {
+    font-size: 1.4em;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-subtitle {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+  }
+
+  p {
+    color: var(--text-color);
+  }
+}
+
+
+=== Archivo: Introduction.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Introduction.scss
+
+.introduction {
+    &__content {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+  
+      @media (max-width: 600px) {
+        flex-direction: column;
+        text-align: center;
+      }
+  
+      &__photo {
+        margin-right: 30px;
+  
+        img {
+          border-radius: 50%;
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+        }
+  
+        @media (max-width: 600px) {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+      }
+  
+      &-text {
+        max-width: 600px;
+  
+        &-title {
+          font-size: 2.5em;
+          margin-bottom: 20px;
+          color: var(--primary-color);
+        }
+  
+        &-description {
+          font-size: 1.2em;
+          line-height: 1.6;
+          color: var(--text-color);
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  
+
+=== Archivo: Languages.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Languages.scss
+
+/* src/styles/components/Languages.scss */
+
+@import '../variables';
+
+#idiomas {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .language-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .language-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    img {
+      width: 50px;
+      height: auto;
+      margin-right: 20px;
+      border-radius: 5px;
+    }
+
+    .language-info {
+      flex: 1;
+
+      h4 {
+        margin: 0;
+        font-size: 1.2em;
+        color: var(--primary-color);
+      }
+
+      p {
+        margin: 5px 0;
+        color: var(--text-color);
+      }
+
+      .rc-progress-line {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+
+=== Archivo: Header.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Header.scss
+
+/* src/styles/components/Header.scss */
+
+@import '../variables';
+
+.header {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que los elementos se ajusten */
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    font-size: 2.2em; /* Aumentado de 2em */
+    color: var(--primary-color);
+    cursor: pointer; /* Para indicar que es clickeable */
+  }
+
+  &__nav {
+    display: flex;
+    gap: 20px; /* Aumentado el espacio entre elementos */
+    font-size: 1.2em; /* Aumentado el tamaño de fuente */
+
+    &-item {
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
+
+        svg {
+          margin-right: 8px;
+          font-size: 1.2em; /* Aumentado el tamaño de los iconos */
+        }
+
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .header__contact {
+      a {
+        color: var(--primary-color);
+        font-size: 1.8em; /* Aumentado el tamaño de los iconos */
+        transition: color 0.3s;
+
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    .header__language-selector {
+      select {
+        padding: 5px 10px;
+        font-size: 1em;
+        border: 1px solid var(--primary-color);
+        background-color: var(--background-color);
+        color: var(--text-color);
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    }
+
+    .header__theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--primary-color);
+      font-size: 1.8em; /* Aumentado el tamaño del icono */
+      transition: color 0.3s;
+      margin-left: 10px;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+}
+
+/* Ajuste para compensar el header fijo */
+body {
+  padding-top: 80px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__nav {
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    &__controls {
+      margin-top: 10px;
+      width: 100%;
+      justify-content: space-between;
+
+      &-section {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+
+=== Archivo: Footer.scss ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Footer.scss
+
+/* Estilos para el componente Footer */
+
+@import '../variables';
+
+footer {
+  padding: 20px;
+  background-color: var(--primary-color);
+  text-align: center;
+
+  p {
+    color: #fff;
+    margin: 5px 0;
+  }
+
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+=== Archivo: Header.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Header.jsx
+
+// src/components/Header.jsx
+
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHome,
+  faGraduationCap,
+  faCogs,
+  faSun,
+  faMoon,
+  faEnvelope,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext';
+import '../styles/components/Header.scss';
+
+const Header = () => {
+  const { t, i18n } = useTranslation();
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
+  return (
+    <header role="banner" className="header">
+      <h1 className="header__title">
+        <Link to="/">{t('header.name')}</Link>
+      </h1>
+      <nav className="header__nav" role="navigation" aria-label="Main navigation">
+        <div className="header__nav-item">
+          <Link to="/#introduccion">
+            <FontAwesomeIcon icon={faHome} /> {t('header.nav.home')}
+          </Link>
+        </div>
+        <div className="header__nav-item">
+          <Link to="/#timeline">
+            <FontAwesomeIcon icon={faGraduationCap} /> {t('header.nav.timeline')}
+          </Link>
+        </div>
+        <div className="header__nav-item">
+          <Link to="/#habilidades">
+            <FontAwesomeIcon icon={faCogs} /> {t('header.nav.skills')}
+          </Link>
+        </div>
+      </nav>
+      <div className="header__controls">
+        <div className="header__controls-section header__contact">
+          <a href="mailto:tuemail@ejemplo.com">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </a>
+          <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <Link to="/cv">
+            <FontAwesomeIcon icon={faDownload} />
+          </Link>
+        </div>
+        <div className="header__controls-section">
+          <div className="header__language-selector">
+            <select onChange={changeLanguage} value={i18n.language}>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+              <option value="de">DE</option>
+              <option value="fr">FR</option>
+              <option value="it">IT</option>
+            </select>
+          </div>
+          <button onClick={toggleTheme} className="header__theme-toggle">
+            {theme === 'light' ? (
+              <FontAwesomeIcon icon={faMoon} />
+            ) : (
+              <FontAwesomeIcon icon={faSun} />
+            )}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+
+
+=== Archivo: PDFViewer.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/PDFViewer.jsx
+
+import React from 'react';
+import { Document, Page } from 'react-pdf';
+import '../styles/components/PDFViewer.scss';
+
+const PDFViewer = () => {
+  const pdfUrl = '/TuCV.pdf';
+
+  return (
+    <div className="pdf-viewer">
+      <Document file={pdfUrl}>
+        <Page pageNumber={1} />
+      </Document>
+      <div className="pdf-viewer__actions">
+        <a href={pdfUrl} download>
+          {/** Puedes traducir este texto con i18n si lo deseas */}
+          Descargar PDF
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default PDFViewer;
+
+
+=== Archivo: LanguageSelector.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/LanguageSelector.jsx
+
+// src/components/LanguageSelector.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const LanguageSelector = () => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div className="language-selector">
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('de')}>DE</button>
+      <button onClick={() => changeLanguage('es')}>ES</button>
+      <button onClick={() => changeLanguage('fr')}>FR</button>
+      <button onClick={() => changeLanguage('it')}>IT</button>
+    </div>
+  );
+};
+
+export default LanguageSelector;
+
+
+=== Archivo: Timeline.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Timeline.jsx
+
+// src/components/Timeline.jsx
+
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import 'react-vertical-timeline-component/style.min.css';
+import '../styles/components/Timeline.scss';
+
+const experiences = [
+  // Datos de experiencia profesional
+  {
+    type: 'work',
+    title: 'Arquitecto de Software',
+    subtitle: 'Empresa ABC',
+    period: '2020 - Presente',
+    description: 'Diseño de arquitecturas de software escalables.',
+    details: 'Información detallada sobre el rol, responsabilidades y logros.',
+    icon: faBriefcase,
+  },
+  // Datos de educación
+  {
+    type: 'education',
+    title: 'Máster en Ciencias de la Computación',
+    subtitle: 'Universidad XYZ',
+    period: '2015 - 2017',
+    description: 'Especialización en Inteligencia Artificial.',
+    details: 'Información detallada sobre cursos, proyectos y tesis.',
+    icon: faGraduationCap,
+  },
+  // Añade más elementos aquí
+];
+
+const Timeline = () => {
+  const { t } = useTranslation();
+  const [expandedItem, setExpandedItem] = useState(null);
+
+  const toggleDetails = (idx) => {
+    setExpandedItem(expandedItem === idx ? null : idx);
+  };
+
+  return (
+    <section id="timeline">
+      <h2>{t('timeline.title')}</h2>
+      <VerticalTimeline>
+        {experiences.map((item, idx) => (
+          <VerticalTimelineElement
+            key={idx}
+            date={item.period}
+            icon={<FontAwesomeIcon icon={item.icon} />}
+            iconStyle={{
+              background: item.type === 'work' ? 'var(--primary-color)' : 'var(--accent-color)',
+              color: '#fff',
+            }}
+            position={idx % 2 === 0 ? 'left' : 'right'}
+          >
+            <h3 className="vertical-timeline-element-title">{item.title}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
+            <p>{item.description}</p>
+            {expandedItem === idx && <p className="details">{item.details}</p>}
+            <button className="toggle-details-button" onClick={() => toggleDetails(idx)}>
+              {expandedItem === idx ? t('timeline.hideDetails') : t('timeline.showDetails')}
+            </button>
+          </VerticalTimelineElement>
+        ))}
+      </VerticalTimeline>
+    </section>
+  );
+};
+
+export default Timeline;
+
+
+=== Archivo: Testimonials.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Testimonials.jsx
+
+// src/components/Testimonials.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import Slider from 'react-slick';
+import '../styles/components/Testimonials.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const testimonials = [
+  {
+    quote: 'Un profesional excepcional con gran atención al detalle.',
+    author: 'María García, CEO en TechCorp',
+  },
+  // Añade más testimonios aquí
+];
+
+const Testimonials = () => {
+  const { t } = useTranslation();
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  return (
+    <section id="testimonios">
+      <h2>{t('testimonials.title')}</h2>
+      <Slider {...settings}>
+        {testimonials.map((testi, idx) => (
+          <div key={idx}>
+            <blockquote>
+              <p>"{testi.quote}"</p>
+              <footer>- {testi.author}</footer>
+            </blockquote>
+          </div>
+        ))}
+      </Slider>
+    </section>
+  );
+};
+
+export default Testimonials;
+
+
+=== Archivo: Footer.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Footer.jsx
+
+// src/components/Footer.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Footer.scss';
+
+const Footer = () => {
+  const { t } = useTranslation();
+
+  return (
+    <footer>
+      <p>
+        &copy; {new Date().getFullYear()} {t('footer.name')}. {t('footer.rights')}
+      </p>
+      <a href="/politica-de-privacidad">{t('footer.privacyPolicy')}</a>
+    </footer>
+  );
+};
+
+export default Footer;
+
+
+=== Archivo: Education.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Education.jsx
+
+// src/components/Education.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import 'react-vertical-timeline-component/style.min.css';
+import '../styles/components/Education.scss';
+
+const educations = [
+  {
+    degree: 'Máster en Ciencias de la Computación',
+    institution: 'Universidad XYZ',
+    period: '2015 - 2017',
+    description: 'Especialización en Inteligencia Artificial y Machine Learning.',
+  },
+  // Añade más educación aquí
+];
+
+const Education = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="educacion">
+      <h2>{t('education.title')}</h2>
+      <VerticalTimeline>
+        {educations.map((edu, idx) => (
+          <VerticalTimelineElement
+            key={idx}
+            date={edu.period}
+            icon={<FontAwesomeIcon icon={faGraduationCap} />}
+            iconStyle={{ background: 'var(--primary-color)', color: '#fff' }}
+          >
+            <h3 className="vertical-timeline-element-title">{edu.degree}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{edu.institution}</h4>
+            <p>{edu.description}</p>
+          </VerticalTimelineElement>
+        ))}
+      </VerticalTimeline>
+    </section>
+  );
+};
+
+export default Education;
+
+
+=== Archivo: Introduction.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Introduction.jsx
+
+// src/components/Introduction.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import Player from 'react-lottie-player';
+import animationData from '../assets/animations/introAnimation.json'; // Verifica esta ruta
+import '../styles/components/Introduction.scss';
+import photo from '../assets/images/photo.jpeg'; // Importar la foto
+
+const Introduction = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="introduccion" className="introduction">
+      <div className="introduction__content">
+        <div className="introduction__animation">
+          <Player
+            autoplay
+            loop
+            src={animationData}
+            style={{ height: '300px', width: '300px' }}
+          />
+        </div>
+        <div className="introduction__content">
+        <div className="introduction__photo">
+          <img src={photo} alt={t('introduction.altText')} />
+        </div>
+        <div className="introduction__content-text">
+          <h2 className="introduction__content-text-title">{t('introduction.title')}</h2>
+          <p className="introduction__content-text-description">{t('introduction.description')}</p>
+        </div>
+      </div>
+      </div>
+    </section>
+  );
+};
+
+export default Introduction;
+
+
+=== Archivo: Skills.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Skills.jsx
+
+// src/components/Skills.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Skills.scss';
+
+const skills = [
+  {
+    category: 'Lenguajes de Programación',
+    items: ['Java', 'Python', 'C++', 'JavaScript'],
+  },
+  {
+    category: 'Frameworks',
+    items: ['React', 'Angular', 'Spring Boot', 'Django'],
+  },
+  {
+    category: 'Bases de Datos',
+    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'],
+  },
+  {
+    category: 'Herramientas y Plataformas',
+    items: ['Docker', 'Kubernetes', 'AWS', 'Git'],
+  },
+  // Añade más categorías y habilidades aquí
+];
+
+const Skills = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="habilidades" className="skills">
+      <h2 className="skills__title">{t('skills.title')}</h2>
+      <div className="skills__categories">
+        {skills.map((skillCategory, idx) => (
+          <div key={idx} className="skills__category">
+            <h3 className="skills__category-title">{skillCategory.category}</h3>
+            <div className="skills__tags">
+              {skillCategory.items.map((item, index) => (
+                <span key={index} className="skills__tag">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Skills;
+
+
+=== Archivo: PrivacyPolicy.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/PrivacyPolicy.jsx
+
+// src/components/PrivacyPolicy.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const PrivacyPolicy = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="privacy-policy">
+      <h1>{t('footer.privacyPolicy')}</h1>
+      <p>
+        {/* Contenido de tu política de privacidad */}
+        Aquí va el contenido de la política de privacidad.
+      </p>
+    </div>
+  );
+};
+
+export default PrivacyPolicy;
+
+
+=== Archivo: Languages.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Languages.jsx
+
+// src/components/Languages.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Line } from 'rc-progress';
+import '../styles/components/Languages.scss';
+
+import enFlag from '../assets/images/flags/en.png';
+import esFlag from '../assets/images/flags/es.png';
+import deFlag from '../assets/images/flags/de.png';
+import frFlag from '../assets/images/flags/fr.png';
+import itFlag from '../assets/images/flags/it.png';
+
+const languages = [
+  { code: 'en', name: 'English', level: 'C2', proficiency: 100, flag: enFlag },
+  { code: 'es', name: 'Español', level: 'Nativo', proficiency: 100, flag: esFlag },
+  { code: 'de', name: 'Deutsch', level: 'B2', proficiency: 75, flag: deFlag },
+  { code: 'fr', name: 'Français', level: 'B1', proficiency: 60, flag: frFlag },
+  { code: 'it', name: 'Italiano', level: 'A2', proficiency: 40, flag: itFlag },
+];
+
+const Languages = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="idiomas">
+      <h2>{t('languages.title')}</h2>
+      <div className="language-list">
+        {languages.map((lang, idx) => (
+          <div key={idx} className="language-item">
+            <img src={lang.flag} alt={lang.name} />
+            <div className="language-info">
+              <h4>{lang.name}</h4>
+              <p>{lang.level}</p>
+              <Line
+                percent={lang.proficiency}
+                strokeWidth="4"
+                strokeColor="var(--primary-color)"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Languages;
+
+
+=== Archivo: Experience.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Experience.jsx
+
+// src/components/Experience.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import 'react-vertical-timeline-component/style.min.css';
+import '../styles/components/Experience.scss';
+
+const experiences = [
+  {
+    company: 'Empresa ABC',
+    role: 'Arquitecto de Software',
+    period: '2020 - Presente',
+    description: 'Responsable del diseño e implementación de arquitectura de microservicios en la nube.',
+  },
+  // Añade más experiencias aquí
+];
+
+const Experience = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="experiencia">
+      <h2>{t('experience.title')}</h2>
+      <VerticalTimeline>
+        {experiences.map((exp, idx) => (
+          <VerticalTimelineElement
+            key={idx}
+            date={exp.period}
+            icon={<FontAwesomeIcon icon={faBriefcase} />}
+            iconStyle={{ background: '#005A9C', color: '#fff' }}
+          >
+            <h3 className="vertical-timeline-element-title">{exp.role}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
+            <p>{exp.description}</p>
+          </VerticalTimelineElement>
+        ))}
+      </VerticalTimeline>
+    </section>
+  );
+};
+
+export default Experience;
+
+
+=== Archivo: Projects.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Projects.jsx
+
+// src/components/Projects.jsx
+
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Projects.scss';
+
+const Projects = () => {
+  const { t } = useTranslation();
+  const [projects, setProjects] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/TU_NOMBRE_DE_USUARIO/repos')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los repositorios');
+        }
+        return response.json();
+      })
+      .then((data) => setProjects(data))
+      .catch((error) => {
+        console.error('Error fetching repos:', error);
+        setError(error);
+      });
+  }, []);
+
+  return (
+    <section id="proyectos" className="projects">
+      <h2 className="projects__title">{t('projects.title')}</h2>
+      {error ? (
+        <p className="projects__error">Error al cargar los proyectos. Por favor, inténtalo más tarde.</p>
+      ) : (
+        <div className="projects__grid">
+          {projects.map((proj) => (
+            <div key={proj.id} className="projects__card">
+              <h3 className="projects__card-title">{proj.name}</h3>
+              <p className="projects__card-description">{proj.description}</p>
+              <a href={proj.html_url} target="_blank" rel="noopener noreferrer">
+                {t('projects.viewMore')}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Projects;
+
+
+=== Archivo: Header.test.js ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Header.test.js
+
+// src/components/Header.test.js
+
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Header from './Header';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
+
+test('renders header title', () => {
+  render(
+    <I18nextProvider i18n={i18n}>
+      <Header />
+    </I18nextProvider>
+  );
+  const titleElement = screen.getByText(/Tu Nombre/i);
+  expect(titleElement).toBeInTheDocument();
+});
+
+
+=== Archivo: Contact.jsx ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Contact.jsx
+
+// src/components/Contact.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Contact.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+
+const Contact = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="contacto">
+      <h2>{t('contact.title')}</h2>
+      <p>
+        {t('contact.email')}: <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a>
+      </p>
+      <div className="social-media">
+        <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+      <div className="contact-actions">
+        <button onClick={() => window.open('/TuCV.pdf')}>{t('contact.downloadCV')}</button>
+        <button onClick={() => window.location.href = '#contacto'}>{t('contact.scheduleInterview')}</button>
+      </div>
+    </section>
+  );
+};
+
+<div className="social-media">
+  <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+  </a>
+  <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faGithub} /> GitHub
+  </a>
+</div>
+
+export default Contact;
+
+
+=== Archivo: index.html ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/public/index.html
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ... -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+    />
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+    rel="stylesheet"
+  />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
+
+=== Archivo: manifest.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/public/manifest.json
+
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+
+=== Archivo: package.json ===
+Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/package.json
+
+{
+  "name": "cv",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^11.5.6",
+    "i18next": "^23.15.1",
+    "lottie-web": "^5.12.2",
+    "node-sass": "^7.0.3",
+    "rc-progress": "^4.0.0",
+    "react": "^18.3.1",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^15.0.2",
+    "react-icons": "^5.3.0",
+    "react-lottie-player": "^2.1.0",
+    "react-pdf": "^9.1.1",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.30.2",
+    "react-vertical-timeline-component": "^3.6.0",
+    "recharts": "^2.12.7",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}
+
+

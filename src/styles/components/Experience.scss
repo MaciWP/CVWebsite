@@ -1,0 +1,29 @@
+/* Estilos para el componente Experience */
+
+@import '../variables';
+
+#experiencia {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-title {
+    font-size: 1.4em;
+    color: var(--primary-color);
+  }
+
+  .vertical-timeline-element-subtitle {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+  }
+
+  p {
+    color: var(--text-color);
+  }
+}

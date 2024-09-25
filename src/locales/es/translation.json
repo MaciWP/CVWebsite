@@ -1,0 +1,50 @@
+{
+  "header": {
+    "name": "Tu Nombre",
+    "nav": {
+      "home": "Inicio",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "languages": "Idiomas",
+      "contact": "Contacto"
+    }
+  },
+  "introduction": {
+    "title": "Arquitecto de Software Senior",
+    "description": "Más de 10 años de experiencia en diseño y desarrollo de sistemas escalables.",
+    "altText": "Foto de perfil de Tu Nombre"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "at": "en"
+  },
+  "education": {
+    "title": "Educación y Certificaciones"
+  },
+  "skills": {
+    "title": "Habilidades Técnicas"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "viewMore": "Ver más"
+  },
+  "languages": {
+    "title": "Idiomas"
+  },
+  "testimonials": {
+    "title": "Recomendaciones"
+  },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo Electrónico",
+    "downloadCV": "Descargar CV en PDF",
+    "scheduleInterview": "Programar una Entrevista"
+  },
+  "footer": {
+    "name": "Tu Nombre",
+    "rights": "Todos los derechos reservados.",
+    "privacyPolicy": "Política de Privacidad"
+  }
+}

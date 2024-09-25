@@ -1,0 +1,55 @@
+/* Estilos para el componente Projects utilizando BEM */
+
+@import '../variables';
+
+
+#proyectos {
+    padding: 60px 20px;
+    background-color: #fff;
+
+    .projects {
+        &__title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        &__grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        &__card {
+            width: 300px;
+            margin: 20px;
+            background-color: var(--background-color);
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            &-title {
+                font-size: 1.4em;
+                color: var(--primary-color);
+            }
+
+            &-description {
+                font-size: 1em;
+                color: var(--text-color);
+                margin-bottom: 15px;
+            }
+
+            a {
+                color: var(--accent-color);
+                font-weight: bold;
+                text-decoration: none;
+                transition: color 0.3s;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: var(--accent-color-dark);
+                }
+            }
+        }
+    }
+}

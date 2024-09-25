@@ -1,0 +1,48 @@
+/* Estilos para el componente Skills */
+
+@import '../variables';
+
+#habilidades {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  .skills {
+    &__title {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+    }
+
+    &__categories {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    &__category {
+      margin-bottom: 30px;
+      text-align: center; /* Centrar el contenido */
+
+      &-title {
+        font-size: 1.4em;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      &__tags {
+        display: inline-flex; /* Cambiar a inline-flex */
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center; /* Centrar las etiquetas */
+      }
+
+      .skills__tag {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.9em;
+      }
+    }
+  }
+}

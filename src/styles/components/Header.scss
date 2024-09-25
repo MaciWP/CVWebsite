@@ -1,0 +1,104 @@
+// src/styles/components/Header.scss
+
+@import '../variables';
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px; // Aumentamos el padding
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    &__title {
+        font-size: 2.8em; // Aumentado de 2.2em
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    &__nav {
+        display: flex;
+        gap: 25px; // Aumentado el espacio entre elementos
+        font-size: 1.4em; // Aumentado el tamaño de fuente
+
+        &-item {
+            a {
+                color: var(--text-color);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                transition: color 0.3s;
+
+                svg {
+                    margin-right: 8px;
+                    font-size: 1.4em; // Aumentado el tamaño de los iconos
+                }
+
+                &:hover {
+                    color: var(--accent-color);
+                }
+            }
+        }
+    }
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header__contact {
+            a {
+                color: var(--primary-color);
+                font-size: 2em; // Aumentado el tamaño de los iconos
+                transition: color 0.3s;
+
+                &:hover {
+                    color: var(--accent-color);
+                }
+            }
+        }
+
+        .header__language-selector {
+            select {
+                padding: 5px 10px;
+                font-size: 1em;
+                border: 1px solid var(--primary-color);
+                background-color: var(--background-color);
+                color: var(--text-color);
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        }
+
+        .header__theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 1.8em;
+            transition: color 0.3s;
+            margin-left: 10px;
+
+            &:hover {
+                color: var(--accent-color);
+            }
+
+
+            svg {
+                display: block; // Evita que el SVG se comporte como inline y cause problemas de alineación
+            }
+        }
+    }
+}

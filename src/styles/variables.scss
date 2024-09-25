@@ -1,0 +1,22 @@
+/* Variables de estilo utilizando CSS Variables */
+
+:root {
+    --primary-color: #005A9C; /* Cobalto */
+    --primary-color-dark: #004680; /* 10% más oscuro */
+    --secondary-color: #6C7A89; /* Gris para textos secundarios */
+    --background-color: #F4F4F4; /* Fondo suave */
+    --accent-color: #FF6600; /* Naranja para elementos destacados */
+    --accent-color-dark: #E65C00; /* 10% más oscuro */
+    --text-color: #333;
+    --font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Tema oscuro */
+  [data-theme='dark'] {
+    --primary-color: #1E1E1E;
+    --primary-color-dark: #181818;
+    --secondary-color: #3C3C3C;
+    --background-color: #121212;
+    --text-color: #E0E0E0;
+  }
+  
