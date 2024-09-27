@@ -1,41 +1,31 @@
 // src/serviceWorkerRegistration.js
 
-// Este archivo es una adaptación del archivo serviceWorkerRegistration.js proporcionado por Create React App.
-// Puedes copiar el contenido de este archivo desde el repositorio oficial de Create React App.
+// Adjusted the service worker registration script to match the public URL path
 
 const isLocalhost = Boolean(
     window.location.hostname === 'localhost' ||
-      // [::1] es la dirección localhost en IPv6.
-      window.location.hostname === '[::1]' ||
-      // 127.0.0.1/8 es considerado localhost para IPv4.
-      window.location.hostname.match(
-        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-      )
+    window.location.hostname === '[::1]' ||
+    window.location.hostname.match(
+      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+    )
   );
   
   export function register(config) {
     if ('serviceWorker' in navigator) {
-      // El constructor de URL está disponible en todos los navegadores que soportan SW.
-      const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-      if (publicUrl.origin !== window.location.origin) {
-        // Nuestro service worker no funcionará si PUBLIC_URL está en un origen diferente.
-        return;
-      }
-  
       window.addEventListener('load', () => {
-        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+        const swUrl = `${process.env.PUBLIC_URL}/cv/service-worker.js`; // Adjusted path
   
         if (isLocalhost) {
-          // Esto es localhost. Comprobar si el service worker existe.
+          // Check if a service worker still exists or not
           checkValidServiceWorker(swUrl, config);
   
           navigator.serviceWorker.ready.then(() => {
             console.log(
-              'Esta aplicación web está siendo servida en caché por un service worker.'
+              'This web app is being served cache-first by a service worker.'
             );
           });
         } else {
-          // No es localhost. Registrar service worker.
+          // Is not localhost. Just register service worker
           registerValidSW(swUrl, config);
         }
       });

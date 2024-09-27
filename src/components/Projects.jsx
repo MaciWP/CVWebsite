@@ -1,47 +1,58 @@
-// src/components/Projects.jsx
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faReact, faJs, faHtml5, faCss3 } from '@fortawesome/free-brands-svg-icons';
 import '../styles/components/Projects.scss';
+
+const projects = [
+  {
+    id: 1,
+    name: 'CV Website',
+    description: 'A portfolio website built with React.',
+    technologies: ['React', 'JavaScript', 'HTML5', 'CSS3'],
+    github: 'https://github.com/yourusername/cv-website',
+  },
+  // Add more projects here
+];
+
+const technologyIcons = {
+  React: faReact,
+  JavaScript: faJs,
+  HTML5: faHtml5,
+  CSS3: faCss3,
+};
 
 const Projects = () => {
   const { t } = useTranslation();
-  const [projects, setProjects] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch('https://api.github.com/users/TU_NOMBRE_DE_USUARIO/repos')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error al obtener los repositorios');
-        }
-        return response.json();
-      })
-      .then((data) => setProjects(data))
-      .catch((error) => {
-        console.error('Error fetching repos:', error);
-        setError(error);
-      });
-  }, []);
 
   return (
-    <section id="proyectos" className="projects">
-      <h2 className="projects__title">{t('projects.title')}</h2>
-      {error ? (
-        <p className="projects__error">Error al cargar los proyectos. Por favor, inténtalo más tarde.</p>
-      ) : (
-        <div className="projects__grid">
-          {projects.map((proj) => (
-            <div key={proj.id} className="projects__card">
-              <h3 className="projects__card-title">{proj.name}</h3>
-              <p className="projects__card-description">{proj.description}</p>
-              <a href={proj.html_url} target="_blank" rel="noopener noreferrer">
-                {t('projects.viewMore')}
-              </a>
+    <section id="projects" className="projects,section">
+      <div className="title-container" >
+        <h2 className="section-title">{t('projects.title')}</h2>
+      </div>
+      <div className="projects__grid">
+        {projects.map((proj) => (
+          <div key={proj.id} className="projects__card">
+            <h3 className="projects__card-title">{proj.name}</h3>
+            <p className="projects__card-description">{proj.description}</p>
+            <div className="projects__card-technologies">
+              {proj.technologies.map((tech) => (
+                <span key={tech} className="projects__card-tech">
+                  <FontAwesomeIcon icon={technologyIcons[tech]} /> {tech}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+            <a
+              href={proj.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="projects__card-link"
+            >
+              <FontAwesomeIcon icon={faGithub} /> {t('projects.viewProject')}
+            </a>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

@@ -1,18 +1,32 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- ... -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
-    />
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
-    rel="stylesheet"
-  />
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <!-- Meta tags for SEO and accessibility -->
+  <meta charset="UTF-8" />
+  <meta name="description"
+    content="Senior Software Architect with over 10 years of experience in designing scalable systems." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name - Senior Software Architect</title>
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+        script-src 'self';
+        connect-src 'self' https://api.github.com;
+      " />
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>

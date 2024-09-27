@@ -1,70 +1,88 @@
-// src/styles/components/Introduction.scss
-
 @import '../variables';
 
 .introduction {
-  padding: 120px 20px; // Aumentado de 80px a 120px para añadir más margen superior
-  background-color: #fff;
+  padding: 100px 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between; // Distribuye los elementos equidistantemente
     max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap; // Para que sea responsivo
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      padding: 60px 20px; // Ajuste para móviles
-    }
+    width: 100%;
+    gap: 40px;
   }
 
   &__photo {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
+    flex: 0 1 250px;
+    text-align: center;
 
     img {
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
-      width: 200px; // Tamaño aumentado a 200px
-      height: 200px;
       object-fit: cover;
+      border: 5px solid var(--primary-color);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 
   &__text {
-    flex: 1;
-    text-align: center;
-    margin: 20px;
+    flex: 1 1 300px;
+    text-align: left;
 
     .introduction__title {
       font-size: 3em;
       margin-bottom: 20px;
       color: var(--primary-color);
+      font-weight: bold;
     }
 
     .introduction__description {
-      font-size: 1.3em;
+      font-size: 1.2em;
       line-height: 1.6;
       color: var(--text-color);
     }
   }
 
   &__animation {
-    flex: 1;
+    flex: 0 1 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+  }
 
-    /* Asegurar que la animación no exceda el espacio disponible */
-    iframe,
-    canvas {
-      max-width: 100%;
-      height: auto;
+  @media (max-width: $breakpoint-tablet) {
+    margin-top: 50px;
+    &__content {
+      flex-direction: column;
+      text-align: center;
     }
+
+    &__text {
+      text-align: center;
+    }
+    
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-top: 95px;
+    &__content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+    }
+    
   }
 }

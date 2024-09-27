@@ -1,28 +1,51 @@
-// src/styles/variables.scss
+// src/styles/_variables.scss
+
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
 
 :root {
-  --primary-color: #3498db;
-  --primary-color-dark: #2980b9;
+  --primary-color: #005A9C;
+  --primary-color-dark: #004578;
   --accent-color: #e74c3c;
   --accent-color-dark: #c0392b;
   --background-color: #f5f5f5;
-  --text-color: #333;
-  --secondary-color: #777;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --secondary-color: #777777;
+  --heading-color: #222222;
+
+  // Spacing
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 40px;
+
+  // Font sizes
+  --font-size-small: 0.9em;
+  --font-size-medium: 1em;
+  --font-size-large: 1.2em;
+  --font-size-xlarge: 1.5em;
 }
 
 [data-theme='dark'] {
-  --primary-color: #2980b9;
-  --primary-color-dark: #1c5980;
-  --accent-color: #c0392b;
-  --accent-color-dark: #96281b;
-  --background-color: #2c3e50;
-  --text-color: #ecf0f1;
-  --secondary-color: #bdc3c7;
+  --primary-color: #1e90ff;
+  --primary-color-dark: #1c7ed6;
+  --accent-color: #ff6b6b;
+  --accent-color-dark: #fa5252;
+  --background-color: #1e1e1e;
+  --card-background: #2c2c2c;
+  --text-color: #f0f0f0;
+  --secondary-color: #ced4da;
+  --heading-color: #ffffff;
 }
 
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-  font-family: 'Roboto', sans-serif;
+[data-theme='high-contrast'] {
+  --primary-color: #00ffff;
+  --primary-color-dark: #00e5ff;
+  --accent-color: #ff00ff;
+  --accent-color-dark: #e600e6;
+  --background-color: #000000;
+  --card-background: #1a1a1a;
+  --text-color: #ffffff;
+  --secondary-color: #ffffff;
+  --heading-color: #ffffff;
 }

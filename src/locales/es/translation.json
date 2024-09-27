@@ -9,7 +9,12 @@
       "projects": "Proyectos",
       "languages": "Idiomas",
       "contact": "Contacto"
-    }
+    },
+    "language": "Idioma",
+    "darkMode": "Activar modo oscuro",
+    "lightMode": "Activar modo claro",
+    "highContrast": "Alternar alto contraste",
+    "menu": "Menú"
   },
   "introduction": {
     "title": "Arquitecto de Software Senior",
@@ -24,7 +29,12 @@
     "title": "Educación y Certificaciones"
   },
   "skills": {
-    "title": "Habilidades Técnicas"
+    "title": "Habilidades",
+    "categories": {
+      "programmingLanguages": "Lenguajes de Programación",
+      "frameworks": "Frameworks",
+      "softSkills": "Habilidades Blandas"
+    }
   },
   "projects": {
     "title": "Proyectos Destacados",

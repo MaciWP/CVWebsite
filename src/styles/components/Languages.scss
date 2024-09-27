@@ -1,61 +1,77 @@
-/* src/styles/components/Languages.scss */
-
 @import '../variables';
 
-#idiomas {
-  padding: 60px 20px;
-  background-color: var(--background-color);
-
-  h2 {
-    text-align: center;
-    font-size: 1.8em;
-    margin-bottom: 40px;
-    color: var(--primary-color);
-  }
-
+#languages {
   .language-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 800px;
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
   .language-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin: 15px;
-    background-color: #fff;
-    padding: 15px;
+    width: 220px;
+    background-color: var(--card-background);
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     img {
       width: 50px;
       height: auto;
-      margin-right: 20px;
-      border-radius: 5px;
+      margin-bottom: 15px;
     }
 
     .language-info {
-      flex: 1;
+      text-align: center;
+      width: 100%;
 
       h4 {
         margin: 0;
         font-size: 1.2em;
         color: var(--primary-color);
+        margin-bottom: 10px;
       }
 
       p {
         margin: 5px 0;
         color: var(--text-color);
+        font-size: 0.9em;
       }
 
-      .rc-progress-line {
+      .language-progress {
+        width: 100%;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+        overflow: hidden;
         margin-top: 10px;
+
+        .language-progress-bar {
+          height: 10px;
+          background-color: var(--primary-color);
+          transition: width 0.3s;
+        }
       }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    .language-list {
+      justify-content: center;
+    }
+
+    .language-item {
+      width: 100%;
+      max-width: 300px;
     }
   }
 }

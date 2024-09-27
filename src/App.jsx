@@ -1,66 +1,55 @@
 // src/App.jsx
-
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Route, Routes } from 'react-router-dom';
+import { ThemeContext } from './contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 import './styles/main.scss';
 
-const Header = lazy(() => import('./components/Header'));
-const Introduction = lazy(() => import('./components/Introduction'));
-const Timeline = lazy(() => import('./components/Timeline'));
-const Skills = lazy(() => import('./components/Skills'));
-const Projects = lazy(() => import('./components/Projects'));
-const Languages = lazy(() => import('./components/Languages'));
-const Footer = lazy(() => import('./components/Footer'));
-const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const Header = React.lazy(() => import('./components/Header'));
+const Introduction = React.lazy(() => import('./components/Introduction'));
+const Experience = React.lazy(() => import('./components/Experience'));
+const Education = React.lazy(() => import('./components/Education'));
+const Skills = React.lazy(() => import('./components/Skills'));
+const Projects = React.lazy(() => import('./components/Projects'));
+const Languages = React.lazy(() => import('./components/Languages'));
+const Footer = React.lazy(() => import('./components/Footer'));
 
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   return (
     <div className="App">
       <Helmet>
-        {/* Meta etiquetas */}
+        <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
+        <meta
+          name="description"
+          content={t('introduction.description')}
+        />
       </Helmet>
-      <Suspense fallback={<div>Cargando...</div>}>
-        <Header theme={theme} toggleTheme={toggleTheme} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
         <Routes>
           <Route
             path="/"
             element={
-              <>
+              <main>
                 <Introduction />
-                <Timeline />
+                <Experience />
+                <Education />
                 <Skills />
                 <Projects />
                 <Languages />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/politica-de-privacidad"
-            element={
-              <>
-                <PrivacyPolicy />
-                <Footer />
-              </>
+              </main>
             }
           />
         </Routes>
+        <Footer />
       </Suspense>
     </div>
   );

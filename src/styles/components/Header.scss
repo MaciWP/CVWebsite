@@ -1,49 +1,44 @@
-// src/styles/components/Header.scss
-
 @import '../variables';
 
 .header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px; // Aumentamos el padding
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--background-color);
   backdrop-filter: blur(5px);
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &__title {
-    font-size: 2.8em; // Aumentado de 2.2em
+    font-size: 2.6em;
     color: var(--primary-color);
-    cursor: pointer;
     margin: 0;
   }
 
   &__nav {
     display: flex;
-    gap: 25px; // Aumentado el espacio entre elementos
-    font-size: 1.4em; // Aumentado el tamaño de fuente
+    gap: 15px;
 
     &-item {
-      a {
-        color: var(--text-color);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        transition: color 0.3s;
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
 
-        svg {
-          margin-right: 8px;
-          font-size: 1.4em; // Aumentado el tamaño de los iconos
-        }
+      svg {
+        margin-right: 8px;
+        font-size: 1.6em;
+      }
 
-        &:hover {
-          color: var(--accent-color);
-        }
+      &:hover,
+      &:focus {
+        color: var(--accent-color);
       }
     }
   }
@@ -51,96 +46,99 @@
   &__controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    margin-right: 50px;
+    gap: 10px;
+  }
 
-    &-section {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+  &__social {
+    display: flex;
+    gap: 10px;
+    margin-right: 5px;
 
-    .header__contact {
-      a,
-      .header__download-button {
-        color: var(--primary-color);
-        font-size: 2em; // Aumentado el tamaño de los iconos
-        transition: color 0.3s;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-
-        &:hover {
-          color: var(--accent-color);
-        }
-
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-
-    .header__language-selector {
-      select {
-        padding: 5px 10px;
-        font-size: 1em;
-        border: 1px solid var(--primary-color);
-        background-color: var(--background-color);
-        color: var(--text-color);
-        cursor: pointer;
-        border-radius: 5px;
-      }
-    }
-
-    .header__theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
+    a {
       color: var(--primary-color);
-      font-size: 2em; // Aumentado el tamaño del icono
-      transition: color 0.3s;
-      margin-left: 10px;
+      font-size: 1.6em;
+      transition: color 0.3s ease;
 
-      &:hover {
-        color: var(--accent-color);
-      }
-
+      &:hover,
       &:focus {
-        outline: none;
-      }
-
-      svg {
-        display: block; // Evita que el SVG se comporte como inline y cause problemas de alineación
+        color: var(--accent-color);
       }
     }
   }
-}
 
-/* Ajuste para compensar el header fijo */
-body {
-  padding-top: 80px; // Asegúrate de que coincide con el alto del header
-}
+  &__download-button,
+  &__theme-toggle,
+  &__contrast-toggle {
+    background: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
 
-/* Estilos responsivos */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+    }
+  }
 
-    &__nav {
-      flex-wrap: wrap;
-      margin-top: 10px;
+  &__language-selector {
+    font-size: 1.3em;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+    @media (max-width: $breakpoint-tablet) {
+    
+    
+        &__title {
+          flex-basis: 100%;
+          text-align: left;
+          font-size: 3.5em;
+          justify-content: center;
+
+    
+        }
+    
+        &__controls {
+          order: 1;
+          justify-content: center;
+          text-align: left;
+          flex-basis: 100%;
+          font-size: 1.2em;
+          margin-right: 10px;
+
+
+        }
+    
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-wrap: wrap;
+
+
+    &__title {
+      flex-basis: 100%;
+      text-align: left;
+      font-size: 2.5em;
+
     }
 
     &__controls {
-      margin-top: 10px;
-      width: 100%;
-      justify-content: space-between;
-
-      &-section {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+      order: 2;
+      gap: 15px;
+      font-size: 1.1em;
+      margin-right: 50px;
     }
-  }
+}
+
 }

@@ -8,8 +8,7 @@
       "skills": "Skills",
       "projects": "Projects",
       "languages": "Languages",
-      "contact": "Contact",
-      "timeline": "Timeline"
+      "contact": "Contact"
     }
   },
   "introduction": {
@@ -25,17 +24,28 @@
     "title": "Education and Certifications"
   },
   "skills": {
-    "title": "Technical Skills"
+    "title": "Technical Skills",
+    "categories": {
+      "programmingLanguages": "Programming Languages",
+      "frameworks": "Frameworks",
+      "softSkills": "Soft Skills"
+    }
   },
   "projects": {
     "title": "Featured Projects",
-    "viewMore": "View More"
+    "viewMore": "View More",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "viewDemo": "View Demo",
+    "loading": "Loading projects...",
+    "error": "Error fetching projects.",
+    "language": "Language",
+    "noDescription": "No description available.",
+    "unknown": "Unknown"
   },
   "languages": {
-    "title": "Languages"
-  },
-  "testimonials": {
-    "title": "Testimonials"
+    "title": "Languages",
+    "level": "Level"
   },
   "contact": {
     "title": "Contact",

@@ -1,48 +1,97 @@
-/* Estilos para el componente Skills */
-
 @import '../variables';
 
-#habilidades {
+.skills {
   padding: 60px 20px;
-  background-color: var(--background-color);
 
-  .skills {
-    &__title {
-      text-align: center;
-      font-size: 1.8em;
-      margin-bottom: 40px;
+  &__title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  &__category {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    &-title {
+      font-size: 1.5em;
       color: var(--primary-color);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-name {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        font-size: 1.2em;
+      }
     }
 
+    &-progress {
+      flex: 2;
+      height: 10px;
+      background-color: var(--secondary-color);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    &-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease-in-out;
+    }
+  }
+
+  &__soft-skills {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      strong {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
     &__categories {
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: 1fr;
     }
 
     &__category {
-      margin-bottom: 30px;
-      text-align: center; /* Centrar el contenido */
-
-      &-title {
-        font-size: 1.4em;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-      }
-
-      &__tags {
-        display: inline-flex; /* Cambiar a inline-flex */
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center; /* Centrar las etiquetas */
-      }
-
-      .skills__tag {
-        background-color: var(--primary-color);
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-size: 0.9em;
-      }
+      padding: 15px;
     }
   }
 }
