@@ -8,7 +8,6 @@ import photo from '../assets/images/photo.webp';
 const Introduction = () => {
   const { t } = useTranslation();
 
-
   return (
     <section id="introduction" className="introduction">
       <div className="introduction__content">
@@ -24,12 +23,13 @@ const Introduction = () => {
           <p className="introduction__description">{t('introduction.description')}</p>
         </div>
         <div className="introduction__animation" aria-label={t('introduction.animationAltText')}>
-        <Lottie 
+          <Lottie 
             animationData={animationData} 
             loop={true} 
             autoplay={true} 
             style={{ height: 300, width: 300 }} 
-          />        </div>
+          />
+        </div>
       </div>
     </section>
   );

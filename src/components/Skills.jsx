@@ -2,20 +2,22 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faTools, faUsers } from '@fortawesome/free-solid-svg-icons';
-import { FaJava, FaPython, FaJs, FaReact, FaAngular, FaNode } from 'react-icons/fa';
-import { SiCplusplus, SiSpringboot, SiDjango } from 'react-icons/si';
+import { FaPython, FaJava, FaDocker, FaAws } from 'react-icons/fa';
+import { SiDjango, SiFlask, SiCsharp, SiPostgresql, SiMysql, SiOracle, SiCelery } from 'react-icons/si';
 import '../styles/components/Skills.scss';
 
 const skillIcons = {
-  Java: <FaJava />,
   Python: <FaPython />,
-  'C++': <SiCplusplus />,
-  JavaScript: <FaJs />,
-  React: <FaReact />,
-  Angular: <FaAngular />,
-  'Node.js': <FaNode />,
-  'Spring Boot': <SiSpringboot />,
+  Java: <FaJava />,
+  'C#': <SiCsharp />,
   Django: <SiDjango />,
+  Flask: <SiFlask />,
+  Docker: <FaDocker />,
+  PostgreSQL: <SiPostgresql />,
+  MySQL: <SiMysql />,
+  Oracle: <SiOracle />,
+  AWS: <FaAws />,
+  Celery: <SiCelery />,
 };
 
 const skills = [
@@ -23,30 +25,32 @@ const skills = [
     category: 'programmingLanguages',
     icon: faCode,
     items: [
-      { name: 'Java', proficiency: 90 },
-      { name: 'Python', proficiency: 85 },
-      { name: 'C++', proficiency: 80 },
-      { name: 'JavaScript', proficiency: 90 },
+      { name: 'Python', proficiency: 95 },
+      { name: 'C#', proficiency: 85 },
+      { name: 'Java', proficiency: 80 },
+      { name: 'SQL', proficiency: 90 },
     ],
   },
   {
     category: 'frameworks',
     icon: faTools,
     items: [
-      { name: 'React', proficiency: 85 },
-      { name: 'Angular', proficiency: 80 },
-      { name: 'Node.js', proficiency: 85 },
-      { name: 'Spring Boot', proficiency: 90 },
-      { name: 'Django', proficiency: 85 },
+      { name: 'Django', proficiency: 95 },
+      { name: 'Flask', proficiency: 85 },
+      { name: 'Docker', proficiency: 90 },
+      { name: 'PostgreSQL', proficiency: 90 },
+      { name: 'AWS', proficiency: 80 },
+      { name: 'Celery', proficiency: 85 },
     ],
   },
   {
     category: 'softSkills',
     icon: faUsers,
     items: [
-      { name: 'Leadership', description: 'Led a team of 10 developers to deliver projects on time.' },
-      { name: 'Problem Solving', description: 'Resolved critical issues reducing downtime by 30%.' },
-      { name: 'Communication', description: 'Effectively communicated with stakeholders and clients.' },
+      { name: 'System Architecture', description: 'Expertise in designing scalable architectures using Django and Docker.' },
+      { name: 'Problem Solving', description: 'Demonstrated ability to solve complex challenges in backend development.' },
+      { name: 'AI Integration', description: 'Experience with integrating YOLOv10, OpenAI, and Llama-Index.' },
+      { name: 'Code Quality', description: 'Implemented robust CI/CD pipelines ensuring high code quality.' },
     ],
   },
 ];
@@ -55,7 +59,7 @@ const Skills = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="skills,section">
+    <section id="skills" className="skills section">
       <div className="title-container">
         <h2 className="section-title">{t('skills.title')}</h2>
       </div>

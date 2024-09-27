@@ -67,19 +67,19 @@ const Header = () => {
       )}
       <div className="header__controls">
         <div className="header__social">
-          <a href="mailto:your.email@example.com" aria-label={t('contact.email')}>
-            <FontAwesomeIcon icon={faEnvelope} />
+        <a href="mailto:oriolomb@gmail.com" aria-label={t('contact.email')}>
+        <FontAwesomeIcon icon={faEnvelope} />
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href="https://linkedin.com/in/oriolmaciasbadosa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <a href="https://github.com/MaciWP" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
         {isMobile ? (
           <a
-            href="/TuCV.pdf"
+            href="/OriolMaciasBadosa_CV.pdf"
             download
             className="header__download-button"
             aria-label={t('contact.downloadCV')}

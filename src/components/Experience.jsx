@@ -1,27 +1,37 @@
-// File: src/components/Experience.jsx
-
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import { ThemeContext } from '../contexts/ThemeContext'; // Asegúrate de que la ruta sea correcta
+import { ThemeContext } from '../contexts/ThemeContext';
 import 'react-vertical-timeline-component/style.min.css';
 import '../styles/components/Education.scss';
 
 const experiences = [
   {
-    company: 'Company ABC',
-    role: 'Software Architect',
-    period: '2020 - Present',
+    company: 'BJumper',
+    role: 'Senior Software Developer',
+    period: '2019 - Present',
     description:
-      'Responsible for designing and implementing cloud-based microservices architecture.',
+      'Led development of scalable backend systems using Python and Django, designed secure RESTful APIs, and implemented containerization strategies.',
     achievements: [
-      'Improved system performance by 40%',
-      'Reduced server costs by 25%',
+      'Optimized performance and ensured seamless user experiences',
+      'Implemented Docker and Docker Compose for streamlined development',
+      'Integrated OpenAI and Llama-Index for AI-driven features',
+      'Established CI/CD pipelines with Pre-Commit, Flake8, Black, and Mypy',
     ],
   },
-  // Add more experiences here
+  {
+    company: 'Busmatick Group',
+    role: 'Software Developer',
+    period: '2018',
+    description:
+      'Developed cross-platform applications for Android and Windows using .NET, managing smart card data for public transport systems.',
+    achievements: [
+      'Implemented real-time web services for seamless communication',
+      'Managed Mifare Classic 1K smart card data',
+    ],
+  },
 ];
 
 const Experience = () => {

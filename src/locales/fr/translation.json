@@ -1,51 +1,55 @@
 {
-    "header": {
-      "name": "Votre Nom",
-      "nav": {
-        "home": "Accueil",
-        "experience": "Expérience",
-        "education": "Éducation",
-        "skills": "Compétences",
-        "projects": "Projets",
-        "languages": "Langues",
-        "contact": "Contact"
-      }
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "home": "Accueil",
+      "experience": "Expérience",
+      "education": "Formation",
+      "skills": "Compétences",
+      "projects": "Projets",
+      "languages": "Langues",
+      "contact": "Contact"
     },
-    "introduction": {
-      "title": "Architecte Logiciel Senior",
-      "description": "Plus de 10 ans d'expérience dans la conception et le développement de systèmes évolutifs.",
-      "altText": "Photo de profil de Votre Nom"
-    },
-    "experience": {
-      "title": "Expérience Professionnelle",
-      "at": "chez"
-    },
-    "education": {
-      "title": "Éducation et Certifications"
-    },
-    "skills": {
-      "title": "Compétences Techniques"
-    },
-    "projects": {
-      "title": "Projets Mis en Avant",
-      "viewMore": "Voir plus"
-    },
-    "languages": {
-      "title": "Langues"
-    },
-    "testimonials": {
-      "title": "Témoignages"
-    },
-    "contact": {
-      "title": "Contact",
-      "email": "E-mail",
-      "downloadCV": "Télécharger le CV en PDF",
-      "scheduleInterview": "Programmer un Entretien"
-    },
-    "footer": {
-      "name": "Votre Nom",
-      "rights": "Tous droits réservés.",
-      "privacyPolicy": "Politique de Confidentialité"
+    "lightMode": "Passer en mode clair",
+    "darkMode": "Passer en mode sombre",
+    "highContrast": "Basculer en contraste élevé"
+  },
+  "introduction": {
+    "title": "Développeur Logiciel Senior",
+    "description": "Plus de 5 ans d'expérience spécialisée dans le développement backend, la conception d'API et la gestion d'infrastructure utilisant Python, Django et Docker. Passionné par la qualité du code, l'automatisation et la mise en œuvre de solutions basées sur l'IA.",
+    "altText": "Photo de profil d'Oriol Macias Badosa"
+  },
+  "experience": {
+    "title": "Expérience Professionnelle",
+    "at": "chez"
+  },
+  "education": {
+    "title": "Formation et Certifications"
+  },
+  "skills": {
+    "title": "Compétences Techniques",
+    "categories": {
+      "programmingLanguages": "Langages de Programmation",
+      "frameworks": "Frameworks et Outils",
+      "softSkills": "Compétences Transversales"
     }
+  },
+  "projects": {
+    "title": "Projets Phares",
+    "viewProject": "Voir le Projet",
+    "viewCode": "Voir le Code"
+  },
+  "languages": {
+    "title": "Langues",
+    "level": "Niveau"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "E-mail",
+    "downloadCV": "Télécharger le CV",
+    "scheduleInterview": "Planifier un Entretien"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
   }
-  
+}

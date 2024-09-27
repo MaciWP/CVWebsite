@@ -1,6 +1,6 @@
 {
   "header": {
-    "name": "Your Name",
+    "name": "Oriol Macias Badosa",
     "nav": {
       "home": "Home",
       "experience": "Experience",
@@ -9,12 +9,15 @@
       "projects": "Projects",
       "languages": "Languages",
       "contact": "Contact"
-    }
+    },
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "highContrast": "Toggle high contrast"
   },
   "introduction": {
-    "title": "Senior Software Architect",
-    "description": "Over 10 years of experience designing and developing scalable systems.",
-    "altText": "Profile photo of Your Name"
+    "title": "Senior Software Developer",
+    "description": "Over 5 years of experience specializing in backend development, API design, and infrastructure management using Python, Django, and Docker. Passionate about code quality, automation, and implementing AI-driven solutions.",
+    "altText": "Profile photo of Oriol Macias Badosa"
   },
   "experience": {
     "title": "Professional Experience",
@@ -27,21 +30,14 @@
     "title": "Technical Skills",
     "categories": {
       "programmingLanguages": "Programming Languages",
-      "frameworks": "Frameworks",
+      "frameworks": "Frameworks & Tools",
       "softSkills": "Soft Skills"
     }
   },
   "projects": {
     "title": "Featured Projects",
-    "viewMore": "View More",
     "viewProject": "View Project",
-    "viewCode": "View Code",
-    "viewDemo": "View Demo",
-    "loading": "Loading projects...",
-    "error": "Error fetching projects.",
-    "language": "Language",
-    "noDescription": "No description available.",
-    "unknown": "Unknown"
+    "viewCode": "View Code"
   },
   "languages": {
     "title": "Languages",
@@ -50,12 +46,10 @@
   "contact": {
     "title": "Contact",
     "email": "Email",
-    "downloadCV": "Download CV in PDF",
+    "downloadCV": "Download CV",
     "scheduleInterview": "Schedule an Interview"
   },
   "footer": {
-    "name": "Your Name",
-    "rights": "All rights reserved.",
-    "privacyPolicy": "Privacy Policy"
+    "rights": "All rights reserved."
   }
 }

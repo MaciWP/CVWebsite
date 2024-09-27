@@ -1,5 +1,3 @@
-// src/components/Footer.jsx
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../styles/components/Footer.scss';
@@ -13,30 +11,27 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer__social">
-        <a href="mailto:your.email@example.com" aria-label={t('contact.email')}>
-          <FontAwesomeIcon icon={faEnvelope} />
-        </a>
+        <a href="mailto:oriolomb@gmail.com" aria-label={t('contact.email')}
+          FontAwesomeIcon icon={faEnvelope} />
         <a
-          href="https://linkedin.com/in/your_username"
+
+          href="https://linkedin.com/in/oriolmaciasbadosa"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-        >
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
+          FontAwesomeIcon icon={faLinkedin} />
         <a
-          href="https://github.com/your_username"
+
+          href="https://github.com/yourusername"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-        >
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
+          FontAwesomeIcon icon={faGithub} />
+
       </div>
       <p>
         &copy; {new Date().getFullYear()} {t('footer.name')}. {t('footer.rights')}
       </p>
-      {/* Removed the Privacy Policy link to clean up the footer */}
     </footer>
   );
 };

@@ -1,6 +1,6 @@
 {
   "header": {
-    "name": "Tu Nombre",
+    "name": "Oriol Macias Badosa",
     "nav": {
       "home": "Inicio",
       "experience": "Experiencia",
@@ -10,16 +10,14 @@
       "languages": "Idiomas",
       "contact": "Contacto"
     },
-    "language": "Idioma",
-    "darkMode": "Activar modo oscuro",
-    "lightMode": "Activar modo claro",
-    "highContrast": "Alternar alto contraste",
-    "menu": "Menú"
+    "lightMode": "Cambiar a modo claro",
+    "darkMode": "Cambiar a modo oscuro",
+    "highContrast": "Alternar alto contraste"
   },
   "introduction": {
-    "title": "Arquitecto de Software Senior",
-    "description": "Más de 10 años de experiencia en diseño y desarrollo de sistemas escalables.",
-    "altText": "Foto de perfil de Tu Nombre"
+    "title": "Desarrollador de Software Senior",
+    "description": "Más de 5 años de experiencia especializado en desarrollo backend, diseño de APIs y gestión de infraestructura utilizando Python, Django y Docker. Apasionado por la calidad del código, la automatización y la implementación de soluciones basadas en IA.",
+    "altText": "Foto de perfil de Oriol Macias Badosa"
   },
   "experience": {
     "title": "Experiencia Profesional",
@@ -29,32 +27,29 @@
     "title": "Educación y Certificaciones"
   },
   "skills": {
-    "title": "Habilidades",
+    "title": "Habilidades Técnicas",
     "categories": {
       "programmingLanguages": "Lenguajes de Programación",
-      "frameworks": "Frameworks",
+      "frameworks": "Frameworks y Herramientas",
       "softSkills": "Habilidades Blandas"
     }
   },
   "projects": {
     "title": "Proyectos Destacados",
-    "viewMore": "Ver más"
+    "viewProject": "Ver Proyecto",
+    "viewCode": "Ver Código"
   },
   "languages": {
-    "title": "Idiomas"
-  },
-  "testimonials": {
-    "title": "Recomendaciones"
+    "title": "Idiomas",
+    "level": "Nivel"
   },
   "contact": {
     "title": "Contacto",
     "email": "Correo Electrónico",
-    "downloadCV": "Descargar CV en PDF",
+    "downloadCV": "Descargar CV",
     "scheduleInterview": "Programar una Entrevista"
   },
   "footer": {
-    "name": "Tu Nombre",
-    "rights": "Todos los derechos reservados.",
-    "privacyPolicy": "Política de Privacidad"
+    "rights": "Todos los derechos reservados."
   }
 }

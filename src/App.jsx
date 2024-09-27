@@ -1,6 +1,5 @@
-// src/App.jsx
 import React, { Suspense, useContext, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeContext } from './contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
@@ -25,13 +24,15 @@ function App() {
 
   return (
     <div className="App">
-      <Helmet>
-        <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
-        <meta
-          name="description"
-          content={t('introduction.description')}
-        />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
+          <meta
+            name="description"
+            content={t('introduction.description')}
+          />
+        </Helmet>
+      </HelmetProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <Routes>

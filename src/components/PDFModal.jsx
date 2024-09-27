@@ -6,7 +6,7 @@ Modal.setAppElement('#root');
 
 const PDFModal = ({ isOpen, onRequestClose }) => {
   const [pdfError, setPdfError] = useState(false);
-  const pdfUrl = '/TuCV.pdf';
+  const pdfUrl = '/OriolMaciasBadosa_CV.pdf';
 
   const handlePdfError = () => {
     setPdfError(true);

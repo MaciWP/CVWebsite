@@ -2,21 +2,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../styles/components/Languages.scss';
 
+import esFlag from '../assets/images/flags/es.webp';
+import caFlag from '../assets/images/flags/ca.webp';
 import enFlag from '../assets/images/flags/en.webp';
-import deFlag from '../assets/images/flags/de.webp';
-import frFlag from '../assets/images/flags/fr.webp';
-import itFlag from '../assets/images/flags/it.webp';
 
 const languages = [
-  { code: 'en', name: 'English', level: 'C2', proficiency: 100, flag: enFlag },
-  { code: 'de', name: 'Deutsch', level: 'B2', proficiency: 75, flag: deFlag },
-  { code: 'fr', name: 'Français', level: 'B1', proficiency: 60, flag: frFlag },
-  { code: 'it', name: 'Italiano', level: 'A2', proficiency: 40, flag: itFlag },
+  { code: 'es', name: 'Spanish', level: 'Native', proficiency: 100, flag: esFlag },
+  { code: 'ca', name: 'Catalan', level: 'Native', proficiency: 100, flag: caFlag },
+  { code: 'en', name: 'English', level: 'B1-B2', proficiency: 75, flag: enFlag },
 ];
 
 const Languages = () => {
   const { t } = useTranslation();
-
 
   return (
     <section id="languages" className="section">

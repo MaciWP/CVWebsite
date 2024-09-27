@@ -1,22 +1,31 @@
-// File: src/components/Education.jsx
-
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { ThemeContext } from '../contexts/ThemeContext'; // Asegúrate de que la ruta sea correcta
+import { ThemeContext } from '../contexts/ThemeContext';
 import 'react-vertical-timeline-component/style.min.css';
 import '../styles/components/Education.scss';
 
 const educations = [
   {
-    degree: 'Master of Computer Science',
-    institution: 'University XYZ',
-    period: '2015 - 2017',
-    description: 'Specialization in Artificial Intelligence and Machine Learning.',
+    degree: 'Higher Vocational Training in Cross-Platform Application Development',
+    institution: 'IES Montilivi, Girona',
+    period: '2015',
+    description: 'Specialized training in cross-platform application development.',
   },
-  // Add more education entries here
+  {
+    degree: 'Intermediate Vocational Training in Microcomputer Systems and Networks',
+    institution: 'IES Salvador Espriu, Girona',
+    period: '2012',
+    description: 'Focused on microcomputer systems and network management.',
+  },
+];
+
+const certifications = [
+  'SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)',
+  'SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)',
+  'Implementation Overview CPIMTM (iTRACS)',
 ];
 
 const Education = () => {
@@ -81,6 +90,19 @@ const Education = () => {
             <p>{edu.description}</p>
           </VerticalTimelineElement>
         ))}
+        <VerticalTimelineElement
+          icon={<FontAwesomeIcon icon={faGraduationCap} />}
+          iconStyle={styles.iconStyle}
+          contentStyle={styles.content}
+          contentArrowStyle={styles.arrowStyle}
+        >
+          <h3 className="vertical-timeline-element-title">Certifications</h3>
+          <ul>
+            {certifications.map((cert, index) => (
+              <li key={index}>{cert}</li>
+            ))}
+          </ul>
+        </VerticalTimelineElement>
       </VerticalTimeline>
     </section>
   );

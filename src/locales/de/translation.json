@@ -1,6 +1,6 @@
 {
   "header": {
-    "name": "Ihr Name",
+    "name": "Oriol Macias Badosa",
     "nav": {
       "home": "Startseite",
       "experience": "Erfahrung",
@@ -9,42 +9,47 @@
       "projects": "Projekte",
       "languages": "Sprachen",
       "contact": "Kontakt"
-    }
+    },
+    "lightMode": "Zum hellen Modus wechseln",
+    "darkMode": "Zum dunklen Modus wechseln",
+    "highContrast": "Hohen Kontrast umschalten"
   },
   "introduction": {
-    "title": "Senior Software Architekt",
-    "description": "Über 10 Jahre Erfahrung im Design und in der Entwicklung skalierbarer Systeme.",
-    "altText": "Profilfoto von Ihr Name"
+    "title": "Senior Software-Entwickler",
+    "description": "Über 5 Jahre Erfahrung spezialisiert auf Backend-Entwicklung, API-Design und Infrastrukturmanagement mit Python, Django und Docker. Leidenschaftlich für Codequalität, Automatisierung und Implementierung von KI-gestützten Lösungen.",
+    "altText": "Profilbild von Oriol Macias Badosa"
   },
   "experience": {
     "title": "Berufserfahrung",
     "at": "bei"
   },
   "education": {
-    "title": "Bildung und Zertifikate"
+    "title": "Ausbildung und Zertifizierungen"
   },
   "skills": {
-    "title": "Technische Fähigkeiten"
+    "title": "Technische Fähigkeiten",
+    "categories": {
+      "programmingLanguages": "Programmiersprachen",
+      "frameworks": "Frameworks und Tools",
+      "softSkills": "Soft Skills"
+    }
   },
   "projects": {
     "title": "Ausgewählte Projekte",
-    "viewMore": "Mehr ansehen"
+    "viewProject": "Projekt ansehen",
+    "viewCode": "Code ansehen"
   },
   "languages": {
-    "title": "Sprachen"
-  },
-  "testimonials": {
-    "title": "Empfehlungen"
+    "title": "Sprachen",
+    "level": "Niveau"
   },
   "contact": {
     "title": "Kontakt",
     "email": "E-Mail",
-    "downloadCV": "Lebenslauf als PDF herunterladen",
-    "scheduleInterview": "Interview vereinbaren"
+    "downloadCV": "Lebenslauf herunterladen",
+    "scheduleInterview": "Vorstellungsgespräch planen"
   },
   "footer": {
-    "name": "Ihr Name",
-    "rights": "Alle Rechte vorbehalten.",
-    "privacyPolicy": "Datenschutzerklärung"
+    "rights": "Alle Rechte vorbehalten."
   }
 }

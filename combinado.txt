@@ -170,7 +170,7 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/App.jsx
 
 // src/App.jsx
 import React, { Suspense, useContext, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeContext } from './contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
@@ -195,13 +195,15 @@ function App() {
 
   return (
     <div className="App">
-      <Helmet>
-        <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
-        <meta
-          name="description"
-          content={t('introduction.description')}
-        />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
+          <meta
+            name="description"
+            content={t('introduction.description')}
+          />
+        </Helmet>
+      </HelmetProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <Routes>
@@ -1001,50 +1003,25 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Edu
 
 @import '../variables';
 
-.education {
-  .vertical-timeline {
-    &::before {
-      background: var(--primary-color);
-    }
-  }
-
-  .vertical-timeline-element {
-    &-content {
-      background-color: var(--card-background);
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      padding: var(--spacing-medium);
-
-      .vertical-timeline-element-date {
-        color: var(--secondary-color);
+.experience, .education {
+    .vertical-timeline-element-content {
+      background-color: var(--card-background) !important;
+      box-shadow: 0 3px 0 var(--card-background) !important;
+      
+      &, h3, h4, p, li, .vertical-timeline-element-date {
+        color: var(--text-color) !important;
       }
     }
-
-    &-icon {
-      background: var(--primary-color);
-      color: #fff;
+  
+    .vertical-timeline-element-icon {
+      background: var(--primary-color) !important;
+      color: #fff !important;
     }
-
-    &-title {
-      color: var(--heading-color);
-      font-size: var(--font-size-large);
-      margin-bottom: var(--spacing-small);
-    }
-
-    &-subtitle {
-      color: var(--secondary-color);
-      font-size: var(--font-size-medium);
-      margin-bottom: var(--spacing-small);
+  
+    .vertical-timeline-element-content-arrow {
+      border-right: 7px solid var(--card-background) !important;
     }
   }
-
-  @media (max-width: $breakpoint-mobile) {
-    .vertical-timeline-element-content {
-      margin-left: 0;
-      padding: var(--spacing-small);
-    }
-  }
-}
 
 === Archivo: PDFModal.scss ===
 Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/PDFModal.scss
@@ -1107,30 +1084,25 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Exp
 
 @import '../variables';
 
-.experience {
-  .vertical-timeline-element-content {
-    background-color: var(--card-background) !important;
-    color: var(--text-color) !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-
-    h3, h4, p, li {
-      color: var(--text-color) !important;
+.experience, .education {
+    .vertical-timeline-element-content {
+      background-color: var(--card-background) !important;
+      box-shadow: 0 3px 0 var(--card-background) !important;
+      
+      &, h3, h4, p, li, .vertical-timeline-element-date {
+        color: var(--text-color) !important;
+      }
     }
-
-    .vertical-timeline-element-date {
-      color: var(--secondary-color) !important;
+  
+    .vertical-timeline-element-icon {
+      background: var(--primary-color) !important;
+      color: #fff !important;
+    }
+  
+    .vertical-timeline-element-content-arrow {
+      border-right: 7px solid var(--card-background) !important;
     }
   }
-
-  .vertical-timeline-element-icon {
-    background: var(--primary-color) !important;
-    color: #fff !important;
-  }
-
-  .vertical-timeline-element-content-arrow {
-    border-right: 7px solid var(--card-background) !important;
-  }
-}
 
 === Archivo: Introduction.scss ===
 Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Introduction.scss
@@ -1198,6 +1170,20 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Int
   }
 
   @media (max-width: $breakpoint-tablet) {
+    margin-top: 50px;
+    &__content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+    }
+    
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-top: 95px;
     &__content {
       flex-direction: column;
       text-align: center;
@@ -1298,7 +1284,7 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Hea
 
 .header {
   position: fixed;
-  width: 98%;
+  width: 100%;
   top: 0;
   background-color: var(--background-color);
   backdrop-filter: blur(5px);
@@ -1310,14 +1296,14 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Hea
   align-items: center;
 
   &__title {
-    font-size: 2.4em;
+    font-size: 2.6em;
     color: var(--primary-color);
     margin: 0;
   }
 
   &__nav {
     display: flex;
-    gap: 25px;
+    gap: 15px;
 
     &-item {
       color: var(--text-color);
@@ -1342,12 +1328,15 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Hea
   &__controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    margin-right: 50px;
+    gap: 10px;
   }
 
   &__social {
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    margin-right: 5px;
 
     a {
       color: var(--primary-color);
@@ -1365,10 +1354,12 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Hea
   &__theme-toggle,
   &__contrast-toggle {
     background: none;
+    align-items: center;
+    justify-content: center;
     border: none;
     cursor: pointer;
     color: var(--primary-color);
-    font-size: 1.6em;
+    font-size: 1.5em;
     transition: color 0.3s ease;
 
     &:hover,
@@ -1378,41 +1369,60 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/styles/components/Hea
   }
 
   &__language-selector {
-    padding: 8px;
-    font-size: 1.1em;
-    border: 2px solid var(--primary-color);
+    font-size: 1.3em;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--primary-color);
     background-color: var(--background-color);
     color: var(--text-color);
     cursor: pointer;
     border-radius: 5px;
   }
 
+    @media (max-width: $breakpoint-tablet) {
+    
+    
+        &__title {
+          flex-basis: 100%;
+          text-align: left;
+          font-size: 3.5em;
+          justify-content: center;
+
+    
+        }
+    
+        &__controls {
+          order: 1;
+          justify-content: center;
+          text-align: left;
+          flex-basis: 100%;
+          font-size: 1.2em;
+          margin-right: 10px;
+
+
+        }
+    
+  }
+
   @media (max-width: $breakpoint-mobile) {
     flex-wrap: wrap;
-    padding: 10px 15px;
+
 
     &__title {
       flex-basis: 100%;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+      text-align: left;
+      font-size: 2.5em;
 
-    &__nav {
-      order: 3;
-      flex-basis: 100%;
-      justify-content: center;
-      margin-top: 15px;
     }
 
     &__controls {
       order: 2;
-      justify-content: center;
+      gap: 15px;
+      font-size: 1.1em;
+      margin-right: 50px;
     }
+}
 
-    &__contrast-toggle {
-      display: none;
-    }
-  }
 }
 
 === Archivo: Footer.scss ===
@@ -1509,12 +1519,12 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme, toggleHighContrast } = useContext(ThemeContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
 
     window.addEventListener('resize', handleResize);
@@ -1564,9 +1574,24 @@ const Header = () => {
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
-        <button onClick={() => setIsModalOpen(true)} className="header__download-button" aria-label={t('contact.downloadCV')}>
-          <FontAwesomeIcon icon={faDownload} />
-        </button>
+        {isMobile ? (
+          <a
+            href="/TuCV.pdf"
+            download
+            className="header__download-button"
+            aria-label={t('contact.downloadCV')}
+          >
+            <FontAwesomeIcon icon={faDownload} />
+          </a>
+        ) : (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="header__download-button"
+            aria-label={t('contact.downloadCV')}
+          >
+            <FontAwesomeIcon icon={faDownload} />
+          </button>
+        )}
         <select onChange={changeLanguage} value={i18n.language} className="header__language-selector">
           <option value="en">EN</option>
           <option value="es">ES</option>
@@ -1673,11 +1698,12 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Education.
 
 // File: src/components/Education.jsx
 
-import React from 'react';
+import React, { useContext} from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext'; // Asegúrate de que la ruta sea correcta
 import 'react-vertical-timeline-component/style.min.css';
 import '../styles/components/Education.scss';
 
@@ -1693,6 +1719,44 @@ const educations = [
 
 const Education = () => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
+  const getStyles = () => {
+    switch(theme) {
+      case 'dark':
+        return {
+          content: {
+            background: '#2c2c2c',
+            color: '#f0f0f0',
+            borderTop: '3px solid #1e90ff'
+          },
+          arrowStyle: { borderRight: '7px solid #2c2c2c' },
+          iconStyle: { background: '#1e90ff', color: '#fff' },
+        };
+      case 'high-contrast':
+        return {
+          content: {
+            background: '#000000',
+            color: '#ffffff',
+            borderTop: '3px solid #00ffff'
+          },
+          arrowStyle: { borderRight: '7px solid #000000' },
+          iconStyle: { background: '#00ffff', color: '#000000' },
+        };
+      default:
+        return {
+          content: {
+            background: '#ffffff',
+            color: '#333333',
+            borderTop: '3px solid #005A9C'
+          },
+          arrowStyle: { borderRight: '7px solid #ffffff' },
+          iconStyle: { background: '#005A9C', color: '#fff' },
+        };
+    }
+  };
+
+  const styles = getStyles();
 
   return (
     <section className="section" id="education">
@@ -1704,8 +1768,11 @@ const Education = () => {
           <VerticalTimelineElement
             key={idx}
             date={edu.period}
+            dateClassName={theme === 'dark' ? 'dark-text' : theme === 'high-contrast' ? 'high-contrast-text' : ''}
             icon={<FontAwesomeIcon icon={faGraduationCap} />}
-            iconStyle={{ background: 'var(--primary-color)', color: '#fff' }}
+            iconStyle={styles.iconStyle}
+            contentStyle={styles.content}
+            contentArrowStyle={styles.arrowStyle}
           >
             <h3 className="vertical-timeline-element-title">{edu.degree}</h3>
             <h4 className="vertical-timeline-element-subtitle">{edu.institution}</h4>
@@ -1719,13 +1786,12 @@ const Education = () => {
 
 export default Education;
 
-
 === Archivo: Introduction.jsx ===
 Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Introduction.jsx
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import animationData from '../assets/animations/introAnimation.json';
 import '../styles/components/Introduction.scss';
 import photo from '../assets/images/photo.webp';
@@ -1733,14 +1799,6 @@ import photo from '../assets/images/photo.webp';
 const Introduction = () => {
   const { t } = useTranslation();
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
 
   return (
     <section id="introduction" className="introduction">
@@ -1757,8 +1815,12 @@ const Introduction = () => {
           <p className="introduction__description">{t('introduction.description')}</p>
         </div>
         <div className="introduction__animation" aria-label={t('introduction.animationAltText')}>
-          <Lottie options={defaultOptions} height={300} width={300} />
-        </div>
+        <Lottie 
+            animationData={animationData} 
+            loop={true} 
+            autoplay={true} 
+            style={{ height: 300, width: 300 }} 
+          />        </div>
       </div>
     </section>
   );
@@ -1876,16 +1938,19 @@ export default Skills;
 === Archivo: PDFModal.jsx ===
 Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/PDFModal.jsx
 
-// src/components/PDFModal.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import '../styles/components/PDFModal.scss';
 
 Modal.setAppElement('#root');
 
 const PDFModal = ({ isOpen, onRequestClose }) => {
+  const [pdfError, setPdfError] = useState(false);
   const pdfUrl = '/TuCV.pdf';
+
+  const handlePdfError = () => {
+    setPdfError(true);
+  };
 
   return (
     <Modal
@@ -1899,13 +1964,18 @@ const PDFModal = ({ isOpen, onRequestClose }) => {
         <button onClick={onRequestClose} className="pdf-modal__close-button">
           &times;
         </button>
-        <iframe
-          src={pdfUrl}
-          title="CV PDF"
-          width="100%"
-          height="100%"
-          style={{ border: 'none' }}
-        />
+        {pdfError ? (
+          <p>Error loading PDF. Please try again later.</p>
+        ) : (
+          <iframe
+            src={pdfUrl}
+            title="CV PDF"
+            width="100%"
+            height="100%"
+            style={{ border: 'none' }}
+            onError={handlePdfError}
+          />
+        )}
       </div>
     </Modal>
   );
@@ -1934,6 +2004,7 @@ const languages = [
 
 const Languages = () => {
   const { t } = useTranslation();
+
 
   return (
     <section id="languages" className="section">
@@ -1969,13 +2040,14 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/src/components/Experience
 
 // File: src/components/Experience.jsx
 
-import React from 'react';
+import React, { useContext} from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext'; // Asegúrate de que la ruta sea correcta
 import 'react-vertical-timeline-component/style.min.css';
-import '../styles/components/Experience.scss';
+import '../styles/components/Education.scss';
 
 const experiences = [
   {
@@ -1992,13 +2064,49 @@ const experiences = [
   // Add more experiences here
 ];
 
-
-
 const Experience = () => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
+  const getStyles = () => {
+    switch(theme) {
+      case 'dark':
+        return {
+          content: {
+            background: '#2c2c2c',
+            color: '#f0f0f0',
+            borderTop: '3px solid #1e90ff'
+          },
+          arrowStyle: { borderRight: '7px solid #2c2c2c' },
+          iconStyle: { background: '#1e90ff', color: '#fff' },
+        };
+      case 'high-contrast':
+        return {
+          content: {
+            background: '#000000',
+            color: '#ffffff',
+            borderTop: '3px solid #00ffff'
+          },
+          arrowStyle: { borderRight: '7px solid #000000' },
+          iconStyle: { background: '#00ffff', color: '#000000' },
+        };
+      default:
+        return {
+          content: {
+            background: '#ffffff',
+            color: '#333333',
+            borderTop: '3px solid #005A9C'
+          },
+          arrowStyle: { borderRight: '7px solid #ffffff' },
+          iconStyle: { background: '#005A9C', color: '#fff' },
+        };
+    }
+  };
+
+  const styles = getStyles();
 
   return (
-    <section className="section"  id="experience">
+    <section className="section" id="experience">
       <div className="title-container">
         <h2 className="section-title">{t('experience.title')}</h2>
       </div>
@@ -2007,8 +2115,11 @@ const Experience = () => {
           <VerticalTimelineElement
             key={idx}
             date={exp.period}
+            dateClassName={theme === 'dark' ? 'dark-text' : theme === 'high-contrast' ? 'high-contrast-text' : ''}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
-            iconStyle={{ background: 'var(--primary-color)', color: '#fff' }}
+            iconStyle={styles.iconStyle}
+            contentStyle={styles.content}
+            contentArrowStyle={styles.arrowStyle}
           >
             <h3 className="vertical-timeline-element-title">{exp.role}</h3>
             <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
@@ -2240,33 +2351,42 @@ Ruta: /Users/oriol/Desktop/Bjumper/PERSONAL/REPO/CV/cv/package.json
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "aos": "^2.3.4",
-    "framer-motion": "^11.5.6",
+    "axios": "^1.7.7",
+    "css-select": "^5.1.0",
+    "framer-motion": "^11.8.0",
     "i18next": "^23.15.1",
+    "lottie-react": "^2.4.0",
     "lottie-web": "^5.12.2",
-    "node-sass": "^7.0.3",
+    "node-sass": "^9.0.0",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.47",
     "rc-progress": "^4.0.0",
     "react": "^18.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.0.2",
     "react-icons": "^5.3.0",
-    "react-lottie": "^1.2.4",
     "react-lottie-player": "^2.1.0",
     "react-modal": "^3.16.1",
     "react-pdf": "^9.1.1",
     "react-router-dom": "^6.26.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-scroll": "^1.9.0",
     "react-slick": "^0.30.2",
     "react-vertical-timeline-component": "^3.6.0",
     "recharts": "^2.12.7",
+    "resolve-url-loader": "^5.0.0",
+    "sass-loader": "^16.0.2",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "svgo": "^3.3.2",
+    "tough-cookie": "^5.0.0",
+    "web-vitals": "^4.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
