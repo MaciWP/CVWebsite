@@ -1,5 +1,6 @@
 {
   "name": "cv",
+  "homepage": "https://oriolmacias.dev",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -45,7 +46,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run build-sw",
+    "build-sw": "node ./src/sw-build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
