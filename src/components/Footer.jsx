@@ -19,15 +19,18 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          FontAwesomeIcon icon={faLinkedin} />
+          >
+          <FontAwesomeIcon icon={faLinkedin} />
+        </a>
         <a
 
           href="https://github.com/yourusername"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          FontAwesomeIcon icon={faGithub} />
-
+          >
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
       </div>
       <p>
         &copy; {new Date().getFullYear()} {t('footer.name')}. {t('footer.rights')}

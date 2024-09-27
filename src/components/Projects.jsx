@@ -66,7 +66,9 @@ const Projects = () => {
               href={proj.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="projects__card-link" FontAwesomeIcon icon={faGithub}> {t('projects.viewProject')}</a>
+              className="projects__card-link" >
+              <FontAwesomeIcon icon={faGithub} /> {t('projects.viewProject')}
+            </a>
 
           </div>
         ))}
