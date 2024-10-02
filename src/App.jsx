@@ -14,6 +14,11 @@ const Projects = React.lazy(() => import('./components/Projects'));
 const Languages = React.lazy(() => import('./components/Languages'));
 const Footer = React.lazy(() => import('./components/Footer'));
 
+const LoadingFallback = () => {
+  const { t } = useTranslation();
+  return <div>{t('common.loading')}</div>;
+};
+
 function App() {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
@@ -26,26 +31,67 @@ function App() {
     <div className="App">
       <HelmetProvider>
         <Helmet>
-          <title>{`${t('header.name')} - ${t('introduction.title')}`}</title>
-          <meta
-            name="description"
-            content={t('introduction.description')}
-          />
+          <title>{t('header.name')} - {t('introduction.title')}</title>
+          <meta name="description" content={t('introduction.description')} />
+          <meta name="keywords" content="software developer, Python, Django, AWS, Docker" />
+          
+          {/* Open Graph tags */}
+          <meta property="og:title" content={`${t('header.name')} - ${t('introduction.title')}`} />
+          <meta property="og:description" content={t('introduction.description')} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://oriolmacias.dev" />
+          <meta property="og:image" content="https://oriolmacias.dev/profile-image.jpg" />
+          
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={`${t('header.name')} - ${t('introduction.title')}`} />
+          <meta name="twitter:description" content={t('introduction.description')} />
+          <meta name="twitter:image" content="https://oriolmacias.dev/profile-image.jpg" />
+          
+          {/* Schema.org structured data */}
+          <script type="application/ld+json">
+            {`
+              {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "${t('header.name')}",
+                "jobTitle": "${t('introduction.title')}",
+                "description": "${t('introduction.description')}",
+                "url": "https://oriolmacias.dev",
+                "sameAs": [
+                  "https://linkedin.com/in/oriolmaciasbadosa",
+                  "https://github.com/MaciWP"
+                ]
+              }
+            `}
+          </script>
         </Helmet>
       </HelmetProvider>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Header />
         <Routes>
           <Route
             path="/"
             element={
               <main>
-                <Introduction />
-                <Experience />
-                <Education />
-                <Skills />
-                <Projects />
-                <Languages />
+                <Suspense fallback={<LoadingFallback />}>
+                  <Introduction />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Experience />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Education />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Skills />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Projects />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Languages />
+                </Suspense>
               </main>
             }
           />

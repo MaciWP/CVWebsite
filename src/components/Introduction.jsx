@@ -21,13 +21,13 @@ const Introduction = () => {
         <div className="introduction__text">
           <h2 className="introduction__title">{t('introduction.title')}</h2>
           <p className="introduction__description">{t('introduction.description')}</p>
+          <p className="introduction__statement">{t('introduction.statement')}</p>
         </div>
         <div className="introduction__animation" aria-label={t('introduction.animationAltText')}>
           <Lottie 
             animationData={animationData} 
             loop={true} 
             autoplay={true} 
-            style={{ height: 300, width: 300 }} 
           />
         </div>
       </div>

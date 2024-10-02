@@ -2,54 +2,167 @@
   "header": {
     "name": "Oriol Macias Badosa",
     "nav": {
-      "home": "Accueil",
       "experience": "Expérience",
-      "education": "Formation",
       "skills": "Compétences",
       "projects": "Projets",
-      "languages": "Langues",
-      "contact": "Contact"
+      "languages": "Langues"
     },
-    "lightMode": "Passer en mode clair",
-    "darkMode": "Passer en mode sombre",
-    "highContrast": "Basculer en contraste élevé"
+    "downloadCV": "Télécharger CV",
+    "toggleTheme": "Changer de thème",
+    "Email": "E-mail",
+    "LinkedIn": "LinkedIn",
+    "GitHub": "GitHub",
+    "languageSelector": "Choisir la langue"
   },
   "introduction": {
     "title": "Développeur Logiciel Senior",
-    "description": "Plus de 5 ans d'expérience spécialisée dans le développement backend, la conception d'API et la gestion d'infrastructure utilisant Python, Django et Docker. Passionné par la qualité du code, l'automatisation et la mise en œuvre de solutions basées sur l'IA.",
-    "altText": "Photo de profil d'Oriol Macias Badosa"
+    "description": "Plus de 5 ans d'expérience spécialisée dans le développement backend, la conception d'API et la gestion d'infrastructure utilisant Python, Django et Docker. Passionné par la qualité du code, l'automatisation et l'implémentation de solutions basées sur l'IA.",
+    "altText": "Photo de profil d'Oriol Macias Badosa",
+    "animationAltText": "Illustration animée représentant le développement logiciel"
   },
   "experience": {
     "title": "Expérience Professionnelle",
-    "at": "chez"
+    "at": "chez",
+    "jobs": [
+      {
+        "company": "BJumper",
+        "role": "Développeur Logiciel Senior",
+        "period": "2019 - Présent",
+        "description": "A dirigé le développement de systèmes backend évolutifs utilisant Python et Django, conçu des API RESTful sécurisées et mis en œuvre des stratégies de conteneurisation.",
+        "achievements": [
+          "Optimisation des performances du système, réduisant le temps de réponse de 40%",
+          "Implémentation de Docker, améliorant l'efficacité du déploiement de 60%",
+          "Intégration de fonctionnalités d'IA, augmentant l'engagement des utilisateurs de 25%",
+          "Établissement de pipelines CI/CD, réduisant le taux de bugs de 30%"
+        ]
+      },
+      {
+        "company": "Busmatick Group",
+        "role": "Développeur Logiciel",
+        "period": "2018",
+        "description": "Développement d'applications multiplateformes pour Android et Windows en utilisant .NET, gestion des données de cartes à puce pour les systèmes de transport public.",
+        "achievements": [
+          "Implémentation de services web en temps réel pour une communication fluide",
+          "Gestion des données de cartes à puce Mifare Classic 1K"
+        ]
+      }
+    ]
   },
   "education": {
-    "title": "Formation et Certifications"
+    "title": "Formation et Certifications",
+    "degrees": [
+      {
+        "name": "Formation Professionnelle Supérieure en Développement d'Applications Multiplateformes",
+        "institution": "IES Montilivi, Girona",
+        "year": "2015",
+        "description": "Formation spécialisée en développement d'applications multiplateformes."
+      },
+      {
+        "name": "Formation Professionnelle Intermédiaire en Systèmes Micro-informatiques et Réseaux",
+        "institution": "IES Salvador Espriu, Girona",
+        "year": "2012",
+        "description": "Axé sur les systèmes micro-informatiques et la gestion de réseaux."
+      }
+    ],
+    "certifications": [
+      "SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)",
+      "SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)",
+      "Implementation Overview CPIMTM (iTRACS)"
+    ]
   },
   "skills": {
     "title": "Compétences Techniques",
     "categories": {
       "programmingLanguages": "Langages de Programmation",
-      "frameworks": "Frameworks et Outils",
+      "frameworks": "Frameworks & Outils",
       "softSkills": "Compétences Transversales"
-    }
+    },
+    "items": [
+      { "name": "Python", "level": 95 },
+      { "name": "C#", "level": 85 },
+      { "name": "Java", "level": 80 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Django", "level": 95 },
+      { "name": "Flask", "level": 85 },
+      { "name": "Docker", "level": 90 },
+      { "name": "PostgreSQL", "level": 90 },
+      { "name": "AWS", "level": 80 },
+      { "name": "Celery", "level": 85 },
+      { "name": "Architecture Système", "level": 88 },
+      { "name": "Intégration IA", "level": 82 }
+    ],
+    "softSkills": [
+      {
+        "name": "Architecture Système",
+        "description": "Expertise dans la conception d'architectures évolutives utilisant Django et Docker."
+      },
+      {
+        "name": "Résolution de Problèmes",
+        "description": "Capacité démontrée à résoudre des défis complexes dans le développement backend."
+      },
+      {
+        "name": "Intégration IA",
+        "description": "Expérience dans l'intégration de YOLOv10, OpenAI et Llama-Index."
+      },
+      {
+        "name": "Qualité du Code",
+        "description": "Mise en place de pipelines CI/CD robustes assurant une haute qualité du code."
+      }
+    ]
   },
   "projects": {
     "title": "Projets Phares",
     "viewProject": "Voir le Projet",
-    "viewCode": "Voir le Code"
+    "items": [
+      {
+        "name": "Calculateur de Jeu de Cartes Pelusas",
+        "description": "Une application mobile qui améliore le suivi des scores pour le jeu de cartes \"Pelusas\" en utilisant YOLOv10 pour la reconnaissance d'image avancée.",
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+      },
+      {
+        "name": "Application de Détection de Cartes",
+        "description": "Une application de détection de cartes en temps réel utilisant YOLOv10 pour la reconnaissance d'image, avec un accent sur la haute précision et les performances.",
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+      },
+      {
+        "name": "Chatbot Juridique pour la Génération de Documents",
+        "description": "Un chatbot qui automatise la génération de documents juridiques en utilisant un modèle d'IA local et l'API ChatGPT.",
+        "technologies": ["Python", "Kivy", "API ChatGPT"]
+      }
+    ]
   },
   "languages": {
     "title": "Langues",
-    "level": "Niveau"
-  },
-  "contact": {
-    "title": "Contact",
-    "email": "E-mail",
-    "downloadCV": "Télécharger le CV",
-    "scheduleInterview": "Planifier un Entretien"
+    "level": "Niveau",
+    "items": [
+      {
+        "code": "es",
+        "name": "Espagnol",
+        "level": "Natif",
+        "proficiency": 100
+      },
+      {
+        "code": "ca",
+        "name": "Catalan",
+        "level": "Natif",
+        "proficiency": 100
+      },
+      {
+        "code": "en",
+        "name": "Anglais",
+        "level": "B1-B2",
+        "proficiency": 75
+      }
+    ]
   },
   "footer": {
-    "rights": "Tous droits réservés."
+    "copyright": "Tous droits réservés."
+  },
+  "pdfModal": {
+    "title": "CV PDF",
+    "errorLoading": "Erreur de chargement du PDF. Veuillez réessayer plus tard."
+  },
+  "common": {
+    "loading": "Chargement..."
   }
 }

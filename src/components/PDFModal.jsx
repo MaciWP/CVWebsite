@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 import '../styles/components/PDFModal.scss';
 
 Modal.setAppElement('#root');
@@ -7,6 +8,7 @@ Modal.setAppElement('#root');
 const PDFModal = ({ isOpen, onRequestClose }) => {
   const [pdfError, setPdfError] = useState(false);
   const pdfUrl = '/OriolMaciasBadosa_CV.pdf';
+  const { t } = useTranslation();
 
   const handlePdfError = () => {
     setPdfError(true);
@@ -16,7 +18,7 @@ const PDFModal = ({ isOpen, onRequestClose }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="CV PDF"
+      contentLabel={t('pdfModal.title')}
       className="pdf-modal"
       overlayClassName="pdf-modal-overlay"
     >
@@ -25,11 +27,11 @@ const PDFModal = ({ isOpen, onRequestClose }) => {
           &times;
         </button>
         {pdfError ? (
-          <p>Error loading PDF. Please try again later.</p>
+          <p>{t('pdfModal.errorLoading')}</p>
         ) : (
           <iframe
             src={pdfUrl}
-            title="CV PDF"
+            title={t('pdfModal.title')}
             width="100%"
             height="100%"
             style={{ border: 'none' }}

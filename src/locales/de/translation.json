@@ -2,54 +2,167 @@
   "header": {
     "name": "Oriol Macias Badosa",
     "nav": {
-      "home": "Startseite",
       "experience": "Erfahrung",
-      "education": "Ausbildung",
       "skills": "Fähigkeiten",
       "projects": "Projekte",
-      "languages": "Sprachen",
-      "contact": "Kontakt"
+      "languages": "Sprachen"
     },
-    "lightMode": "Zum hellen Modus wechseln",
-    "darkMode": "Zum dunklen Modus wechseln",
-    "highContrast": "Hohen Kontrast umschalten"
+    "downloadCV": "Lebenslauf herunterladen",
+    "toggleTheme": "Thema wechseln",
+    "Email": "E-Mail",
+    "LinkedIn": "LinkedIn",
+    "GitHub": "GitHub",
+    "languageSelector": "Sprache auswählen"
   },
   "introduction": {
-    "title": "Senior Software-Entwickler",
+    "title": "Senior Softwareentwickler",
     "description": "Über 5 Jahre Erfahrung spezialisiert auf Backend-Entwicklung, API-Design und Infrastrukturmanagement mit Python, Django und Docker. Leidenschaftlich für Codequalität, Automatisierung und Implementierung von KI-gestützten Lösungen.",
-    "altText": "Profilbild von Oriol Macias Badosa"
+    "altText": "Profilbild von Oriol Macias Badosa",
+    "animationAltText": "Animierte Illustration der Softwareentwicklung"
   },
   "experience": {
     "title": "Berufserfahrung",
-    "at": "bei"
+    "at": "bei",
+    "jobs": [
+      {
+        "company": "BJumper",
+        "role": "Senior Softwareentwickler",
+        "period": "2019 - Gegenwart",
+        "description": "Leitete die Entwicklung skalierbarer Backend-Systeme mit Python und Django, entwarf sichere RESTful APIs und implementierte Containerisierungsstrategien.",
+        "achievements": [
+          "Optimierung der Systemleistung, Reduzierung der Antwortzeit um 40%",
+          "Implementierung von Docker, Verbesserung der Deployment-Effizienz um 60%",
+          "Integration von KI-Funktionen, Steigerung des Nutzerengagements um 25%",
+          "Etablierung von CI/CD-Pipelines, Reduzierung der Fehlerrate um 30%"
+        ]
+      },
+      {
+        "company": "Busmatick Group",
+        "role": "Softwareentwickler",
+        "period": "2018",
+        "description": "Entwicklung plattformübergreifender Anwendungen für Android und Windows mit .NET, Verwaltung von Smartcard-Daten für öffentliche Verkehrssysteme.",
+        "achievements": [
+          "Implementierung von Echtzeit-Webservices für nahtlose Kommunikation",
+          "Verwaltung von Mifare Classic 1K Smartcard-Daten"
+        ]
+      }
+    ]
   },
   "education": {
-    "title": "Ausbildung und Zertifizierungen"
+    "title": "Ausbildung und Zertifizierungen",
+    "degrees": [
+      {
+        "name": "Höhere Berufsausbildung in plattformübergreifender Anwendungsentwicklung",
+        "institution": "IES Montilivi, Girona",
+        "year": "2015",
+        "description": "Spezialisierte Ausbildung in plattformübergreifender Anwendungsentwicklung."
+      },
+      {
+        "name": "Mittlere Berufsausbildung in Mikrocomputersystemen und Netzwerken",
+        "institution": "IES Salvador Espriu, Girona",
+        "year": "2012",
+        "description": "Fokus auf Mikrocomputersysteme und Netzwerkmanagement."
+      }
+    ],
+    "certifications": [
+      "SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)",
+      "SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)",
+      "Implementation Overview CPIMTM (iTRACS)"
+    ]
   },
   "skills": {
     "title": "Technische Fähigkeiten",
     "categories": {
       "programmingLanguages": "Programmiersprachen",
-      "frameworks": "Frameworks und Tools",
+      "frameworks": "Frameworks & Tools",
       "softSkills": "Soft Skills"
-    }
+    },
+    "items": [
+      { "name": "Python", "level": 95 },
+      { "name": "C#", "level": 85 },
+      { "name": "Java", "level": 80 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Django", "level": 95 },
+      { "name": "Flask", "level": 85 },
+      { "name": "Docker", "level": 90 },
+      { "name": "PostgreSQL", "level": 90 },
+      { "name": "AWS", "level": 80 },
+      { "name": "Celery", "level": 85 },
+      { "name": "Systemarchitektur", "level": 88 },
+      { "name": "KI-Integration", "level": 82 }
+    ],
+    "softSkills": [
+      {
+        "name": "Systemarchitektur",
+        "description": "Expertise in der Gestaltung skalierbarer Architekturen mit Django und Docker."
+      },
+      {
+        "name": "Problemlösung",
+        "description": "Nachgewiesene Fähigkeit, komplexe Herausforderungen in der Backend-Entwicklung zu lösen."
+      },
+      {
+        "name": "KI-Integration",
+        "description": "Erfahrung mit der Integration von YOLOv10, OpenAI und Llama-Index."
+      },
+      {
+        "name": "Codequalität",
+        "description": "Implementierung robuster CI/CD-Pipelines zur Sicherstellung hoher Codequalität."
+      }
+    ]
   },
   "projects": {
     "title": "Ausgewählte Projekte",
     "viewProject": "Projekt ansehen",
-    "viewCode": "Code ansehen"
+    "items": [
+      {
+        "name": "Pelusas Kartenspiel-Rechner",
+        "description": "Eine mobile App, die die Punkteerfassung für das Kartenspiel \"Pelusas\" mit YOLOv10 für fortgeschrittene Bilderkennung verbessert.",
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+      },
+      {
+        "name": "Kartenerkennungsanwendung",
+        "description": "Eine Echtzeit-Kartenerkennungs-App mit YOLOv10 für Bilderkennung, mit Fokus auf hohe Genauigkeit und Leistung.",
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+      },
+      {
+        "name": "Juristischer Chatbot zur Dokumentenerstellung",
+        "description": "Ein Chatbot, der die Erstellung juristischer Dokumente mit einem lokalen KI-Modell und der ChatGPT-API automatisiert.",
+        "technologies": ["Python", "Kivy", "ChatGPT API"]
+      }
+    ]
   },
   "languages": {
     "title": "Sprachen",
-    "level": "Niveau"
-  },
-  "contact": {
-    "title": "Kontakt",
-    "email": "E-Mail",
-    "downloadCV": "Lebenslauf herunterladen",
-    "scheduleInterview": "Vorstellungsgespräch planen"
+    "level": "Niveau",
+    "items": [
+      {
+        "code": "es",
+        "name": "Spanisch",
+        "level": "Muttersprache",
+        "proficiency": 100
+      },
+      {
+        "code": "ca",
+        "name": "Katalanisch",
+        "level": "Muttersprache",
+        "proficiency": 100
+      },
+      {
+        "code": "en",
+        "name": "Englisch",
+        "level": "B1-B2",
+        "proficiency": 75
+      }
+    ]
   },
   "footer": {
-    "rights": "Alle Rechte vorbehalten."
+    "copyright": "Alle Rechte vorbehalten."
+  },
+  "pdfModal": {
+    "title": "Lebenslauf PDF",
+    "errorLoading": "Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut."
+  },
+  "common": {
+    "loading": "Wird geladen..."
   }
 }

@@ -1,0 +1,78 @@
+@import '../variables';
+
+.custom-line {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 30px; // Empieza desde el centro del primer icono
+    left: 25px; // Mitad del ancho del icono (50px / 2)
+    height: calc(100% - 30px);
+    width: 4px;
+    background: var(--primary-color);
+  }
+
+  .vertical-timeline-element {
+    margin: 1em 0; // Reducido de 4em a 2em para acercar los elementos
+    
+    &:first-child {
+      margin-top: 0; // Elimina el margen superior del primer elemento
+    }
+  }
+
+  .vertical-timeline-element-icon {
+    left: 0;
+    margin-left: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    z-index: 1; // Asegura que el icono esté por encima de la línea
+  }
+
+  .vertical-timeline-element-content {
+    flex-wrap: wrap-reverse;
+    margin-left: 70px; // Ajustado para dar más espacio entre el icono y el contenido
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-background);
+    
+    h3, h4, p, li {
+      color: var(--text-color);
+    }
+  }
+}
+
+.vertical-timeline-element-date {
+  color: var(--text-color);
+}
+
+@media only screen and (min-width: 1170px) {
+    .custom-line {
+      &::before {
+        left: 50%;
+        margin-left: -2px;
+      }
+  
+      .vertical-timeline-element-icon {
+        left: 50%;
+        margin-left: -25px;
+      }
+  
+      .vertical-timeline-element-content {
+        margin-left: 0;
+        padding: 1.5em;
+        width: 44%;
+      }
+  
+      .vertical-timeline-element-content::before {
+        display: none;
+      }
+  
+      .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content,
+      .vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content {
+        float: right;
+      }
+  
+      .vertical-timeline-element:nth-child(odd) .vertical-timeline-element-content {
+        float: left;
+      }
+    }
+  }

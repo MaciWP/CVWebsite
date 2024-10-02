@@ -6,14 +6,16 @@ import esFlag from '../assets/images/flags/es.webp';
 import caFlag from '../assets/images/flags/ca.webp';
 import enFlag from '../assets/images/flags/en.webp';
 
-const languages = [
-  { code: 'es', name: 'Spanish', level: 'Native', proficiency: 100, flag: esFlag },
-  { code: 'ca', name: 'Catalan', level: 'Native', proficiency: 100, flag: caFlag },
-  { code: 'en', name: 'English', level: 'B1-B2', proficiency: 75, flag: enFlag },
-];
+const flagImages = {
+  es: esFlag,
+  ca: caFlag,
+  en: enFlag,
+};
 
 const Languages = () => {
   const { t } = useTranslation();
+
+  const languages = t('languages.items', { returnObjects: true });
 
   return (
     <section id="languages" className="section">
@@ -23,7 +25,7 @@ const Languages = () => {
       <div className="language-list">
         {languages.map((lang, idx) => (
           <div key={idx} className="language-item">
-            <img src={lang.flag} alt={lang.name} loading="lazy" />
+            <img src={flagImages[lang.code]} alt={lang.name} loading="lazy" />
             <div className="language-info">
               <h4>{lang.name}</h4>
               <p>{t('languages.level')}: {lang.level}</p>

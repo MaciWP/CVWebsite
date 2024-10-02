@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faHome,
   faBriefcase,
-  faGraduationCap,
   faCogs,
   faLanguage,
   faEnvelope,
@@ -13,21 +11,26 @@ import {
   faSun,
   faMoon,
   faAdjust,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { ThemeContext } from '../contexts/ThemeContext';
 import PDFModal from './PDFModal';
+import Tooltip from '@mui/material/Tooltip';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const { theme, toggleTheme, toggleHighContrast } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1680);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
+      setIsMobile(window.innerWidth <= 1680);
+      if (window.innerWidth > 1680) {
+        setIsMenuOpen(false);
+      }
     };
 
     window.addEventListener('resize', handleResize);
@@ -39,17 +42,42 @@ const Header = () => {
   };
 
   const navItems = [
-    { to: 'introduction', icon: faHome, label: 'header.nav.home' },
     { to: 'experience', icon: faBriefcase, label: 'header.nav.experience' },
-    { to: 'education', icon: faGraduationCap, label: 'header.nav.education' },
     { to: 'skills', icon: faCogs, label: 'header.nav.skills' },
     { to: 'languages', icon: faLanguage, label: 'header.nav.languages' },
   ];
 
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return faSun;
+      case 'dark':
+        return faMoon;
+      case 'high-contrast':
+        return faAdjust;
+      default:
+        return faSun;
+    }
+  };
+
+  const headerIcons = [
+    { icon: faEnvelope, label: 'Email', action: () => window.location.href = 'mailto:oriolomb@gmail.com' },
+    { icon: faLinkedin, label: 'LinkedIn', action: () => window.open('https://linkedin.com/in/oriolmaciasbadosa', '_blank') },
+    { icon: faGithub, label: 'GitHub', action: () => window.open('https://github.com/MaciWP', '_blank') },
+    { icon: faDownload, label: 'Download CV', action: () => setIsModalOpen(true) },
+    { icon: getThemeIcon(), label: 'Toggle Theme', action: toggleTheme },
+  ];
+
   return (
     <header className="header">
-      <h1 className="header__title">{t('header.name')}</h1>
-      {!isMobile && (
+      <Link to="introduction" smooth={true} duration={500} className="header__title-link">
+        <h1 className="header__title">{t('header.name')}</h1>
+      </Link>
+      {isMobile ? (
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="header__menu-button">
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+      ) : (
         <nav className="header__nav">
           {navItems.map((item) => (
             <Link
@@ -65,54 +93,29 @@ const Header = () => {
           ))}
         </nav>
       )}
-      <div className="header__controls">
-        <div className="header__social">
-        <a href="mailto:oriolomb@gmail.com" aria-label={t('contact.email')}>
-        <FontAwesomeIcon icon={faEnvelope} />
-          </a>
-          <a href="https://linkedin.com/in/oriolmaciasbadosa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a href="https://github.com/MaciWP" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-        </div>
-        {isMobile ? (
-          <a
-            href="/OriolMaciasBadosa_CV.pdf"
-            download
-            className="header__download-button"
-            aria-label={t('contact.downloadCV')}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ) : (
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="header__download-button"
-            aria-label={t('contact.downloadCV')}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </button>
-        )}
-        <select onChange={changeLanguage} value={i18n.language} className="header__language-selector">
-          <option value="en">EN</option>
-          <option value="es">ES</option>
-          <option value="de">DE</option>
-          <option value="fr">FR</option>
-          <option value="it">IT</option>
-        </select>
-        <button onClick={toggleTheme} className="header__theme-toggle" aria-label={theme === 'dark' ? t('header.lightMode') : t('header.darkMode')}>
-          <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
-        </button>
-        <button onClick={toggleHighContrast} className="header__contrast-toggle" aria-label={t('header.highContrast')}>
-          <FontAwesomeIcon icon={faAdjust} />
-        </button>
+      <div className={`header__controls ${isMobile && isMenuOpen ? 'header__controls--open' : ''}`}>
+        {headerIcons.map((item, index) => (
+          <Tooltip key={index} title={t(`header.${item.label}`)}>
+            <button onClick={item.action} className="header__icon-button">
+              <FontAwesomeIcon icon={item.icon} />
+            </button>
+          </Tooltip>
+        ))}
+        <Tooltip title={t('header.languageSelector')}>
+          <select onChange={changeLanguage} value={i18n.language} className="header__language-selector">
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="de">DE</option>
+            <option value="fr">FR</option>
+            <option value="it">IT</option>
+          </select>
+        </Tooltip>
       </div>
       <PDFModal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-      />    </header>
+      />
+    </header>
   );
 };
 

@@ -5,41 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from '../contexts/ThemeContext';
 import 'react-vertical-timeline-component/style.min.css';
-import '../styles/components/Education.scss';
-
-const experiences = [
-  {
-    company: 'BJumper',
-    role: 'Senior Software Developer',
-    period: '2019 - Present',
-    description:
-      'Led development of scalable backend systems using Python and Django, designed secure RESTful APIs, and implemented containerization strategies.',
-    achievements: [
-      'Optimized performance and ensured seamless user experiences',
-      'Implemented Docker and Docker Compose for streamlined development',
-      'Integrated OpenAI and Llama-Index for AI-driven features',
-      'Established CI/CD pipelines with Pre-Commit, Flake8, Black, and Mypy',
-    ],
-  },
-  {
-    company: 'Busmatick Group',
-    role: 'Software Developer',
-    period: '2018',
-    description:
-      'Developed cross-platform applications for Android and Windows using .NET, managing smart card data for public transport systems.',
-    achievements: [
-      'Implemented real-time web services for seamless communication',
-      'Managed Mifare Classic 1K smart card data',
-    ],
-  },
-];
+import '../styles/components/Timeline.scss';
 
 const Experience = () => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
   const getStyles = () => {
-    switch(theme) {
+    switch (theme) {
       case 'dark':
         return {
           content: {
@@ -80,22 +53,23 @@ const Experience = () => {
       <div className="title-container">
         <h2 className="section-title">{t('experience.title')}</h2>
       </div>
-      <VerticalTimeline>
-        {experiences.map((exp, idx) => (
+      <VerticalTimeline className="custom-line">
+        {t('experience.jobs', { returnObjects: true }).map((job, idx) => (
           <VerticalTimelineElement
             key={idx}
-            date={exp.period}
+            className="vertical-timeline-element--work"
+            date={job.period}
             dateClassName={theme === 'dark' ? 'dark-text' : theme === 'high-contrast' ? 'high-contrast-text' : ''}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
             iconStyle={styles.iconStyle}
             contentStyle={styles.content}
             contentArrowStyle={styles.arrowStyle}
           >
-            <h3 className="vertical-timeline-element-title">{exp.role}</h3>
-            <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
-            <p>{exp.description}</p>
+            <h3 className="vertical-timeline-element-title">{job.role}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{job.company}</h4>
+            <p>{job.description}</p>
             <ul>
-              {exp.achievements.map((achievement, index) => (
+              {job.achievements.map((achievement, index) => (
                 <li key={index}>{achievement}</li>
               ))}
             </ul>

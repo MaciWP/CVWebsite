@@ -2,29 +2,74 @@
   "header": {
     "name": "Oriol Macias Badosa",
     "nav": {
-      "home": "Inicio",
       "experience": "Experiencia",
-      "education": "Educación",
       "skills": "Habilidades",
       "projects": "Proyectos",
-      "languages": "Idiomas",
-      "contact": "Contacto"
+      "languages": "Idiomas"
     },
-    "lightMode": "Cambiar a modo claro",
-    "darkMode": "Cambiar a modo oscuro",
-    "highContrast": "Alternar alto contraste"
+    "downloadCV": "Descargar CV",
+    "toggleTheme": "Cambiar tema",
+    "Email": "Correo",
+    "LinkedIn": "LinkedIn",
+    "GitHub": "GitHub",
+    "languageSelector": "Seleccionar idioma"
   },
   "introduction": {
     "title": "Desarrollador de Software Senior",
-    "description": "Más de 5 años de experiencia especializado en desarrollo backend, diseño de APIs y gestión de infraestructura utilizando Python, Django y Docker. Apasionado por la calidad del código, la automatización y la implementación de soluciones basadas en IA.",
-    "altText": "Foto de perfil de Oriol Macias Badosa"
+    "description": "Más de 5 años de experiencia especializada en desarrollo backend, diseño de APIs y gestión de infraestructura utilizando Python, Django y Docker. Apasionado por la calidad del código, la automatización y la implementación de soluciones basadas en IA.",
+    "altText": "Foto de perfil de Oriol Macias Badosa",
+    "animationAltText": "Ilustración animada representando el desarrollo de software",
+    "statement": "Desarrollador de Software Senior apasionado con más de 5 años de experiencia, especializado en la construcción de sistemas backend escalables y eficientes. Comprometido con impulsar la innovación en la industria tecnológica a través de la experiencia en Python, Django y tecnologías cloud. Busco aprovechar mis habilidades en integración de IA y arquitectura de sistemas para contribuir a proyectos de vanguardia en el dinámico panorama del software."
   },
   "experience": {
     "title": "Experiencia Profesional",
-    "at": "en"
+    "at": "en",
+    "jobs": [
+      {
+        "company": "BJumper",
+        "role": "Desarrollador de Software Senior",
+        "period": "2019 - Presente",
+        "description": "Lideró el desarrollo de sistemas backend escalables utilizando Python y Django, diseñó APIs RESTful seguras e implementó estrategias de containerización.",
+        "achievements": [
+          "Optimización del rendimiento del sistema, reduciendo el tiempo de respuesta en un 40%",
+          "Implementación de Docker, mejorando la eficiencia de despliegue en un 60%",
+          "Integración de funcionalidades de IA, aumentando la participación de los usuarios en un 25%",
+          "Establecimiento de pipelines CI/CD, reduciendo la tasa de errores en un 30%"
+        ]
+      },
+      {
+        "company": "Busmatick Group",
+        "role": "Desarrollador de Software",
+        "period": "2018",
+        "description": "Desarrollo de aplicaciones multiplataforma para Android y Windows utilizando .NET, gestionando datos de tarjetas inteligentes para sistemas de transporte público.",
+        "achievements": [
+          "Implementación de servicios web en tiempo real para una comunicación sin interrupciones",
+          "Gestión de datos de tarjetas inteligentes Mifare Classic 1K"
+        ]
+      }
+    ]
   },
   "education": {
-    "title": "Educación y Certificaciones"
+    "title": "Educación y Certificaciones",
+    "degrees": [
+      {
+        "name": "Formación Profesional Superior en Desarrollo de Aplicaciones Multiplataforma",
+        "institution": "IES Montilivi, Girona",
+        "year": "2015",
+        "description": "Formación especializada en desarrollo de aplicaciones multiplataforma."
+      },
+      {
+        "name": "Formación Profesional de Grado Medio en Sistemas Microinformáticos y Redes",
+        "institution": "IES Salvador Espriu, Girona",
+        "year": "2012",
+        "description": "Enfocado en sistemas microinformáticos y gestión de redes."
+      }
+    ],
+    "certifications": [
+      "SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)",
+      "SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)",
+      "Implementation Overview CPIMTM (iTRACS)"
+    ]
   },
   "skills": {
     "title": "Habilidades Técnicas",
@@ -32,24 +77,93 @@
       "programmingLanguages": "Lenguajes de Programación",
       "frameworks": "Frameworks y Herramientas",
       "softSkills": "Habilidades Blandas"
-    }
+    },
+    "items": [
+      { "name": "Python", "level": 95 },
+      { "name": "C#", "level": 85 },
+      { "name": "Java", "level": 80 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Django", "level": 95 },
+      { "name": "Flask", "level": 85 },
+      { "name": "Docker", "level": 90 },
+      { "name": "PostgreSQL", "level": 90 },
+      { "name": "AWS", "level": 80 },
+      { "name": "Celery", "level": 85 },
+      { "name": "Arquitectura de Sistemas", "level": 88 },
+      { "name": "Integración de IA", "level": 82 }
+    ],
+    "softSkills": [
+      {
+        "name": "Arquitectura de Sistemas",
+        "description": "Experiencia en el diseño de arquitecturas escalables utilizando Django y Docker."
+      },
+      {
+        "name": "Resolución de Problemas",
+        "description": "Capacidad demostrada para resolver desafíos complejos en el desarrollo backend."
+      },
+      {
+        "name": "Integración de IA",
+        "description": "Experiencia en la integración de YOLOv10, OpenAI y Llama-Index."
+      },
+      {
+        "name": "Calidad del Código",
+        "description": "Implementación de pipelines CI/CD robustos que aseguran una alta calidad del código."
+      }
+    ]
   },
-  "projects": {
+ "projects": {
     "title": "Proyectos Destacados",
     "viewProject": "Ver Proyecto",
-    "viewCode": "Ver Código"
+    "items": [
+      {
+        "name": "Calculadora del Juego de Cartas Pelusas",
+        "description": "Una aplicación móvil que mejora el registro de puntuaciones para el juego de cartas \"Pelusas\" utilizando YOLOv10 para el reconocimiento avanzado de imágenes.",
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+      },
+      {
+        "name": "Aplicación de Detección de Cartas",
+        "description": "Una aplicación de detección de cartas en tiempo real que utiliza YOLOv10 para el reconocimiento de imágenes, con un enfoque en alta precisión y rendimiento.",
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+      },
+      {
+        "name": "Chatbot Legal para Generación de Documentos",
+        "description": "Un chatbot que automatiza la generación de documentos legales utilizando un modelo de IA local y la API de ChatGPT.",
+        "technologies": ["Python", "Kivy", "API de ChatGPT"]
+      }
+    ]
   },
   "languages": {
     "title": "Idiomas",
-    "level": "Nivel"
-  },
-  "contact": {
-    "title": "Contacto",
-    "email": "Correo Electrónico",
-    "downloadCV": "Descargar CV",
-    "scheduleInterview": "Programar una Entrevista"
+    "level": "Nivel",
+    "items": [
+      {
+        "code": "es",
+        "name": "Español",
+        "level": "Nativo",
+        "proficiency": 100
+      },
+      {
+        "code": "ca",
+        "name": "Catalán",
+        "level": "Nativo",
+        "proficiency": 100
+      },
+      {
+        "code": "en",
+        "name": "Inglés",
+        "level": "B1-B2",
+        "proficiency": 75
+      }
+    ]
   },
   "footer": {
-    "rights": "Todos los derechos reservados."
+    "copyright": "Todos los derechos reservados."
+  },
+  "pdfModal": {
+    "title": "CV en PDF",
+    "errorLoading": "Error al cargar el PDF. Por favor, inténtelo de nuevo más tarde."
+  },
+  "common": {
+    "loading": "Cargando..."
   }
 }

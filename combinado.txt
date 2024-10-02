@@ -1,0 +1,2936 @@
+=== Archivo: App.jsx ===
+Ruta: src\App.jsx
+
+import React, { Suspense, useContext, useEffect } from 'react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeContext } from './contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
+import './styles/main.scss';
+
+const Header = React.lazy(() => import('./components/Header'));
+const Introduction = React.lazy(() => import('./components/Introduction'));
+const Experience = React.lazy(() => import('./components/Experience'));
+const Education = React.lazy(() => import('./components/Education'));
+const Skills = React.lazy(() => import('./components/Skills'));
+const Projects = React.lazy(() => import('./components/Projects'));
+const Languages = React.lazy(() => import('./components/Languages'));
+const Footer = React.lazy(() => import('./components/Footer'));
+
+const LoadingFallback = () => <div>Loading...</div>;
+
+function App() {
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  return (
+    <div className="App">
+      <HelmetProvider>
+      <Helmet>
+        <title>{t('header.name')} - {t('introduction.title')}</title>
+        <meta name="description" content={t('introduction.description')} />
+        <meta name="keywords" content="software developer, Python, Django, AWS, Docker" />
+        
+        {/* Open Graph tags */}
+        <meta property="og:title" content={`${t('header.name')} - ${t('introduction.title')}`} />
+        <meta property="og:description" content={t('introduction.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourwebsite.com" />
+        <meta property="og:image" content="https://yourwebsite.com/profile-image.jpg" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${t('header.name')} - ${t('introduction.title')}`} />
+        <meta name="twitter:description" content={t('introduction.description')} />
+        <meta name="twitter:image" content="https://yourwebsite.com/profile-image.jpg" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "http://schema.org",
+              "@type": "Person",
+              "name": "${t('header.name')}",
+              "jobTitle": "${t('introduction.title')}",
+              "description": "${t('introduction.description')}",
+              "url": "https://yourwebsite.com",
+              "sameAs": [
+                "https://linkedin.com/in/yourprofile",
+                "https://github.com/yourusername"
+              ]
+            }
+          `}
+        </script>
+      </Helmet>
+      </HelmetProvider>
+      <Suspense fallback={<LoadingFallback />}>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <main>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Introduction />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Experience />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Education />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Skills />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Projects />
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Languages />
+                </Suspense>
+              </main>
+            }
+          />
+        </Routes>
+        <Footer />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+
+=== Archivo: i18n.js ===
+Ruta: src\i18n.js
+
+// src/i18n.js
+
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+import translationEN from './locales/en/translation.json';
+import translationDE from './locales/de/translation.json';
+import translationES from './locales/es/translation.json';
+import translationFR from './locales/fr/translation.json';
+import translationIT from './locales/it/translation.json';
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  de: {
+    translation: translationDE,
+  },
+  es: {
+    translation: translationES,
+  },
+  fr: {
+    translation: translationFR,
+  },
+  it: {
+    translation: translationIT,
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en', // Idioma por defecto
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
+export default i18n;
+
+
+=== Archivo: index.js ===
+Ruta: src\index.js
+
+// src/index.js
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import { I18nextProvider } from 'react-i18next';
+import { ThemeProvider } from './contexts/ThemeContext';
+import i18n from './i18n';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { BrowserRouter } from 'react-router-dom';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </I18nextProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
+
+
+serviceWorkerRegistration.register({ scope: '/' });
+
+
+=== Archivo: reportWebVitals.js ===
+Ruta: src\reportWebVitals.js
+
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+=== Archivo: service-worker.js ===
+Ruta: src\service-worker.js
+
+/* eslint-disable no-restricted-globals */
+import { clientsClaim } from 'workbox-core';
+import { ExpirationPlugin } from 'workbox-expiration';
+import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { StaleWhileRevalidate } from 'workbox-strategies';
+
+clientsClaim();
+
+precacheAndRoute(self.__WB_MANIFEST);
+
+const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
+registerRoute(
+  ({ request, url }) => {
+    if (request.mode !== 'navigate') {
+      return false;
+    }
+    if (url.pathname.startsWith('/_')) {
+      return false;
+    }
+    if (url.pathname.match(fileExtensionRegexp)) {
+      return false;
+    }
+    return true;
+  },
+  createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
+);
+
+registerRoute(
+  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  new StaleWhileRevalidate({
+    cacheName: 'images',
+    plugins: [
+      new ExpirationPlugin({ maxEntries: 50 }),
+    ],
+  })
+);
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+/* eslint-enable no-restricted-globals */
+
+=== Archivo: serviceWorkerRegistration.js ===
+Ruta: src\serviceWorkerRegistration.js
+
+// src/serviceWorkerRegistration.js
+
+// Adjusted the service worker registration script to match the public URL path
+
+const isLocalhost = Boolean(
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '[::1]' ||
+    window.location.hostname.match(
+      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+    )
+  );
+  
+  export function register(config) {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+  
+        if (isLocalhost) {
+          // Check if a service worker still exists or not
+          checkValidServiceWorker(swUrl, config);
+  
+          navigator.serviceWorker.ready.then(() => {
+            console.log(
+              'This web app is being served cache-first by a service worker.'
+            );
+          });
+        } else {
+          // Is not localhost. Just register service worker
+          registerValidSW(swUrl, config);
+        }
+      });
+    }
+  }
+  
+  function registerValidSW(swUrl, config) {
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        if (registration.waiting) {
+          if (config && config.onUpdate) {
+            config.onUpdate(registration);
+          }
+          return;
+        }
+  
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) {
+            return;
+          }
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // Nuevo contenido está disponible.
+                if (config && config.onUpdate) {
+                  config.onUpdate(registration);
+                }
+              } else {
+                // Contenido precacheado ha sido instalado.
+                if (config && config.onSuccess) {
+                  config.onSuccess(registration);
+                }
+              }
+            }
+          };
+        };
+      })
+      .catch((error) => {
+        console.error('Error al registrar el service worker:', error);
+      });
+  }
+  
+  function checkValidServiceWorker(swUrl, config) {
+    // Comprueba si el service worker puede ser encontrado.
+    fetch(swUrl, {
+      headers: { 'Service-Worker': 'script' },
+    })
+      .then((response) => {
+        // Asegúrate de que el service worker existe y de que podemos obtenerlo.
+        const contentType = response.headers.get('content-type');
+        if (
+          response.status === 404 ||
+          (contentType != null && contentType.indexOf('javascript') === -1)
+        ) {
+          // No hay service worker. Recarga la página.
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.unregister().then(() => {
+              window.location.reload();
+            });
+          });
+        } else {
+          // Service worker encontrado. Procede con normalidad.
+          registerValidSW(swUrl, config);
+        }
+      })
+      .catch(() => {
+        console.log(
+          'No se pudo conectar al servidor para verificar el service worker.'
+        );
+      });
+  }
+  
+  export function unregister() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready
+        .then((registration) => {
+          registration.unregister();
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
+  }
+  
+
+=== Archivo: setupTests.js ===
+Ruta: src\setupTests.js
+
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+
+=== Archivo: sw-build.js ===
+Ruta: src\sw-build.js
+
+const workboxBuild = require('workbox-build');
+
+const buildSW = () => {
+  return workboxBuild.injectManifest({
+    swSrc: 'src/service-worker.js',
+    swDest: 'build/cv/service-worker.js',
+    globDirectory: 'build',
+    globPatterns: ['**/*.{js,css,html,png,jpg,json}']
+  }).then(({count, size, warnings}) => {
+    warnings.forEach(console.warn);
+    console.log(`${count} files will be precached, totaling ${size} bytes.`);
+  });
+}
+
+buildSW();
+
+=== Archivo: Contact.jsx ===
+Ruta: src\components\Contact.jsx
+
+// src/components/Contact.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Contact.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+
+const Contact = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="contacto">
+      <h2>{t('contact.title')}</h2>
+      <p>
+        {t('contact.email')}: <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a>
+      </p>
+      <div className="social-media">
+        <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+      <div className="contact-actions">
+        <button onClick={() => window.open('/TuCV.pdf')}>{t('contact.downloadCV')}</button>
+        <button onClick={() => window.location.href = '#contacto'}>{t('contact.scheduleInterview')}</button>
+      </div>
+    </section>
+  );
+};
+
+<div className="social-media">
+  <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+  </a>
+  <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faGithub} /> GitHub
+  </a>
+</div>
+
+export default Contact;
+
+
+=== Archivo: Education.jsx ===
+Ruta: src\components\Education.jsx
+
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext';
+import 'react-vertical-timeline-component/style.min.css';
+import '../styles/components/Education.scss';
+
+const educations = [
+  {
+    degree: 'Higher Vocational Training in Cross-Platform Application Development',
+    institution: 'IES Montilivi, Girona',
+    period: '2015',
+    description: 'Specialized training in cross-platform application development.',
+  },
+  {
+    degree: 'Intermediate Vocational Training in Microcomputer Systems and Networks',
+    institution: 'IES Salvador Espriu, Girona',
+    period: '2012',
+    description: 'Focused on microcomputer systems and network management.',
+  },
+];
+
+const certifications = [
+  'SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)',
+  'SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)',
+  'Implementation Overview CPIMTM (iTRACS)',
+];
+
+const Education = () => {
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
+  const getStyles = () => {
+    switch(theme) {
+      case 'dark':
+        return {
+          content: {
+            background: '#2c2c2c',
+            color: '#f0f0f0',
+            borderTop: '3px solid #1e90ff'
+          },
+          arrowStyle: { borderRight: '7px solid #2c2c2c' },
+          iconStyle: { background: '#1e90ff', color: '#fff' },
+        };
+      case 'high-contrast':
+        return {
+          content: {
+            background: '#000000',
+            color: '#ffffff',
+            borderTop: '3px solid #00ffff'
+          },
+          arrowStyle: { borderRight: '7px solid #000000' },
+          iconStyle: { background: '#00ffff', color: '#000000' },
+        };
+      default:
+        return {
+          content: {
+            background: '#ffffff',
+            color: '#333333',
+            borderTop: '3px solid #005A9C'
+          },
+          arrowStyle: { borderRight: '7px solid #ffffff' },
+          iconStyle: { background: '#005A9C', color: '#fff' },
+        };
+    }
+  };
+
+  const styles = getStyles();
+
+  return (
+    <section className="section" id="education">
+      <div className="title-container">
+        <h2 className="section-title">{t('education.title')}</h2>
+      </div>
+      <VerticalTimeline className="custom-line">
+        {educations.map((edu, idx) => (
+          <VerticalTimelineElement
+            key={idx}
+            date={edu.period}
+            dateClassName={theme === 'dark' ? 'dark-text' : theme === 'high-contrast' ? 'high-contrast-text' : ''}
+            icon={<FontAwesomeIcon icon={faGraduationCap} />}
+            iconStyle={styles.iconStyle}
+            contentStyle={styles.content}
+            contentArrowStyle={styles.arrowStyle}
+          >
+            <h3 className="vertical-timeline-element-title">{edu.degree}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{edu.institution}</h4>
+            <p>{edu.description}</p>
+          </VerticalTimelineElement>
+        ))}
+        <VerticalTimelineElement
+          icon={<FontAwesomeIcon icon={faGraduationCap} />}
+          iconStyle={styles.iconStyle}
+          contentStyle={styles.content}
+          contentArrowStyle={styles.arrowStyle}
+        >
+          <h3 className="vertical-timeline-element-title">Certifications</h3>
+          <ul>
+            {certifications.map((cert, index) => (
+              <li key={index}>{cert}</li>
+            ))}
+          </ul>
+        </VerticalTimelineElement>
+      </VerticalTimeline>
+    </section>
+  );
+};
+
+export default Education;
+
+=== Archivo: Experience.jsx ===
+Ruta: src\components\Experience.jsx
+
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext';
+import 'react-vertical-timeline-component/style.min.css';
+import '../styles/components/Timeline.scss';
+const experiences = [
+  {
+    company: 'BJumper',
+    role: 'Senior Software Developer',
+    period: '2019 - Present',
+    description:
+      'Led development of scalable backend systems using Python and Django, designed secure RESTful APIs, and implemented containerization strategies.',
+    achievements: [
+      'Optimized performance and ensured seamless user experiences',
+      'Implemented Docker and Docker Compose for streamlined development',
+      'Integrated OpenAI and Llama-Index for AI-driven features',
+      'Established CI/CD pipelines with Pre-Commit, Flake8, Black, and Mypy',
+    ],
+  },
+  {
+    company: 'Busmatick Group',
+    role: 'Software Developer',
+    period: '2018',
+    description:
+      'Developed cross-platform applications for Android and Windows using .NET, managing smart card data for public transport systems.',
+    achievements: [
+      'Implemented real-time web services for seamless communication',
+      'Managed Mifare Classic 1K smart card data',
+    ],
+  },
+];
+
+const Experience = () => {
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
+  const getStyles = () => {
+    switch (theme) {
+      case 'dark':
+        return {
+          content: {
+            background: '#2c2c2c',
+            color: '#f0f0f0',
+            borderTop: '3px solid #1e90ff'
+          },
+          arrowStyle: { borderRight: '7px solid #2c2c2c' },
+          iconStyle: { background: '#1e90ff', color: '#fff' },
+        };
+      case 'high-contrast':
+        return {
+          content: {
+            background: '#000000',
+            color: '#ffffff',
+            borderTop: '3px solid #00ffff'
+          },
+          arrowStyle: { borderRight: '7px solid #000000' },
+          iconStyle: { background: '#00ffff', color: '#000000' },
+        };
+      default:
+        return {
+          content: {
+            background: '#ffffff',
+            color: '#333333',
+            borderTop: '3px solid #005A9C'
+          },
+          arrowStyle: { borderRight: '7px solid #ffffff' },
+          iconStyle: { background: '#005A9C', color: '#fff' },
+        };
+    }
+  };
+
+  const styles = getStyles();
+
+  return (
+    <section className="section" id="experience">
+      <div className="title-container">
+        <h2 className="section-title">{t('experience.title')}</h2>
+      </div>
+      <VerticalTimeline className="custom-line">
+        {experiences.map((exp, idx) => (
+          <VerticalTimelineElement
+            key={idx}
+            className="vertical-timeline-element--work"
+            date={exp.period}
+            dateClassName={theme === 'dark' ? 'dark-text' : theme === 'high-contrast' ? 'high-contrast-text' : ''}
+            icon={<FontAwesomeIcon icon={faBriefcase} />}
+            iconStyle={styles.iconStyle}
+            contentStyle={styles.content}
+            contentArrowStyle={styles.arrowStyle}
+          >
+            <h3 className="vertical-timeline-element-title">{exp.role}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
+            <p>{exp.description}</p>
+            <ul>
+              {exp.achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
+          </VerticalTimelineElement>
+        ))}
+      </VerticalTimeline>
+    </section>
+  );
+};
+
+export default Experience;
+
+=== Archivo: Footer.jsx ===
+Ruta: src\components\Footer.jsx
+
+// src/components/Footer.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Footer.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+const Footer = () => {
+  const { t } = useTranslation();
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="footer">
+      <div className="footer__content">
+        <div className="footer__social">
+          <a href="mailto:oriolomb@gmail.com" aria-label={t('contact.email')}>
+            <FontAwesomeIcon icon={faEnvelope} />
+          </a>
+          <a 
+            href="https://linkedin.com/in/oriolmaciasbadosa" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="LinkedIn"
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          <a 
+            href="https://github.com/MaciWP" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="GitHub"
+          >
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+        </div>
+        <p className="footer__copyright">
+          &copy; {currentYear} {t('footer.copyright')}
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+
+=== Archivo: Header.jsx ===
+Ruta: src\components\Header.jsx
+
+import React, { useState, useEffect, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-scroll';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBriefcase,
+  faCogs,
+  faLanguage,
+  faEnvelope,
+  faDownload,
+  faSun,
+  faMoon,
+  faAdjust,
+  faBars,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { ThemeContext } from '../contexts/ThemeContext';
+import PDFModal from './PDFModal';
+import Tooltip from '@mui/material/Tooltip';
+
+const Header = () => {
+  const { t, i18n } = useTranslation();
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1680);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1680);
+      if (window.innerWidth > 1680) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
+  const navItems = [
+    { to: 'experience', icon: faBriefcase, label: 'header.nav.experience' },
+    { to: 'skills', icon: faCogs, label: 'header.nav.skills' },
+    { to: 'languages', icon: faLanguage, label: 'header.nav.languages' },
+  ];
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return faSun;
+      case 'dark':
+        return faMoon;
+      case 'high-contrast':
+        return faAdjust;
+      default:
+        return faSun;
+    }
+  };
+
+  const headerIcons = [
+    { icon: faEnvelope, label: 'Email', action: () => window.location.href = 'mailto:oriolomb@gmail.com' },
+    { icon: faLinkedin, label: 'LinkedIn', action: () => window.open('https://linkedin.com/in/oriolmaciasbadosa', '_blank') },
+    { icon: faGithub, label: 'GitHub', action: () => window.open('https://github.com/MaciWP', '_blank') },
+    { icon: faDownload, label: 'Download CV', action: () => setIsModalOpen(true) },
+    { icon: getThemeIcon(), label: 'Toggle Theme', action: toggleTheme },
+  ];
+
+  return (
+    <header className="header">
+      <Link to="introduction" smooth={true} duration={500} className="header__title-link">
+        <h1 className="header__title">{t('header.name')}</h1>
+      </Link>
+      {isMobile ? (
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="header__menu-button">
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+      ) : (
+        <nav className="header__nav">
+          {navItems.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              smooth={true}
+              duration={500}
+              className="header__nav-item"
+            >
+              <FontAwesomeIcon icon={item.icon} />
+              <span className="nav-text">{t(item.label)}</span>
+            </Link>
+          ))}
+        </nav>
+      )}
+      <div className={`header__controls ${isMobile && isMenuOpen ? 'header__controls--open' : ''}`}>
+        {headerIcons.map((item, index) => (
+          <Tooltip key={index} title={t(`header.${item.label}`)}>
+            <button onClick={item.action} className="header__icon-button">
+              <FontAwesomeIcon icon={item.icon} />
+            </button>
+          </Tooltip>
+        ))}
+        <select onChange={changeLanguage} value={i18n.language} className="header__language-selector">
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="de">DE</option>
+          <option value="fr">FR</option>
+          <option value="it">IT</option>
+        </select>
+      </div>
+      <PDFModal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+      />
+    </header>
+  );
+};
+
+export default Header;
+
+=== Archivo: Header.test.js ===
+Ruta: src\components\Header.test.js
+
+// src/components/Header.test.js
+
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Header from './Header';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
+
+test('renders header title', () => {
+  render(
+    <I18nextProvider i18n={i18n}>
+      <Header />
+    </I18nextProvider>
+  );
+  const titleElement = screen.getByText(/Tu Nombre/i);
+  expect(titleElement).toBeInTheDocument();
+});
+
+
+=== Archivo: Introduction.jsx ===
+Ruta: src\components\Introduction.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import Lottie from 'lottie-react';
+import animationData from '../assets/animations/introAnimation.json';
+import '../styles/components/Introduction.scss';
+import photo from '../assets/images/photo.webp';
+
+const Introduction = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="introduction" className="introduction">
+      <div className="introduction__content">
+        <div className="introduction__photo">
+          <img
+            src={photo}
+            alt={t('introduction.altText')}
+            loading="lazy"
+          />
+        </div>
+        <div className="introduction__text">
+          <h2 className="introduction__title">{t('introduction.title')}</h2>
+          <p className="introduction__description">{t('introduction.description')}</p>
+          <p className="introduction__statement">
+            {t('introduction.statement')}
+          </p>
+        </div>
+        <div className="introduction__animation" aria-label={t('introduction.animationAltText')}>
+          <Lottie 
+            animationData={animationData} 
+            loop={true} 
+            autoplay={true} 
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Introduction;
+
+=== Archivo: Languages.jsx ===
+Ruta: src\components\Languages.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/components/Languages.scss';
+
+import esFlag from '../assets/images/flags/es.webp';
+import caFlag from '../assets/images/flags/ca.webp';
+import enFlag from '../assets/images/flags/en.webp';
+
+const languages = [
+  { code: 'es', name: 'Spanish', level: 'Native', proficiency: 100, flag: esFlag },
+  { code: 'ca', name: 'Catalan', level: 'Native', proficiency: 100, flag: caFlag },
+  { code: 'en', name: 'English', level: 'B1-B2', proficiency: 75, flag: enFlag },
+];
+
+const Languages = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="languages" className="section">
+      <div className="title-container">
+        <h2 className="section-title">{t('languages.title')}</h2>
+      </div>
+      <div className="language-list">
+        {languages.map((lang, idx) => (
+          <div key={idx} className="language-item">
+            <img src={lang.flag} alt={lang.name} loading="lazy" />
+            <div className="language-info">
+              <h4>{lang.name}</h4>
+              <p>{t('languages.level')}: {lang.level}</p>
+              <div className="language-progress">
+                <div
+                  className="language-progress-bar"
+                  style={{ width: `${lang.proficiency}%` }}
+                  aria-label={`${lang.name} proficiency: ${lang.proficiency}%`}
+                ></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Languages;
+
+=== Archivo: LanguageSelector.jsx ===
+Ruta: src\components\LanguageSelector.jsx
+
+// src/components/LanguageSelector.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const LanguageSelector = () => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div className="language-selector">
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('de')}>DE</button>
+      <button onClick={() => changeLanguage('es')}>ES</button>
+      <button onClick={() => changeLanguage('fr')}>FR</button>
+      <button onClick={() => changeLanguage('it')}>IT</button>
+    </div>
+  );
+};
+
+export default LanguageSelector;
+
+
+=== Archivo: PDFModal.jsx ===
+Ruta: src\components\PDFModal.jsx
+
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import '../styles/components/PDFModal.scss';
+
+Modal.setAppElement('#root');
+
+const PDFModal = ({ isOpen, onRequestClose }) => {
+  const [pdfError, setPdfError] = useState(false);
+  const pdfUrl = '/OriolMaciasBadosa_CV.pdf';
+
+  const handlePdfError = () => {
+    setPdfError(true);
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="CV PDF"
+      className="pdf-modal"
+      overlayClassName="pdf-modal-overlay"
+    >
+      <div className="pdf-modal__content">
+        <button onClick={onRequestClose} className="pdf-modal__close-button">
+          &times;
+        </button>
+        {pdfError ? (
+          <p>Error loading PDF. Please try again later.</p>
+        ) : (
+          <iframe
+            src={pdfUrl}
+            title="CV PDF"
+            width="100%"
+            height="100%"
+            style={{ border: 'none' }}
+            onError={handlePdfError}
+          />
+        )}
+      </div>
+    </Modal>
+  );
+};
+
+export default PDFModal;
+
+=== Archivo: Projects.jsx ===
+Ruta: src\components\Projects.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FaPython, FaReact, FaAndroid, FaMobileAlt } from 'react-icons/fa';
+import { SiOpencv, SiTensorflow, SiPytorch } from 'react-icons/si';
+import '../styles/components/Projects.scss';
+
+const projects = [
+  {
+    id: 1,
+    name: 'Pelusas Card Game Calculator',
+    description: 'A mobile app that enhances scorekeeping for the card game "Pelusas" using YOLOv10 for advanced image recognition.',
+    technologies: ['Python', 'Kivy', 'YOLOv10', 'Android', 'iOS'],
+    github: 'https://github.com/yourusername/pelusas-calculator',
+  },
+  {
+    id: 2,
+    name: 'Card Detection Application',
+    description: 'A real-time card detection app using YOLOv10 for image recognition, with a focus on high accuracy and performance.',
+    technologies: ['Python', 'Kivy', 'OpenCV', 'TensorFlow', 'PyTorch'],
+    github: 'https://github.com/yourusername/card-detection-app',
+  },
+  {
+    id: 3,
+    name: 'Legal Chatbot for Document Generation',
+    description: 'A chatbot that automates legal document generation using a local AI model and ChatGPT API.',
+    technologies: ['Python', 'Kivy', 'ChatGPT API'],
+    github: 'https://github.com/yourusername/legal-chatbot',
+  },
+];
+
+const technologyIcons = {
+  Python: <FaPython />,
+  Kivy: <FaPython />, // Using FaPython as a fallback since SiKivy is not available
+  YOLOv10: <FaPython />,
+  Android: <FaAndroid />,
+  iOS: <FaMobileAlt />,
+  OpenCV: <SiOpencv />,
+  TensorFlow: <SiTensorflow />,
+  PyTorch: <SiPytorch />,
+  'ChatGPT API': <FaReact />,
+};
+
+const Projects = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="projects" className="projects section">
+      <div className="title-container">
+        <h2 className="section-title">{t('projects.title')}</h2>
+      </div>
+      <div className="projects__grid">
+        {projects.map((proj) => (
+          <div key={proj.id} className="projects__card">
+            <h3 className="projects__card-title">{proj.name}</h3>
+            <p className="projects__card-description">{proj.description}</p>
+            <div className="projects__card-technologies">
+              {proj.technologies.map((tech) => (
+                <span key={tech} className="projects__card-tech">
+                  {technologyIcons[tech]} {tech}
+                </span>
+              ))}
+            </div>
+            <a
+              href={proj.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="projects__card-link" >
+              <FontAwesomeIcon icon={faGithub} /> {t('projects.viewProject')}
+            </a>
+
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
+
+=== Archivo: Skills.jsx ===
+Ruta: src\components\Skills.jsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCode, faTools, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { FaPython, FaJava, FaDocker, FaAws } from 'react-icons/fa';
+import { SiDjango, SiFlask, SiCsharp, SiPostgresql, SiMysql, SiOracle, SiCelery } from 'react-icons/si';
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip } from 'recharts';
+import '../styles/components/Skills.scss';
+
+const technicalSkills = [
+  { name: 'Python', level: 95 },
+  { name: 'C#', level: 85 },
+  { name: 'Java', level: 80 },
+  { name: 'SQL', level: 90 },
+  { name: 'Django', level: 95 },
+  { name: 'Flask', level: 85 },
+  { name: 'Docker', level: 90 },
+  { name: 'PostgreSQL', level: 90 },
+  { name: 'AWS', level: 80 },
+  { name: 'Celery', level: 85 },
+  { name: 'System Architecture', level: 88 },
+  { name: 'AI Integration', level: 82 },
+];
+
+
+
+const skillIcons = {
+  Python: <FaPython />,
+  Java: <FaJava />,
+  'C#': <SiCsharp />,
+  Django: <SiDjango />,
+  Flask: <SiFlask />,
+  Docker: <FaDocker />,
+  PostgreSQL: <SiPostgresql />,
+  MySQL: <SiMysql />,
+  Oracle: <SiOracle />,
+  AWS: <FaAws />,
+  Celery: <SiCelery />,
+};
+
+const skills = [
+  {
+    category: 'programmingLanguages',
+    icon: faCode,
+    items: [
+      { name: 'Python', proficiency: 95 },
+      { name: 'C#', proficiency: 85 },
+      { name: 'Java', proficiency: 80 },
+      { name: 'SQL', proficiency: 90 },
+    ],
+  },
+  {
+    category: 'frameworks',
+    icon: faTools,
+    items: [
+      { name: 'Django', proficiency: 95 },
+      { name: 'Flask', proficiency: 85 },
+      { name: 'Docker', proficiency: 90 },
+      { name: 'PostgreSQL', proficiency: 90 },
+      { name: 'AWS', proficiency: 80 },
+      { name: 'Celery', proficiency: 85 },
+    ],
+  },
+  {
+    category: 'softSkills',
+    icon: faUsers,
+    items: [
+      { name: 'System Architecture', description: 'Expertise in designing scalable architectures using Django and Docker.' },
+      { name: 'Problem Solving', description: 'Demonstrated ability to solve complex challenges in backend development.' },
+      { name: 'AI Integration', description: 'Experience with integrating YOLOv10, OpenAI, and Llama-Index.' },
+      { name: 'Code Quality', description: 'Implemented robust CI/CD pipelines ensuring high code quality.' },
+    ],
+  },
+];
+
+const Skills = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section id="skills" className="skills section">
+      <div className="title-container">
+        <h2 className="section-title">{t('skills.title')}</h2>
+      </div>
+      <div className="skills__chart">
+      <ResponsiveContainer width="100%" height={500}>
+          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={technicalSkills}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="name" />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} />
+            <Radar name="Skills" dataKey="level" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Tooltip />
+          </RadarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="skills__categories">
+        {skills.map((skillCategory, idx) => (
+          <div key={idx} className="skills__category">
+            <h3 className="skills__category-title">
+              <FontAwesomeIcon icon={skillCategory.icon} />
+              {t(`skills.categories.${skillCategory.category}`)}
+            </h3>
+            {skillCategory.category !== 'softSkills' ? (
+              <div className="skills__bars">
+                {skillCategory.items.map((item, index) => (
+                  <div key={index} className="skills__bar">
+                    <span className="skills__bar-name">
+                      {skillIcons[item.name]}
+                      {item.name}
+                    </span>
+                    <div className="skills__bar-progress">
+                      <div
+                        className="skills__bar-fill"
+                        style={{ width: `${item.proficiency}%` }}
+                        aria-label={`${item.name} proficiency: ${item.proficiency}%`}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul className="skills__soft-skills">
+                {skillCategory.items.map((item, index) => (
+                  <li key={index} className="skills__soft-skill">
+                    <strong>{item.name}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Skills;
+
+=== Archivo: ThemeContext.jsx ===
+Ruta: src\contexts\ThemeContext.jsx
+
+import React, { createContext, useState, useEffect } from 'react';
+
+export const ThemeContext = createContext();
+
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  return savedTheme || 'light';
+};
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => {
+      switch (prevTheme) {
+        case 'light':
+          return 'dark';
+        case 'dark':
+          return 'high-contrast';
+        case 'high-contrast':
+          return 'light';
+        default:
+          return 'light';
+      }
+    });
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+=== Archivo: translation.json ===
+Ruta: src\locales\de\translation.json
+
+{
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "home": "Startseite",
+      "experience": "Erfahrung",
+      "education": "Ausbildung",
+      "skills": "Fähigkeiten",
+      "projects": "Projekte",
+      "languages": "Sprachen",
+      "contact": "Kontakt"
+    },
+    "lightMode": "Zum hellen Modus wechseln",
+    "darkMode": "Zum dunklen Modus wechseln",
+    "highContrast": "Hohen Kontrast umschalten"
+  },
+  "introduction": {
+    "title": "Senior Software-Entwickler",
+    "description": "Über 5 Jahre Erfahrung spezialisiert auf Backend-Entwicklung, API-Design und Infrastrukturmanagement mit Python, Django und Docker. Leidenschaftlich für Codequalität, Automatisierung und Implementierung von KI-gestützten Lösungen.",
+    "altText": "Profilbild von Oriol Macias Badosa"
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "at": "bei"
+  },
+  "education": {
+    "title": "Ausbildung und Zertifizierungen"
+  },
+  "skills": {
+    "title": "Technische Fähigkeiten",
+    "categories": {
+      "programmingLanguages": "Programmiersprachen",
+      "frameworks": "Frameworks und Tools",
+      "softSkills": "Soft Skills"
+    }
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "viewProject": "Projekt ansehen",
+    "viewCode": "Code ansehen"
+  },
+  "languages": {
+    "title": "Sprachen",
+    "level": "Niveau"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "downloadCV": "Lebenslauf herunterladen",
+    "scheduleInterview": "Vorstellungsgespräch planen"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten."
+  }
+}
+
+
+=== Archivo: translation.json ===
+Ruta: src\locales\en\translation.json
+
+{
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "experience": "Experience",
+      "skills": "Skills",
+      "projects": "Projects",
+      "languages": "Languages"
+    },
+    "downloadCV": "Download CV",
+    "toggleTheme": "Toggle Theme",
+    "languageSelector": "Select Language"
+  },
+  "introduction": {
+    "title": "Senior Software Developer",
+    "description": "Over 5 years of experience specializing in backend development, API design, and infrastructure management using Python, Django, and Docker. Passionate about code quality, automation, and implementing AI-driven solutions.",
+    "altText": "Profile photo of Oriol Macias Badosa",
+    "animationAltText": "Animated illustration representing software development",
+    "statement": "Passionate Senior Software Developer with over 5 years of experience, specializing in building scalable and efficient backend systems. Committed to driving innovation in the tech industry through expertise in Python, Django, and cloud technologies. Seeking to leverage my skills in AI integration and system architecture to contribute to cutting-edge projects in the dynamic software landscape."
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "at": "at",
+    "jobs": [
+      {
+        "company": "BJumper",
+        "role": "Senior Software Developer",
+        "period": "2019 - Present",
+        "description": "Led development of scalable backend systems using Python and Django, designed secure RESTful APIs, and implemented containerization strategies.",
+        "achievements": [
+          "Optimized system performance, reducing response time by 40%",
+          "Implemented Docker, improving deployment efficiency by 60%",
+          "Integrated AI features, increasing user engagement by 25%",
+          "Established CI/CD pipelines, reducing bug rate by 30%"
+        ]
+      },
+      {
+        "company": "Busmatick Group",
+        "role": "Software Developer",
+        "period": "2018",
+        "description": "Developed cross-platform applications for Android and Windows using .NET, managing smart card data for public transport systems.",
+        "achievements": [
+          "Implemented real-time web services for seamless communication",
+          "Managed Mifare Classic 1K smart card data"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education and Certifications",
+    "degrees": [
+      {
+        "name": "Higher Vocational Training in Cross-Platform Application Development",
+        "institution": "IES Montilivi, Girona",
+        "year": "2015",
+        "description": "Specialized training in cross-platform application development."
+      },
+      {
+        "name": "Intermediate Vocational Training in Microcomputer Systems and Networks",
+        "institution": "IES Salvador Espriu, Girona",
+        "year": "2012",
+        "description": "Focused on microcomputer systems and network management."
+      }
+    ],
+    "certifications": [
+      "SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)",
+      "SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)",
+      "Implementation Overview CPIMTM (iTRACS)"
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": {
+      "programmingLanguages": "Programming Languages",
+      "frameworks": "Frameworks & Tools",
+      "softSkills": "Soft Skills"
+    },
+    "items": [
+      { "name": "Python", "level": 95 },
+      { "name": "C#", "level": 85 },
+      { "name": "Java", "level": 80 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Django", "level": 95 },
+      { "name": "Flask", "level": 85 },
+      { "name": "Docker", "level": 90 },
+      { "name": "PostgreSQL", "level": 90 },
+      { "name": "AWS", "level": 80 },
+      { "name": "Celery", "level": 85 },
+      { "name": "System Architecture", "level": 88 },
+      { "name": "AI Integration", "level": 82 }
+    ],
+    "softSkills": [
+      {
+        "name": "System Architecture",
+        "description": "Expertise in designing scalable architectures using Django and Docker."
+      },
+      {
+        "name": "Problem Solving",
+        "description": "Demonstrated ability to solve complex challenges in backend development."
+      },
+      {
+        "name": "AI Integration",
+        "description": "Experience with integrating YOLOv10, OpenAI, and Llama-Index."
+      },
+      {
+        "name": "Code Quality",
+        "description": "Implemented robust CI/CD pipelines ensuring high code quality."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewProject": "View Project",
+    "items": [
+      {
+        "name": "Pelusas Card Game Calculator",
+        "description": "A mobile app that enhances scorekeeping for the card game \"Pelusas\" using YOLOv10 for advanced image recognition.",
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+      },
+      {
+        "name": "Card Detection Application",
+        "description": "A real-time card detection app using YOLOv10 for image recognition, with a focus on high accuracy and performance.",
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+      },
+      {
+        "name": "Legal Chatbot for Document Generation",
+        "description": "A chatbot that automates legal document generation using a local AI model and ChatGPT API.",
+        "technologies": ["Python", "Kivy", "ChatGPT API"]
+      }
+    ]
+  },
+  "languages": {
+    "title": "Languages",
+    "level": "Level",
+    "items": [
+      {
+        "code": "es",
+        "name": "Spanish",
+        "level": "Native",
+        "proficiency": 100
+      },
+      {
+        "code": "ca",
+        "name": "Catalan",
+        "level": "Native",
+        "proficiency": 100
+      },
+      {
+        "code": "en",
+        "name": "English",
+        "level": "B1-B2",
+        "proficiency": 75
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  },
+  "pdfModal": {
+    "title": "CV PDF",
+    "errorLoading": "Error loading PDF. Please try again later."
+  },
+  "common": {
+    "loading": "Loading..."
+  }
+}
+
+=== Archivo: translation.json ===
+Ruta: src\locales\es\translation.json
+
+{
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "home": "Inicio",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "languages": "Idiomas",
+      "contact": "Contacto"
+    },
+    "lightMode": "Cambiar a modo claro",
+    "darkMode": "Cambiar a modo oscuro",
+    "highContrast": "Alternar alto contraste"
+  },
+  "introduction": {
+    "title": "Desarrollador de Software Senior",
+    "description": "Más de 5 años de experiencia especializado en desarrollo backend, diseño de APIs y gestión de infraestructura utilizando Python, Django y Docker. Apasionado por la calidad del código, la automatización y la implementación de soluciones basadas en IA.",
+    "altText": "Foto de perfil de Oriol Macias Badosa"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "at": "en"
+  },
+  "education": {
+    "title": "Educación y Certificaciones"
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "categories": {
+      "programmingLanguages": "Lenguajes de Programación",
+      "frameworks": "Frameworks y Herramientas",
+      "softSkills": "Habilidades Blandas"
+    }
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "viewProject": "Ver Proyecto",
+    "viewCode": "Ver Código"
+  },
+  "languages": {
+    "title": "Idiomas",
+    "level": "Nivel"
+  },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo Electrónico",
+    "downloadCV": "Descargar CV",
+    "scheduleInterview": "Programar una Entrevista"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}
+
+
+=== Archivo: translation.json ===
+Ruta: src\locales\fr\translation.json
+
+{
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "home": "Accueil",
+      "experience": "Expérience",
+      "education": "Formation",
+      "skills": "Compétences",
+      "projects": "Projets",
+      "languages": "Langues",
+      "contact": "Contact"
+    },
+    "lightMode": "Passer en mode clair",
+    "darkMode": "Passer en mode sombre",
+    "highContrast": "Basculer en contraste élevé"
+  },
+  "introduction": {
+    "title": "Développeur Logiciel Senior",
+    "description": "Plus de 5 ans d'expérience spécialisée dans le développement backend, la conception d'API et la gestion d'infrastructure utilisant Python, Django et Docker. Passionné par la qualité du code, l'automatisation et la mise en œuvre de solutions basées sur l'IA.",
+    "altText": "Photo de profil d'Oriol Macias Badosa"
+  },
+  "experience": {
+    "title": "Expérience Professionnelle",
+    "at": "chez"
+  },
+  "education": {
+    "title": "Formation et Certifications"
+  },
+  "skills": {
+    "title": "Compétences Techniques",
+    "categories": {
+      "programmingLanguages": "Langages de Programmation",
+      "frameworks": "Frameworks et Outils",
+      "softSkills": "Compétences Transversales"
+    }
+  },
+  "projects": {
+    "title": "Projets Phares",
+    "viewProject": "Voir le Projet",
+    "viewCode": "Voir le Code"
+  },
+  "languages": {
+    "title": "Langues",
+    "level": "Niveau"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "E-mail",
+    "downloadCV": "Télécharger le CV",
+    "scheduleInterview": "Planifier un Entretien"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}
+
+
+=== Archivo: translation.json ===
+Ruta: src\locales\it\translation.json
+
+{
+  "header": {
+    "name": "Oriol Macias Badosa",
+    "nav": {
+      "home": "Home",
+      "experience": "Esperienza",
+      "education": "Formazione",
+      "skills": "Competenze",
+      "projects": "Progetti",
+      "languages": "Lingue",
+      "contact": "Contatto"
+    },
+    "lightMode": "Passa alla modalità chiara",
+    "darkMode": "Passa alla modalità scura",
+    "highContrast": "Attiva/disattiva alto contrasto"
+  },
+  "introduction": {
+    "title": "Sviluppatore Software Senior",
+    "description": "Oltre 5 anni di esperienza specializzata nello sviluppo backend, progettazione di API e gestione dell'infrastruttura utilizzando Python, Django e Docker. Appassionato di qualità del codice, automazione e implementazione di soluzioni basate sull'IA.",
+    "altText": "Foto profilo di Oriol Macias Badosa"
+  },
+  "experience": {
+    "title": "Esperienza Professionale",
+    "at": "presso"
+  },
+  "education": {
+    "title": "Formazione e Certificazioni"
+  },
+  "skills": {
+    "title": "Competenze Tecniche",
+    "categories": {
+      "programmingLanguages": "Linguaggi di Programmazione",
+      "frameworks": "Framework e Strumenti",
+      "softSkills": "Competenze Trasversali"
+    }
+  },
+  "projects": {
+    "title": "Progetti in Evidenza",
+    "viewProject": "Visualizza Progetto",
+    "viewCode": "Visualizza Codice"
+  },
+  "languages": {
+    "title": "Lingue",
+    "level": "Livello"
+  },
+  "contact": {
+    "title": "Contatto",
+    "email": "Email",
+    "downloadCV": "Scarica CV",
+    "scheduleInterview": "Programma un Colloquio"
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati."
+  }
+}
+
+
+=== Archivo: main.scss ===
+Ruta: src\styles\main.scss
+
+// src/styles/main.scss
+
+@import './variables';
+
+// Estilos globales
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+// Estilos comunes para secciones
+.section {
+  padding: 30px 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  &#projects {
+    padding-top: 35px; // Reduce el margen superior
+  }
+
+}
+
+// Estilos comunes para cards
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Estilos comunes para botones
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--primary-color-dark);
+  }
+}
+
+// Estilos para enlaces
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+    text-decoration: underline;
+    outline: none;
+  }
+}
+
+// Media queries
+@media (max-width: $breakpoint-mobile) {
+  .section {
+    padding: 20px 15px;
+  }
+}
+
+// Importar estilos de componentes
+@import './components/Header';
+@import './components/Introduction';
+@import './components/Experience';
+@import './components/Education';
+@import './components/Skills';
+@import './components/Projects';
+@import './components/Languages';
+@import './components/Footer';
+@import './components/PDFModal';
+
+=== Archivo: variables.scss ===
+Ruta: src\styles\variables.scss
+
+// src/styles/_variables.scss
+
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+:root {
+  --primary-color: #005A9C;
+  --primary-color-dark: #004578;
+  --accent-color: #e74c3c;
+  --accent-color-dark: #c0392b;
+  --background-color: #f5f5f5;
+  --background-color-rgb: 245, 245, 245;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --secondary-color: #777777;
+  --heading-color: #222222;
+
+  // Spacing
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 40px;
+
+  // Font sizes
+  --font-size-small: 0.9em;
+  --font-size-medium: 1em;
+  --font-size-large: 1.2em;
+  --font-size-xlarge: 1.5em;
+}
+
+[data-theme='dark'] {
+  --primary-color: #1e90ff;
+  --primary-color-dark: #1c7ed6;
+  --accent-color: #ff6b6b;
+  --accent-color-dark: #fa5252;
+  --background-color: #1e1e1e;
+  --background-color-rgb: 30, 30, 30;
+  --card-background: #2c2c2c;
+  --text-color: #f0f0f0;
+  --secondary-color: #ced4da;
+  --heading-color: #ffffff;
+}
+
+[data-theme='high-contrast'] {
+  --primary-color: #00ffff;
+  --primary-color-dark: #00e5ff;
+  --accent-color: #ff00ff;
+  --accent-color-dark: #e600e6;
+  --background-color: #000000;
+  --background-color-rgb: 0, 0, 0;
+  --card-background: #1a1a1a;
+  --text-color: #ffffff;
+  --secondary-color: #ffffff;
+  --heading-color: #ffffff;
+}
+
+=== Archivo: Education.scss ===
+Ruta: src\styles\components\Education.scss
+
+@import '../variables';
+
+.education {
+    .vertical-timeline-element-content {
+      background-color: var(--card-background) !important;
+      box-shadow: 0 3px 0 var(--card-background) !important;
+      
+      &, h3, h4, p, li, .vertical-timeline-element-date {
+        color: var(--text-color) !important;
+      }
+    }
+  
+    .vertical-timeline-element-icon {
+      background: var(--primary-color) !important;
+      color: #fff !important;
+    }
+  
+    .vertical-timeline-element-content-arrow {
+      border-right: 7px solid var(--card-background) !important;
+    }
+  }
+
+=== Archivo: Experience.scss ===
+Ruta: src\styles\components\Experience.scss
+
+@import '../variables';
+
+.experience {
+    .vertical-timeline-element-content {
+      background-color: var(--card-background) !important;
+      box-shadow: 0 3px 0 var(--card-background) !important;
+      
+      &, h3, h4, p, li, .vertical-timeline-element-date {
+        color: var(--text-color) !important;
+      }
+    }
+  
+    .vertical-timeline-element-icon {
+      background: var(--primary-color) !important;
+      color: #fff !important;
+    }
+  
+    .vertical-timeline-element-content-arrow {
+      border-right: 7px solid var(--card-background) !important;
+    }
+  }
+
+=== Archivo: Footer.scss ===
+Ruta: src\styles\components\Footer.scss
+
+// src/styles/components/Footer.scss
+
+@import '../variables';
+
+.footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 20px 0;
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__social {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: #fff;
+      font-size: 1.5em;
+      transition: color 0.3s ease;
+
+      &:hover,
+      &:focus {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  &__copyright {
+    font-size: 0.9em;
+    text-align: center;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 15px 0;
+
+    &__social {
+      gap: 15px;
+    }
+
+    &__copyright {
+      font-size: 0.8em;
+    }
+  }
+}
+
+=== Archivo: Header.scss ===
+Ruta: src\styles\components\Header.scss
+
+@import '../variables';
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: rgba(var(--background-color-rgb), 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__title-link {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: var(--accent-color);
+    }
+  }
+
+  &__title {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin: 0;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__nav-item {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+
+    svg {
+      margin-right: 8px;
+      font-size: 1.4em;
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.4em;
+  }
+
+  &__icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1.8em;
+    transition: color 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+    }
+  }
+
+  &__menu-button {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--primary-color);
+    cursor: pointer;
+    margin-right: 50px;
+  }
+
+ &__language-selector {
+    margin-right: 50px;
+    appearance: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 30px 8px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffffff' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 8px;
+
+    &:hover, &:focus {
+      background-color: var(--primary-color-dark);
+    }
+
+    option {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+  }
+
+
+  @media (max-width: $breakpoint-tablet) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+
+    &__title {
+      margin: 0;
+      flex-basis: 100%;
+      text-align: center;
+      font-size: 3em;
+    }
+
+
+    &__title-link {
+      margin: 0;
+      flex-basis: 100%;
+      text-align: center;
+    }
+
+    &__controls {
+      margin: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      flex-basis: 100%;
+      font-size: 1.3em;
+      margin: 0px;
+    }
+
+    &__language-selector {
+      margin-right: 0px;
+      text-align: center;
+
+    }
+  
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+
+    &__title-link {
+      flex-basis: 100%;
+      text-align: center;
+    }
+    &__language-selector {
+      margin-right: 0px;
+      text-align: center;
+
+    }
+  }
+}
+
+=== Archivo: Introduction.scss ===
+Ruta: src\styles\components\Introduction.scss
+
+@import '../variables';
+
+.introduction {
+  padding: 100px 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1920px;
+    width: 100%;
+    gap: 40px;
+  }
+
+  &__photo {
+    flex: 0 1 300px;
+    text-align: center;
+    align-items: center;
+
+    img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-color);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  &__text {
+    flex: 1 1 300px;
+    text-align: left;
+
+    .introduction__title {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .introduction__description {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+  }
+
+  &__animation {
+    flex: 0 0 auto;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    margin-top: 80px;
+    &__content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+    }
+
+    &__animation {
+      max-width: 300px;
+    }
+    
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-top: 80px;
+    &__content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+    }
+
+    &__animation {
+      max-width: 250px;
+    }
+    
+  }
+}
+
+=== Archivo: Languages.scss ===
+Ruta: src\styles\components\Languages.scss
+
+@import '../variables';
+
+#languages {
+  padding: 80px 40px;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 60px;
+    color: var(--primary-color);
+  }
+
+  .language-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .language-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .language-info {
+      text-align: center;
+      width: 100%;
+
+      h4 {
+        margin: 0;
+        font-size: 1.4em;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin: 10px 0;
+        color: var(--text-color);
+        font-size: 1.1em;
+      }
+
+      .language-progress {
+        width: 100%;
+        background-color: var(--secondary-color);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 15px;
+
+        .language-progress-bar {
+          height: 15px;
+          background-color: var(--primary-color);
+          transition: width 0.5s ease;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1400px) {
+    padding: 70px 30px;
+
+    .section-title {
+      font-size: 2.3em;
+      margin-bottom: 50px;
+    }
+
+    .language-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .language-item {
+      padding: 25px;
+
+      img {
+        width: 70px;
+      }
+
+      .language-info {
+        h4 {
+          font-size: 1.3em;
+        }
+
+        p {
+          font-size: 1em;
+        }
+
+        .language-progress-bar {
+          height: 12px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 60px 20px;
+
+    .section-title {
+      font-size: 2.1em;
+      margin-bottom: 40px;
+    }
+
+    .language-list {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 50px 15px;
+
+    .section-title {
+      font-size: 1.9em;
+      margin-bottom: 30px;
+    }
+
+    .language-item {
+      padding: 20px;
+
+      img {
+        width: 60px;
+      }
+
+      .language-info {
+        h4 {
+          font-size: 1.2em;
+        }
+
+        p {
+          font-size: 0.9em;
+        }
+
+        .language-progress-bar {
+          height: 10px;
+        }
+      }
+    }
+  }
+}
+
+=== Archivo: PDFModal.scss ===
+Ruta: src\styles\components\PDFModal.scss
+
+.pdf-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    width: 90%;
+    max-width: 900px;
+    height: 90vh;
+    border-radius: 8px;
+    padding: 20px;
+    outline: none;
+  }
+  
+  .pdf-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+  }
+  
+  .pdf-modal__content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .pdf-modal__close-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .pdf-modal__content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+=== Archivo: Projects.scss ===
+Ruta: src\styles\components\Projects.scss
+
+/* src/styles/components/Projects.scss */
+
+@import '../variables';
+
+.projects {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+
+  &__title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 280px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &-title {
+      font-size: 1.4em;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    &-description {
+      font-size: 1em;
+      color: var(--text-color);
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    &-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    &-tech {
+      font-size: 0.9em;
+      color: var(--secondary-color);
+      background-color: var(--background-color);
+      padding: 5px 10px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        font-size: 1.2em;
+      }
+    }
+
+    &-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background-color: var(--primary-color);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 0.9em;
+
+      &:hover,
+      &:focus {
+        background-color: var(--primary-color-dark);
+        outline: none;
+      }
+
+      svg {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    &__card {
+      flex: 1 1 calc(50% - 15px);
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    &__card {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+=== Archivo: Skills.scss ===
+Ruta: src\styles\components\Skills.scss
+
+@import '../variables';
+
+.skills {
+  padding: 60px 20px;
+
+  &__title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+  }
+    &__chart {
+    margin-bottom: 40px;
+  }
+
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  &__category {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    &-title {
+      font-size: 1.5em;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-name {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        font-size: 1.2em;
+      }
+    }
+
+    &-progress {
+      flex: 2;
+      height: 10px;
+      background-color: var(--secondary-color);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    &-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease-in-out;
+    }
+  }
+
+  &__soft-skills {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      strong {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    &__categories {
+      grid-template-columns: 1fr;
+    }
+
+    &__category {
+      padding: 15px;
+    }
+  }
+}
+
+=== Archivo: Timeline.scss ===
+Ruta: src\styles\components\Timeline.scss
+
+@import '../variables';
+
+.custom-line {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 30px; // Empieza desde el centro del primer icono
+    left: 25px; // Mitad del ancho del icono (50px / 2)
+    height: calc(100% - 30px);
+    width: 4px;
+    background: var(--primary-color);
+  }
+
+  .vertical-timeline-element {
+    margin: 1em 0; // Reducido de 4em a 2em para acercar los elementos
+    
+    &:first-child {
+      margin-top: 0; // Elimina el margen superior del primer elemento
+    }
+  }
+
+  .vertical-timeline-element-icon {
+    left: 0;
+    margin-left: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    z-index: 1; // Asegura que el icono esté por encima de la línea
+  }
+
+  .vertical-timeline-element-content {
+    flex-wrap: wrap-reverse;
+    margin-left: 70px; // Ajustado para dar más espacio entre el icono y el contenido
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-background);
+    
+    h3, h4, p, li {
+      color: var(--text-color);
+    }
+  }
+}
+
+.vertical-timeline-element-date {
+  color: var(--text-color);
+}
+
+@media only screen and (min-width: 1170px) {
+    .custom-line {
+      &::before {
+        left: 50%;
+        margin-left: -2px;
+      }
+  
+      .vertical-timeline-element-icon {
+        left: 50%;
+        margin-left: -25px;
+      }
+  
+      .vertical-timeline-element-content {
+        margin-left: 0;
+        padding: 1.5em;
+        width: 44%;
+      }
+  
+      .vertical-timeline-element-content::before {
+        display: none;
+      }
+  
+      .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content,
+      .vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content {
+        float: right;
+      }
+  
+      .vertical-timeline-element:nth-child(odd) .vertical-timeline-element-content {
+        float: left;
+      }
+    }
+  }
+
+=== Archivo: index.html ===
+Ruta: public\index.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description"
+    content="Senior Software Developer with over 6 years of experience in backend development, API design, and infrastructure management." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oriol Macias Badosa - Senior Software Developer</title>
+  <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+        script-src 'self';
+        connect-src 'self' https://api.github.com;
+      " />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
+
+=== Archivo: manifest.json ===
+Ruta: public\manifest.json
+
+{
+  "short_name": "Oriol Macias CV",
+  "name": "Oriol Macias Badosa - Senior Software Developer",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+=== Archivo: package.json ===
+Ruta: package.json
+
+{
+  "name": "cv",
+  "homepage": "https://oriolmacias.dev",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@mui/material": "^6.1.1",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "aos": "^2.3.4",
+    "axios": "^1.7.7",
+    "css-select": "^5.1.0",
+    "framer-motion": "^11.8.0",
+    "i18next": "^23.15.1",
+    "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
+    "node-sass": "^9.0.0",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.47",
+    "rc-progress": "^4.0.0",
+    "react": "^18.3.1",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
+    "react-i18next": "^15.0.2",
+    "react-icons": "^5.3.0",
+    "react-lottie-player": "^2.1.0",
+    "react-modal": "^3.16.1",
+    "react-pdf": "^9.1.1",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.9.0",
+    "react-slick": "^0.30.2",
+    "react-vertical-timeline-component": "^3.6.0",
+    "recharts": "^2.12.7",
+    "resolve-url-loader": "^5.0.0",
+    "sass-loader": "^16.0.2",
+    "slick-carousel": "^1.8.1",
+    "svgo": "^3.3.2",
+    "tough-cookie": "^5.0.0",
+    "web-vitals": "^4.2.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && npm run build-sw",
+    "build-sw": "node ./src/sw-build.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "react/no-deprecated": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}
+
+

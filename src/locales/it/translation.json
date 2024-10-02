@@ -2,29 +2,73 @@
   "header": {
     "name": "Oriol Macias Badosa",
     "nav": {
-      "home": "Home",
       "experience": "Esperienza",
-      "education": "Formazione",
       "skills": "Competenze",
       "projects": "Progetti",
-      "languages": "Lingue",
-      "contact": "Contatto"
+      "languages": "Lingue"
     },
-    "lightMode": "Passa alla modalità chiara",
-    "darkMode": "Passa alla modalità scura",
-    "highContrast": "Attiva/disattiva alto contrasto"
+    "downloadCV": "Scarica CV",
+    "toggleTheme": "Cambia tema",
+    "Email": "Email",
+    "LinkedIn": "LinkedIn",
+    "GitHub": "GitHub",
+    "languageSelector": "Seleziona lingua"
   },
   "introduction": {
     "title": "Sviluppatore Software Senior",
     "description": "Oltre 5 anni di esperienza specializzata nello sviluppo backend, progettazione di API e gestione dell'infrastruttura utilizzando Python, Django e Docker. Appassionato di qualità del codice, automazione e implementazione di soluzioni basate sull'IA.",
-    "altText": "Foto profilo di Oriol Macias Badosa"
+    "altText": "Foto profilo di Oriol Macias Badosa",
+    "animationAltText": "Illustrazione animata rappresentante lo sviluppo software"
   },
   "experience": {
     "title": "Esperienza Professionale",
-    "at": "presso"
+    "at": "presso",
+    "jobs": [
+      {
+        "company": "BJumper",
+        "role": "Sviluppatore Software Senior",
+        "period": "2019 - Presente",
+        "description": "Ha guidato lo sviluppo di sistemi backend scalabili utilizzando Python e Django, progettato API RESTful sicure e implementato strategie di containerizzazione.",
+        "achievements": [
+          "Ottimizzazione delle prestazioni del sistema, riducendo il tempo di risposta del 40%",
+          "Implementazione di Docker, migliorando l'efficienza di deployment del 60%",
+          "Integrazione di funzionalità IA, aumentando il coinvolgimento degli utenti del 25%",
+          "Stabilito pipeline CI/CD, riducendo il tasso di bug del 30%"
+        ]
+      },
+      {
+        "company": "Busmatick Group",
+        "role": "Sviluppatore Software",
+        "period": "2018",
+        "description": "Sviluppo di applicazioni multipiattaforma per Android e Windows utilizzando .NET, gestione dei dati delle smart card per sistemi di trasporto pubblico.",
+        "achievements": [
+          "Implementazione di servizi web in tempo reale per una comunicazione senza interruzioni",
+          "Gestione dei dati delle smart card Mifare Classic 1K"
+        ]
+      }
+    ]
   },
   "education": {
-    "title": "Formazione e Certificazioni"
+    "title": "Istruzione e Certificazioni",
+    "degrees": [
+      {
+        "name": "Formazione Professionale Superiore in Sviluppo di Applicazioni Multipiattaforma",
+        "institution": "IES Montilivi, Girona",
+        "year": "2015",
+        "description": "Formazione specializzata nello sviluppo di applicazioni multipiattaforma."
+      },
+      {
+        "name": "Formazione Professionale Intermedia in Sistemi Microinformatici e Reti",
+        "institution": "IES Salvador Espriu, Girona",
+        "year": "2012",
+        "description": "Focalizzata su sistemi microinformatici e gestione delle reti."
+      }
+    ],
+    "certifications": [
+      "SP2 EcoStruxure IT Advanced Technical (Schneider Electric, 2019)",
+      "SP2 EcoStruxure IT Commercial (Schneider Electric, 2019)",
+      "Implementation Overview CPIMTM (iTRACS)"
+    ]
   },
   "skills": {
     "title": "Competenze Tecniche",
@@ -32,24 +76,93 @@
       "programmingLanguages": "Linguaggi di Programmazione",
       "frameworks": "Framework e Strumenti",
       "softSkills": "Competenze Trasversali"
-    }
+    },
+    "items": [
+      { "name": "Python", "level": 95 },
+      { "name": "C#", "level": 85 },
+      { "name": "Java", "level": 80 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Django", "level": 95 },
+      { "name": "Flask", "level": 85 },
+      { "name": "Docker", "level": 90 },
+      { "name": "PostgreSQL", "level": 90 },
+      { "name": "AWS", "level": 80 },
+      { "name": "Celery", "level": 85 },
+      { "name": "Architettura di Sistema", "level": 88 },
+      { "name": "Integrazione IA", "level": 82 }
+    ],
+    "softSkills": [
+      {
+        "name": "Architettura di Sistema",
+        "description": "Esperienza nella progettazione di architetture scalabili utilizzando Django e Docker."
+      },
+      {
+        "name": "Risoluzione dei Problemi",
+        "description": "Capacità dimostrata di risolvere sfide complesse nello sviluppo backend."
+      },
+      {
+        "name": "Integrazione IA",
+        "description": "Esperienza nell'integrazione di YOLOv10, OpenAI e Llama-Index."
+      },
+      {
+        "name": "Qualità del Codice",
+        "description": "Implementazione di pipeline CI/CD robuste per garantire un'alta qualità del codice."
+      }
+    ]
   },
   "projects": {
     "title": "Progetti in Evidenza",
     "viewProject": "Visualizza Progetto",
-    "viewCode": "Visualizza Codice"
+    "items": [
+      {
+        "name": "Calcolatore del Gioco di Carte Pelusas",
+        "description": "Un'app mobile che migliora il conteggio dei punteggi per il gioco di carte \"Pelusas\" utilizzando YOLOv10 per il riconoscimento avanzato delle immagini.",
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+      },
+      {
+        "name": "Applicazione di Rilevamento Carte",
+        "description": "Un'app di rilevamento carte in tempo reale che utilizza YOLOv10 per il riconoscimento delle immagini, con focus su alta precisione e prestazioni.",
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+      },
+      {
+        "name": "Chatbot Legale per la Generazione di Documenti",
+        "description": "Un chatbot che automatizza la generazione di documenti legali utilizzando un modello IA locale e l'API ChatGPT.",
+        "technologies": ["Python", "Kivy", "API ChatGPT"]
+      }
+    ]
   },
   "languages": {
     "title": "Lingue",
-    "level": "Livello"
-  },
-  "contact": {
-    "title": "Contatto",
-    "email": "Email",
-    "downloadCV": "Scarica CV",
-    "scheduleInterview": "Programma un Colloquio"
+    "level": "Livello",
+    "items": [
+      {
+        "code": "es",
+        "name": "Spagnolo",
+        "level": "Madrelingua",
+        "proficiency": 100
+      },
+      {
+        "code": "ca",
+        "name": "Catalano",
+        "level": "Madrelingua",
+        "proficiency": 100
+      },
+      {
+        "code": "en",
+        "name": "Inglese",
+        "level": "B1-B2",
+        "proficiency": 75
+      }
+    ]
   },
   "footer": {
-    "rights": "Tutti i diritti riservati."
+    "copyright": "Tutti i diritti riservati."
+  },
+  "pdfModal": {
+    "title": "CV PDF",
+    "errorLoading": "Errore nel caricamento del PDF. Si prega di riprovare più tardi."
+  },
+  "common": {
+    "loading": "Caricamento in corso..."
   }
 }

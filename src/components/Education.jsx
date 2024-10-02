@@ -74,7 +74,7 @@ const Education = () => {
       <div className="title-container">
         <h2 className="section-title">{t('education.title')}</h2>
       </div>
-      <VerticalTimeline>
+      <VerticalTimeline className="custom-line">
         {educations.map((edu, idx) => (
           <VerticalTimelineElement
             key={idx}

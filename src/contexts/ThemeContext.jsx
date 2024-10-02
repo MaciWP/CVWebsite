@@ -16,15 +16,22 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
-  const toggleHighContrast = () => {
-    setTheme(prevTheme => prevTheme === 'high-contrast' ? 'light' : 'high-contrast');
+    setTheme(prevTheme => {
+      switch (prevTheme) {
+        case 'light':
+          return 'dark';
+        case 'dark':
+          return 'high-contrast';
+        case 'high-contrast':
+          return 'light';
+        default:
+          return 'light';
+      }
+    });
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, toggleHighContrast }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
