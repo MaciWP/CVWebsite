@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from '../contexts/ThemeContext';
 import 'react-vertical-timeline-component/style.min.css';
-import '../styles/components/Education.scss';
+import '../styles/components/Timeline.scss';
 
 const educations = [
   {
