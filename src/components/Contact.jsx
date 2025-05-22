@@ -3,8 +3,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../styles/components/Contact.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
 const Contact = () => {
@@ -14,13 +12,13 @@ const Contact = () => {
     <section id="contacto">
       <h2>{t('contact.title')}</h2>
       <p>
-        {t('contact.email')}: <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a>
+        {t('contact.email')}: <a href="mailto:oriolomb@gmail.com">oriolomb@gmail.com</a>
       </p>
       <div className="social-media">
-        <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
+        <a href="https://linkedin.com/in/oriolmaciasbadosa" target="_blank" rel="noopener noreferrer">
           LinkedIn
         </a>
-        <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/MaciWP" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
       </div>
@@ -31,14 +29,5 @@ const Contact = () => {
     </section>
   );
 };
-
-<div className="social-media">
-  <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-  </a>
-  <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faGithub} /> GitHub
-  </a>
-</div>
 
 export default Contact;

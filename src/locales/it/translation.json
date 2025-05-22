@@ -155,6 +155,12 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contatto",
+    "email": "Email",
+    "downloadCV": "Scarica CV",
+    "scheduleInterview": "Programma un Colloquio"
+  },
   "footer": {
     "copyright": "Tutti i diritti riservati."
   },

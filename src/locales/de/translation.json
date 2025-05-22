@@ -155,6 +155,12 @@
       }
     ]
   },
+  "contact": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "downloadCV": "Lebenslauf herunterladen",
+    "scheduleInterview": "Vorstellungsgespräch planen"
+  },
   "footer": {
     "copyright": "Alle Rechte vorbehalten."
   },
