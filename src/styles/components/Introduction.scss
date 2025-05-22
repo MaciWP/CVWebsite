@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .introduction {
   padding: 100px 20px 10px;
@@ -75,7 +75,6 @@
     &__animation {
       max-width: 300px;
     }
-    
   }
 
   @media (max-width: $breakpoint-mobile) {
@@ -92,6 +91,5 @@
     &__animation {
       max-width: 250px;
     }
-    
   }
 }

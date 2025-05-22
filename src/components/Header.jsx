@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-scroll';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-scroll";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBriefcase,
   faCogs,
@@ -12,11 +12,11 @@ import {
   faMoon,
   faAdjust,
   faBars,
-} from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { ThemeContext } from '../contexts/ThemeContext';
-import PDFModal from './PDFModal';
-import Tooltip from '@mui/material/Tooltip';
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { ThemeContext } from "../contexts/ThemeContext";
+import PDFModal from "./PDFModal";
+import Tooltip from "@mui/material/Tooltip";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -33,8 +33,8 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const changeLanguage = (e) => {
@@ -42,18 +42,18 @@ const Header = () => {
   };
 
   const navItems = [
-    { to: 'experience', icon: faBriefcase, label: 'header.nav.experience' },
-    { to: 'skills', icon: faCogs, label: 'header.nav.skills' },
-    { to: 'languages', icon: faLanguage, label: 'header.nav.languages' },
+    { to: "experience", icon: faBriefcase, label: "header.nav.experience" },
+    { to: "skills", icon: faCogs, label: "header.nav.skills" },
+    { to: "languages", icon: faLanguage, label: "header.nav.languages" },
   ];
 
   const getThemeIcon = () => {
     switch (theme) {
-      case 'light':
+      case "light":
         return faSun;
-      case 'dark':
+      case "dark":
         return faMoon;
-      case 'high-contrast':
+      case "high-contrast":
         return faAdjust;
       default:
         return faSun;
@@ -61,20 +61,45 @@ const Header = () => {
   };
 
   const headerIcons = [
-    { icon: faEnvelope, label: 'Email', action: () => window.location.href = 'mailto:oriolomb@gmail.com' },
-    { icon: faLinkedin, label: 'LinkedIn', action: () => window.open('https://linkedin.com/in/oriolmaciasbadosa', '_blank') },
-    { icon: faGithub, label: 'GitHub', action: () => window.open('https://github.com/MaciWP', '_blank') },
-    { icon: faDownload, label: 'Download CV', action: () => setIsModalOpen(true) },
-    { icon: getThemeIcon(), label: 'Toggle Theme', action: toggleTheme },
+    {
+      icon: faEnvelope,
+      label: "Email",
+      action: () => (window.location.href = "mailto:oriolomb@gmail.com"),
+    },
+    {
+      icon: faLinkedin,
+      label: "LinkedIn",
+      action: () =>
+        window.open("https://linkedin.com/in/oriolmaciasbadosa", "_blank"),
+    },
+    {
+      icon: faGithub,
+      label: "GitHub",
+      action: () => window.open("https://github.com/MaciWP", "_blank"),
+    },
+    {
+      icon: faDownload,
+      label: "Download CV",
+      action: () => setIsModalOpen(true),
+    },
+    { icon: getThemeIcon(), label: "Toggle Theme", action: toggleTheme },
   ];
 
   return (
     <header className="header">
-      <Link to="introduction" smooth={true} duration={500} className="header__title-link">
-        <h1 className="header__title">{t('header.name')}</h1>
+      <Link
+        to="introduction"
+        smooth={true}
+        duration={500}
+        className="header__title-link"
+      >
+        <h1 className="header__title">{t("header.name")}</h1>
       </Link>
       {isMobile ? (
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="header__menu-button">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="header__menu-button"
+        >
           <FontAwesomeIcon icon={faBars} />
         </button>
       ) : (
@@ -93,7 +118,9 @@ const Header = () => {
           ))}
         </nav>
       )}
-      <div className={`header__controls ${isMobile && isMenuOpen ? 'header__controls--open' : ''}`}>
+      <div
+        className={`header__controls ${isMobile && isMenuOpen ? "header__controls--open" : ""}`}
+      >
         {headerIcons.map((item, index) => (
           <Tooltip key={index} title={t(`header.${item.label}`)}>
             <button onClick={item.action} className="header__icon-button">
@@ -101,8 +128,12 @@ const Header = () => {
             </button>
           </Tooltip>
         ))}
-        <Tooltip title={t('header.languageSelector')}>
-          <select onChange={changeLanguage} value={i18n.language} className="header__language-selector">
+        <Tooltip title={t("header.languageSelector")}>
+          <select
+            onChange={changeLanguage}
+            value={i18n.language}
+            className="header__language-selector"
+          >
             <option value="en">EN</option>
             <option value="es">ES</option>
             <option value="de">DE</option>

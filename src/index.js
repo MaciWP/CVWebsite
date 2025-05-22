@@ -1,18 +1,18 @@
 // src/index.js
 
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import { I18nextProvider } from 'react-i18next';
-import { ThemeProvider } from './contexts/ThemeContext';
-import i18n from './i18n';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import { I18nextProvider } from "react-i18next";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import i18n from "./i18n";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { BrowserRouter } from "react-router-dom";
 
 // Ensure the HTML lang attribute matches the current i18n language
 document.documentElement.lang = i18n.language;
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
@@ -24,8 +24,7 @@ root.render(
         </ThemeProvider>
       </I18nextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
-
-serviceWorkerRegistration.register({ scope: '/' });
+serviceWorkerRegistration.register({ scope: "/" });

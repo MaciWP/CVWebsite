@@ -1,52 +1,52 @@
 .pdf-modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    transform: translate(-50%, -50%);
-    background-color: var(--background-color);
-    width: 90%;
-    max-width: 900px;
-    height: 90vh;
-    border-radius: 8px;
-    padding: 20px;
-    outline: none;
-  }
-  
-  .pdf-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 9999;
-  }
-  
-  .pdf-modal__content {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .pdf-modal__close-button {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .pdf-modal__content iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background-color: var(--background-color);
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  border-radius: 8px;
+  padding: 20px;
+  outline: none;
+}
+
+.pdf-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+
+.pdf-modal__content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pdf-modal__close-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.pdf-modal__content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

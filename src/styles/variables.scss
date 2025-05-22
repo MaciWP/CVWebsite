@@ -4,7 +4,7 @@ $breakpoint-mobile: 768px;
 $breakpoint-tablet: 1024px;
 
 :root {
-  --primary-color: #005A9C;
+  --primary-color: #005a9c;
   --primary-color-dark: #004578;
   --accent-color: #e74c3c;
   --accent-color-dark: #c0392b;
@@ -27,7 +27,7 @@ $breakpoint-tablet: 1024px;
   --font-size-xlarge: 1.5em;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --primary-color: #1e90ff;
   --primary-color-dark: #1c7ed6;
   --accent-color: #ff6b6b;
@@ -40,7 +40,7 @@ $breakpoint-tablet: 1024px;
   --heading-color: #ffffff;
 }
 
-[data-theme='high-contrast'] {
+[data-theme="high-contrast"] {
   --primary-color: #00ffff;
   --primary-color-dark: #00e5ff;
   --accent-color: #ff00ff;
