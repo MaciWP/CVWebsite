@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .header {
   position: fixed;
@@ -86,7 +86,7 @@
     margin-right: 50px;
   }
 
- &__language-selector {
+  &__language-selector {
     margin-right: 50px;
     appearance: none;
     background-color: var(--primary-color);
@@ -102,7 +102,8 @@
     background-position: right 10px center;
     background-size: 8px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: var(--primary-color-dark);
     }
 
@@ -111,7 +112,6 @@
       color: var(--text-color);
     }
   }
-
 
   @media (max-width: $breakpoint-tablet) {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -128,7 +128,6 @@
       text-align: center;
       font-size: 3em;
     }
-
 
     &__title-link {
       margin: 0;
@@ -149,9 +148,7 @@
     &__language-selector {
       margin-right: 0px;
       text-align: center;
-
     }
-  
   }
 
   @media (max-width: $breakpoint-mobile) {
@@ -169,7 +166,6 @@
     &__language-selector {
       margin-right: 0px;
       text-align: center;
-
     }
   }
 }
