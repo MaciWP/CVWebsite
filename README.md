@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation
+
+Before installing dependencies, ensure you are using the Node.js version defined in `.nvmrc`.
+
+```bash
+nvm use
+npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
