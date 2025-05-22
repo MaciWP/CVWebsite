@@ -156,6 +156,12 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo Electrónico",
+    "downloadCV": "Descargar CV",
+    "scheduleInterview": "Programar una Entrevista"
+  },
   "footer": {
     "copyright": "Todos los derechos reservados."
   },

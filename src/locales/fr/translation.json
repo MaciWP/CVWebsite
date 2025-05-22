@@ -155,6 +155,12 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contact",
+    "email": "E-mail",
+    "downloadCV": "Télécharger le CV",
+    "scheduleInterview": "Planifier un Entretien"
+  },
   "footer": {
     "copyright": "Tous droits réservés."
   },

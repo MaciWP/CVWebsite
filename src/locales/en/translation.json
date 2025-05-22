@@ -156,6 +156,12 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "downloadCV": "Download CV",
+    "scheduleInterview": "Schedule Interview"
+  },
   "footer": {
     "copyright": "All rights reserved."
   },
