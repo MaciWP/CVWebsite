@@ -31,6 +31,33 @@ registerRoute(
     url.origin === self.location.origin && url.pathname.endsWith(".png"),
   new StaleWhileRevalidate({
     cacheName: "images",
+    plugins: [new ExpirationPlugin({ maxEntries: 100 })],
+  }),
+);
+
+registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith(".webp"),
+  new StaleWhileRevalidate({
+    cacheName: "images",
+    plugins: [new ExpirationPlugin({ maxEntries: 100 })],
+  }),
+);
+
+registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith(".css"),
+  new StaleWhileRevalidate({
+    cacheName: "styles",
+    plugins: [new ExpirationPlugin({ maxEntries: 50 })],
+  }),
+);
+
+registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith(".woff2"),
+  new StaleWhileRevalidate({
+    cacheName: "fonts",
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
   }),
 );
