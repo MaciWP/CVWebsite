@@ -12,6 +12,6 @@ test('renders header title', () => {
       <Header />
     </I18nextProvider>
   );
-  const titleElement = screen.getByText(/Tu Nombre/i);
+  const titleElement = screen.getByText(i18n.t('header.name'));
   expect(titleElement).toBeInTheDocument();
 });
