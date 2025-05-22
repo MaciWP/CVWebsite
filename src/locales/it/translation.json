@@ -117,17 +117,20 @@
       {
         "name": "Calcolatore del Gioco di Carte Pelusas",
         "description": "Un'app mobile che migliora il conteggio dei punteggi per il gioco di carte \"Pelusas\" utilizzando YOLOv10 per il riconoscimento avanzato delle immagini.",
-        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"]
+        "technologies": ["Python", "Kivy", "YOLOv10", "Android", "iOS"],
+        "github": "https://github.com/MaciWP/pelusas-calculator"
       },
       {
         "name": "Applicazione di Rilevamento Carte",
         "description": "Un'app di rilevamento carte in tempo reale che utilizza YOLOv10 per il riconoscimento delle immagini, con focus su alta precisione e prestazioni.",
-        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"]
+        "technologies": ["Python", "Kivy", "OpenCV", "TensorFlow", "PyTorch"],
+        "github": "https://github.com/MaciWP/card-detection-app"
       },
       {
         "name": "Chatbot Legale per la Generazione di Documenti",
         "description": "Un chatbot che automatizza la generazione di documenti legali utilizzando un modello IA locale e l'API ChatGPT.",
-        "technologies": ["Python", "Kivy", "API ChatGPT"]
+        "technologies": ["Python", "Kivy", "API ChatGPT"],
+        "github": "https://github.com/MaciWP/legal-chatbot"
       }
     ]
   },
