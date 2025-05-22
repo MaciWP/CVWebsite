@@ -21,11 +21,15 @@ const LoadingFallback = () => {
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   return (
     <div className="App">
