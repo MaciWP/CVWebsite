@@ -29,7 +29,9 @@ const Projects = () => {
         <h2 className="section-title">{t('projects.title')}</h2>
       </div>
       <div className="projects__grid">
-        {projects.map((proj, index) => (
+        {projects.map((proj, index) => {
+          const { github } = proj;
+          return (
           <div key={index} className="projects__card">
             <h3 className="projects__card-title">{proj.name}</h3>
             <p className="projects__card-description">{proj.description}</p>
@@ -41,7 +43,7 @@ const Projects = () => {
               ))}
             </div>
             
-              <a href={proj.github}
+              <a href={github}
               target="_blank"
               rel="noopener noreferrer"
               className="projects__card-link"
@@ -49,7 +51,8 @@ const Projects = () => {
               <FontAwesomeIcon icon={faGithub} /> {t('projects.viewProject')}
             </a>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
