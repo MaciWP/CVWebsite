@@ -18,6 +18,12 @@ npm install
 2. Instala las dependencias con `npm ci`.
 3. Ejecuta `npm test` para correr las pruebas. Estas utilizan Jest a través de
    `react-scripts test`.
+4. Antes de crear un commit, ejecuta:
+
+   ```bash
+   npx prettier --write .
+   npx eslint .
+   ```
 
 ## Available Scripts
 
