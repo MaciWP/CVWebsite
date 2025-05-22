@@ -9,6 +9,9 @@ import i18n from './i18n';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter } from 'react-router-dom';
 
+// Ensure the HTML lang attribute matches the current i18n language
+document.documentElement.lang = i18n.language;
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 
