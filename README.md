@@ -11,6 +11,14 @@ nvm use
 npm install
 ```
 
+## Desarrollo
+
+1. Si existe un archivo `.nvmrc`, ejecuta `nvm use` para seleccionar la versión
+   de Node recomendada.
+2. Instala las dependencias con `npm ci`.
+3. Ejecuta `npm test` para correr las pruebas. Estas utilizan Jest a través de
+   `react-scripts test`.
+
 ## Available Scripts
 
 In the project directory, you can run:

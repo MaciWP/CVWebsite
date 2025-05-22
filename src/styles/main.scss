@@ -1,6 +1,6 @@
 // src/styles/main.scss
 
-@import './variables';
+@import "./variables";
 
 // Estilos globales
 html {
@@ -10,11 +10,13 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
   line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .App {
@@ -44,7 +46,6 @@ main {
   &#projects {
     padding-top: 35px; // Reduce el margen superior
   }
-
 }
 
 // Estilos comunes para cards
@@ -53,7 +54,9 @@ main {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
@@ -99,10 +102,10 @@ a {
 }
 
 // Importar estilos de componentes
-@import './components/Header';
-@import './components/Introduction';
-@import './components/Skills';
-@import './components/Projects';
-@import './components/Languages';
-@import './components/Footer';
-@import './components/PDFModal';
+@import "./components/Header";
+@import "./components/Introduction";
+@import "./components/Skills";
+@import "./components/Projects";
+@import "./components/Languages";
+@import "./components/Footer";
+@import "./components/PDFModal";
