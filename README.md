@@ -91,3 +91,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Cache-Control headers
+
+El archivo `public/_headers` define cabeceras para servir recursos estáticos con caché prolongada. Las imágenes, fuentes, archivos CSS y JS se entregan con:
+
+```text
+Cache-Control: public, max-age=31536000, immutable
+```
+
+Estas reglas ayudan a que los activos versionados se mantengan en el navegador durante un año. El `service-worker.js` tiene una regla aparte con `no-cache` para asegurar que las actualizaciones se apliquen correctamente.
