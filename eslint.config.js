@@ -1,9 +1,18 @@
 export default [
+  {
   {  
     files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
+    },
+    rules: {},
+  },
+];
+
       globals: { document: "readonly", window: "readonly" },
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
