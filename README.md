@@ -21,8 +21,9 @@ npm install
 4. Antes de crear un commit, ejecuta:
 
    ```bash
-   npx prettier --write .
+   npx prettier --check .
    npx eslint .
+   npm test
    ```
 
 ## Available Scripts

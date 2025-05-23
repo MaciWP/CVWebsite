@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals */
+ 
 import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
@@ -74,4 +74,4 @@ self.addEventListener("message", (event) => {
   }
 });
 
-/* eslint-enable no-restricted-globals */
+ 
