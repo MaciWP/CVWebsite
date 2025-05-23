@@ -1,1 +1,13 @@
-export default [];
+export default [
+  {
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+  },
+];
