@@ -42,3 +42,9 @@
 
 /service-worker.js
   Cache-Control: no-cache
+
+/cloudflare-static/rocket-loader.min.js
+  Cache-Control: public, max-age=604800
+
+/cloudflare-static/email-decode.min.js
+  Cache-Control: public, max-age=604800
