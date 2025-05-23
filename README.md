@@ -102,3 +102,5 @@ Cache-Control: public, max-age=31536000, immutable
 ```
 
 Estas reglas ayudan a que los activos versionados se mantengan en el navegador durante un año. El `service-worker.js` tiene una regla aparte con `no-cache` para asegurar que las actualizaciones se apliquen correctamente.
+
+Si el sitio se sirve a través de Cloudflare, también se definen cabeceras específicas para los scripts internos de Cloudflare. Los archivos `rocket-loader.min.js` y `email-decode.min.js` se almacenan en caché durante siete días para reducir el tiempo de carga recurrente. Estas reglas se encuentran al final de `public/_headers`.
