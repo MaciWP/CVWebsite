@@ -25,7 +25,13 @@ const Languages = () => {
       <div className="language-list">
         {languages.map((lang, idx) => (
           <div key={idx} className="language-item">
-            <img src={flagImages[lang.code]} alt={lang.name} loading="lazy" />
+            <img
+              src={flagImages[lang.code]}
+              alt={lang.name}
+              loading="lazy"
+              width="80"
+              height="60"
+            />
             <div className="language-info">
               <h4>{lang.name}</h4>
               <p>

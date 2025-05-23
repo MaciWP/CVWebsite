@@ -22,7 +22,13 @@ const Introduction = () => {
     <section id="introduction" className="introduction">
       <div className="introduction__content">
         <div className="introduction__photo">
-          <img src={photo} alt={t("introduction.altText")} loading="lazy" />
+          <img
+            src={photo}
+            alt={t("introduction.altText")}
+            width="250"
+            height="250"
+            fetchpriority="high"
+          />
         </div>
         <div className="introduction__text">
           <h2 className="introduction__title">{t("introduction.title")}</h2>
