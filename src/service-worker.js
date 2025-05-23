@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
@@ -18,10 +17,7 @@ registerRoute(
     if (url.pathname.startsWith("/_")) {
       return false;
     }
-    if (
-      url.pathname.startsWith("/cdn-cgi") ||
-      url.pathname.startsWith("/scripts/")
-    ) {
+    if (url.pathname.startsWith("/cdn-cgi")) {
       return false;
     }
     if (url.pathname.match(fileExtensionRegexp)) {
@@ -52,7 +48,9 @@ registerRoute(
 
 registerRoute(
   ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith(".css"),
+    (url.origin === self.location.origin ||
+      url.hostname === "fonts.googleapis.com") &&
+    url.pathname.endsWith(".css"),
   new StaleWhileRevalidate({
     cacheName: "styles",
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
@@ -61,7 +59,9 @@ registerRoute(
 
 registerRoute(
   ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith(".woff2"),
+    (url.origin === self.location.origin ||
+      url.hostname === "fonts.gstatic.com") &&
+    url.pathname.endsWith(".woff2"),
   new StaleWhileRevalidate({
     cacheName: "fonts",
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
@@ -73,5 +73,3 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
-
-/* eslint-enable no-restricted-globals */
