@@ -1,13 +1,11 @@
 export default [
   {
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
+      ecmaVersion: 2020,
+      sourceType: "module",
+      parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {},
   },
 ];
