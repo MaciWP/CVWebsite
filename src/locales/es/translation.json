@@ -170,7 +170,8 @@
   },
   "pdfModal": {
     "title": "CV en PDF",
-    "errorLoading": "Error al cargar el PDF. Por favor, inténtelo de nuevo más tarde."
+    "errorLoading": "Error al cargar el PDF. Por favor, inténtelo de nuevo más tarde.",
+    "retry": "Reintentar"
   },
   "common": {
     "loading": "Cargando..."

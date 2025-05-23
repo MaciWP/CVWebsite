@@ -169,7 +169,8 @@
   },
   "pdfModal": {
     "title": "Lebenslauf PDF",
-    "errorLoading": "Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut."
+    "errorLoading": "Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut.",
+    "retry": "Erneut versuchen"
   },
   "common": {
     "loading": "Wird geladen..."
