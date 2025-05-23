@@ -17,10 +17,7 @@ registerRoute(
     if (url.pathname.startsWith("/_")) {
       return false;
     }
-    if (
-      url.pathname.startsWith("/cdn-cgi") ||
-      url.pathname.startsWith("/scripts/")
-    ) {
+    if (url.pathname.startsWith("/cdn-cgi")) {
       return false;
     }
     if (url.pathname.match(fileExtensionRegexp)) {

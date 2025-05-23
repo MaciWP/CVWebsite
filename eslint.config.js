@@ -1,3 +1,8 @@
+export default [
+  {
+    ignores: ["src/index.js", "src/components/Header.test.js"],
+  },
+];
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
