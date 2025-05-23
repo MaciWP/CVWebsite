@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react";
 import "../styles/components/Introduction.scss";
 import photo from "../assets/images/photo.webp";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const Introduction = () => {
   const { t } = useTranslation();
   const [animationData, setAnimationData] = useState(null);
+  const animationRef = useRef(null);
+  const isVisible = useIntersectionObserver(animationRef, { threshold: 0.1 });
 
   useEffect(() => {
-    import("../assets/animations/introAnimation.min.json")
-      .then((module) => {
-        setAnimationData(module.default);
-      })
-      .catch((err) => {
-        console.error("Error loading animation", err);
-      });
-  }, []);
+    if (isVisible && !animationData) {
+      import("../assets/animations/introAnimation.min.json")
+        .then((module) => {
+          setAnimationData(module.default);
+        })
+        .catch((err) => {
+          console.error("Error loading animation", err);
+        });
+    }
+  }, [isVisible, animationData]);
 
   return (
     <section id="introduction" className="introduction">
@@ -34,6 +39,7 @@ const Introduction = () => {
           </p>
         </div>
         <div
+          ref={animationRef}
           className="introduction__animation"
           aria-label={t("introduction.animationAltText")}
         >
