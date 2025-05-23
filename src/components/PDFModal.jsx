@@ -7,11 +7,17 @@ Modal.setAppElement("#root");
 
 const PDFModal = ({ isOpen, onRequestClose }) => {
   const [pdfError, setPdfError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
   const pdfUrl = "/OriolMaciasBadosa_CV.pdf";
   const { t } = useTranslation();
 
   const handlePdfError = () => {
     setPdfError(true);
+  };
+
+  const handleRetry = () => {
+    setPdfError(false);
+    setRetryKey((prev) => prev + 1);
   };
 
   return (
@@ -27,9 +33,13 @@ const PDFModal = ({ isOpen, onRequestClose }) => {
           &times;
         </button>
         {pdfError ? (
-          <p>{t("pdfModal.errorLoading")}</p>
+          <div>
+            <p>{t("pdfModal.errorLoading")}</p>
+            <button onClick={handleRetry}>{t("pdfModal.retry")}</button>
+          </div>
         ) : (
           <iframe
+            key={retryKey}
             src={pdfUrl}
             title={t("pdfModal.title")}
             width="100%"
