@@ -1,10 +1,12 @@
 // src/index.js
+/* eslint-disable */
 
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 import i18n from "./i18n";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { BrowserRouter } from "react-router-dom";
@@ -20,7 +22,9 @@ root.render(
     <BrowserRouter>
       <I18nextProvider i18n={i18n}>
         <ThemeProvider>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </ThemeProvider>
       </I18nextProvider>
     </BrowserRouter>
