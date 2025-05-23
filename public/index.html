@@ -34,6 +34,32 @@
       />
     </noscript>
     <link rel="canonical" href="https://oriolmacias.dev" />
+    <script>
+      fetch("%PUBLIC_URL%/asset-manifest.json")
+        .then((r) => r.json())
+        .then((m) => {
+          const files = m.files || {};
+          const head = document.head;
+          if (files["main.css"]) {
+            const linkCss = document.createElement("link");
+            linkCss.rel = "preload";
+            linkCss.href = files["main.css"];
+            linkCss.as = "style";
+            head.appendChild(linkCss);
+          }
+          const photoKey = Object.keys(files).find((k) =>
+            k.endsWith("photo.webp"),
+          );
+          if (photoKey) {
+            const linkImg = document.createElement("link");
+            linkImg.rel = "preload";
+            linkImg.href = files[photoKey];
+            linkImg.as = "image";
+            head.appendChild(linkImg);
+          }
+        })
+        .catch((e) => console.error("preload", e));
+    </script>
   </head>
 
   <body>
