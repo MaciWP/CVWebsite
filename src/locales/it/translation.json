@@ -169,7 +169,8 @@
   },
   "pdfModal": {
     "title": "CV PDF",
-    "errorLoading": "Errore nel caricamento del PDF. Si prega di riprovare più tardi."
+    "errorLoading": "Errore nel caricamento del PDF. Si prega di riprovare più tardi.",
+    "retry": "Riprova"
   },
   "common": {
     "loading": "Caricamento in corso..."
