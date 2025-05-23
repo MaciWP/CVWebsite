@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
@@ -18,10 +17,7 @@ registerRoute(
     if (url.pathname.startsWith("/_")) {
       return false;
     }
-    if (
-      url.pathname.startsWith("/cdn-cgi") ||
-      url.pathname.startsWith("/scripts/")
-    ) {
+    if (url.pathname.startsWith("/cdn-cgi")) {
       return false;
     }
     if (url.pathname.match(fileExtensionRegexp)) {
@@ -73,5 +69,3 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
-
-/* eslint-enable no-restricted-globals */
