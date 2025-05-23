@@ -48,7 +48,9 @@ registerRoute(
 
 registerRoute(
   ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith(".css"),
+    (url.origin === self.location.origin ||
+      url.hostname === "fonts.googleapis.com") &&
+    url.pathname.endsWith(".css"),
   new StaleWhileRevalidate({
     cacheName: "styles",
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
@@ -57,7 +59,9 @@ registerRoute(
 
 registerRoute(
   ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith(".woff2"),
+    (url.origin === self.location.origin ||
+      url.hostname === "fonts.gstatic.com") &&
+    url.pathname.endsWith(".woff2"),
   new StaleWhileRevalidate({
     cacheName: "fonts",
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
